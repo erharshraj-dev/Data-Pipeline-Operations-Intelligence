@@ -1,0 +1,1001 @@
+machine_id,production_line,machine_state,cycle_time_seconds,operator,shift,defect_count,event_time
+MAC0008,Packaging Line 1,SUCCESS,493,Aisha Khan,A,3,2026-07-05T22:09:00
+MAC0054,Welding Line 2,SUCCESS,517,Hannah Schmidt,C,3,2026-06-15T07:07:00
+MAC0022,Packaging Line 1,SUCCESS,232,Thomas Baptiste,C,2,2026-07-26T11:01:00
+MAC0029,Packaging Line 1,SUCCESS,561,Robert Nakamura,C,3,2026-07-24T23:08:00
+MAC0033,Quality Inspection Line,RUNNING,87,Thomas Baptiste,A,7,2026-06-04T16:07:00
+MAC0057,Body Assembly Line 2,CANCELLED,273,Zainab Ibrahim,B,3,2026-06-11T18:59:00
+MAC0044,Machining Line 1,SUCCESS,322,Thomas Baptiste,B,1,2026-06-12T08:53:00
+MAC0009,Body Assembly Line 1,SUCCESS,520,Jennifer Walsh,A,2,2026-06-11T05:16:00
+MAC0059,Packaging Line 2,QUEUED,562,Benjamin Wright,A,4,2026-07-04T04:02:00
+MAC0051,Paint Shop Line 2,SUCCESS,557,Thomas Baptiste,A,5,2026-06-20T22:38:00
+MAC0053,Machining Line 1,RUNNING,404,James Anderson,A,1,2026-06-28T12:21:00
+MAC0018,Packaging Line 1,SUCCESS,270,Rachel Cohen,B,1,2026-06-14T03:22:00
+MAC0059,Packaging Line 2,SUCCESS,296,Maria Gonzalez,C,3,2026-07-25T05:41:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,542,Carlos Mendoza,A,1,2026-07-09T05:09:00
+MAC0060,Final Assembly Line 3,SUCCESS,290,Laura Kowalski,A,5,2026-07-08T20:28:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,324,Aisha Khan,A,2,2026-06-07T13:25:00
+MAC0047,Packaging Line 1,SUCCESS,261,Maria Gonzalez,B,2,2026-06-10T02:39:00
+MAC0060,Final Assembly Line 3,RUNNING,86,Mark Thompson,B,2,2026-07-22T02:08:00
+MAC0014,Packaging Line 2,SUCCESS,32,Michael O'Brien,B,2,2026-06-19T00:06:00
+MAC0056,Packaging Line 2,FAILED,446,Fatima Al-Sayed,B,4,2026-07-19T21:54:00
+MAC0025,Body Assembly Line 2,RUNNING,537,Robert Nakamura,C,0,2026-07-15T19:36:00
+MAC0030,Paint Shop Line 1,RUNNING,592,Maria Gonzalez,C,2,2026-06-01T03:52:00
+MAC0016,Final Assembly Line 1,RUNNING,225,Julia Ferreira,B,0,2026-06-27T22:52:00
+MAC0032,Welding Line 2,SUCCESS,480,Emily Rodriguez,A,5,2026-07-01T20:43:00
+MAC0050,Final Assembly Line 3,SUCCESS,593,Nina Petrova,A,2,2026-06-27T16:04:00
+MAC0016,Final Assembly Line 1,SUCCESS,103,Fatima Al-Sayed,C,3,2026-06-07T02:10:00
+MAC0057,Body Assembly Line 2,SUCCESS,433,Arjun Nair,A,0,2026-07-12T00:14:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,84,Yuki Tanaka,A,4,2026-06-15T16:52:00
+MAC0021,Welding Line 2,SUCCESS,507,Natalie Fournier,B,2,2026-06-21T00:14:00
+MAC0030,Paint Shop Line 1,SUCCESS,115,Rachel Cohen,C,5,2026-06-24T18:18:00
+MAC0005,Body Assembly Line 1,SUCCESS,69,Zainab Ibrahim,A,2,2026-06-17T23:53:00
+MAC0008,Packaging Line 1,SUCCESS,544,Arjun Nair,C,3,2026-06-26T20:32:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,311,Aisha Khan,A,2,2026-07-18T18:17:00
+MAC0053,Machining Line 1,CANCELLED,533,Emily Rodriguez,A,3,2026-06-27T16:25:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,104,Michael O'Brien,A,5,2026-07-13T04:55:00
+MAC0042,Final Assembly Line 1,SUCCESS,470,Vikram Patel,A,1,2026-07-23T20:49:00
+MAC0035,Paint Shop Line 2,SUCCESS,439,Robert Nakamura,B,1,2026-06-13T10:48:00
+MAC0005,Body Assembly Line 1,FAILED,352,David Chen,C,2,2026-06-15T17:59:00
+MAC0057,Body Assembly Line 2,SUCCESS,77,Yuki Tanaka,A,4,2026-07-02T19:31:00
+MAC0010,Final Assembly Line 1,SUCCESS,453,Nina Petrova,A,5,2026-06-11T17:01:00
+MAC0039,Packaging Line 2,SUCCESS,291,Sarah Mitchell,C,5,2026-07-10T07:16:00
+MAC0032,Welding Line 2,SUCCESS,456,Benjamin Wright,B,4,2026-07-09T05:14:00
+MAC0042,Final Assembly Line 1,QUEUED,531,Kenji Watanabe,B,2,2026-07-09T16:24:00
+MAC0004,Welding Line 2,QUEUED,212,Arjun Nair,B,1,2026-07-24T22:57:00
+MAC0050,Final Assembly Line 3,SUCCESS,173,Emily Rodriguez,C,6,2026-06-25T04:04:00
+MAC0012,Quality Inspection Line,SUCCESS,117,Thomas Baptiste,C,1,2026-07-23T14:23:00
+MAC0029,Packaging Line 1,SUCCESS,451,Priya Sharma,A,6,2026-07-26T14:13:00
+MAC0047,Packaging Line 1,FAILED,493,Lucas Silva,C,3,2026-07-21T04:10:00
+MAC0004,Welding Line 2,SUCCESS,378,Hannah Schmidt,C,5,2026-06-18T06:50:00
+MAC0035,Paint Shop Line 2,FAILED,41,Olivia Martin,B,5,2026-06-04T16:02:00
+MAC0027,Paint Shop Line 2,SUCCESS,348,Sarah Mitchell,B,3,2026-07-20T01:13:00
+MAC0016,Final Assembly Line 1,SUCCESS,542,Daniel Osei,C,3,2026-07-24T09:23:00
+MAC0055,Component Sub-Assembly Line,RUNNING,413,Jennifer Walsh,A,5,2026-06-19T22:05:00
+MAC0053,Machining Line 1,RUNNING,327,Emily Rodriguez,B,2,2026-07-08T00:09:00
+MAC0052,Component Sub-Assembly Line,RUNNING,398,Laura Kowalski,C,3,2026-06-10T14:52:00
+MAC0022,Packaging Line 1,SUCCESS,434,Priya Sharma,C,7,2026-07-20T16:16:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,494,Rajesh Kumar,C,3,2026-07-19T08:15:00
+MAC0012,Quality Inspection Line,CANCELLED,431,Emily Rodriguez,C,3,2026-06-24T06:16:00
+MAC0019,Body Assembly Line 2,FAILED,438,Emily Rodriguez,C,4,2026-07-15T17:43:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,556,Mark Thompson,C,3,2026-06-13T12:07:00
+MAC0007,Component Sub-Assembly Line,RUNNING,250,Natalie Fournier,A,5,2026-07-26T06:00:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,161,Rajesh Kumar,B,1,2026-07-16T04:46:00
+MAC0027,Paint Shop Line 2,SUCCESS,76,Yuki Tanaka,B,0,2026-07-17T12:14:00
+MAC0030,Paint Shop Line 1,SUCCESS,161,Daniel Osei,B,4,2026-07-08T17:06:00
+MAC0037,Body Assembly Line 2,SUCCESS,274,Grace Park,B,4,2026-06-03T18:15:00
+MAC0030,Paint Shop Line 1,SUCCESS,471,James Anderson,C,2,2026-07-15T09:26:00
+MAC0012,Quality Inspection Line,FAILED,125,Rajesh Kumar,C,2,2026-07-11T12:46:00
+MAC0042,Final Assembly Line 1,SUCCESS,51,Yuki Tanaka,C,0,2026-06-12T11:26:00
+MAC0041,Packaging Line 1,SUCCESS,440,Emily Rodriguez,C,8,2026-07-19T20:52:00
+MAC0015,Quality Inspection Line,SUCCESS,505,Kenji Watanabe,C,4,2026-06-08T15:47:00
+MAC0036,Welding Line 1,QUEUED,419,Sarah Mitchell,B,3,2026-06-23T17:38:00
+MAC0055,Component Sub-Assembly Line,RUNNING,91,Jennifer Walsh,A,2,2026-07-14T12:37:00
+MAC0046,Final Assembly Line 3,FAILED,54,Benjamin Wright,C,2,2026-07-15T03:41:00
+MAC0047,Packaging Line 1,FAILED,289,Zainab Ibrahim,A,3,2026-06-02T03:40:00
+MAC0057,Body Assembly Line 2,CANCELLED,571,Nina Petrova,A,3,2026-06-15T09:52:00
+MAC0001,Final Assembly Line 2,SUCCESS,305,Sofia Rossi,C,2,2026-07-24T21:33:00
+MAC0043,Packaging Line 1,SUCCESS,381,Zainab Ibrahim,C,3,2026-07-03T03:19:00
+MAC0024,Packaging Line 1,SUCCESS,275,Kavya Reddy,C,2,2026-06-08T16:47:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,305,Thomas Baptiste,A,3,2026-06-20T13:01:00
+MAC0035,Paint Shop Line 2,FAILED,79,James Anderson,A,0,2026-07-05T04:56:00
+MAC0023,Component Sub-Assembly Line,FAILED,119,Sarah Mitchell,C,2,2026-06-01T03:46:00
+MAC0016,Final Assembly Line 1,CANCELLED,531,Kavya Reddy,A,4,2026-06-24T21:11:00
+MAC0013,Quality Inspection Line,RUNNING,429,Fatima Al-Sayed,B,7,2026-06-15T08:49:00
+MAC0034,Quality Inspection Line,SUCCESS,289,Kavya Reddy,B,3,2026-06-19T11:04:00
+MAC0032,Welding Line 2,SUCCESS,31,Robert Nakamura,A,5,2026-07-07T00:02:00
+MAC0036,Welding Line 1,SUCCESS,72,Wei Zhang,C,2,2026-06-10T16:53:00
+MAC0013,Quality Inspection Line,FAILED,314,Rajesh Kumar,B,3,2026-07-23T03:21:00
+MAC0041,Packaging Line 1,SUCCESS,400,Jennifer Walsh,C,0,2026-07-15T11:33:00
+MAC0009,Body Assembly Line 1,RUNNING,361,Yuki Tanaka,A,1,2026-07-08T02:06:00
+MAC0030,Paint Shop Line 1,SUCCESS,93,Vikram Patel,B,1,2026-07-23T03:03:00
+MAC0033,Quality Inspection Line,RUNNING,221,Olivia Martin,C,1,2026-06-05T19:11:00
+MAC0027,Paint Shop Line 2,FAILED,342,James Anderson,A,4,2026-07-12T13:05:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,70,Julia Ferreira,B,1,2026-07-21T13:07:00
+MAC0020,Body Assembly Line 2,SUCCESS,200,Nina Petrova,B,1,2026-07-05T05:10:00
+MAC0013,Quality Inspection Line,SUCCESS,318,Thomas Baptiste,B,0,2026-07-02T01:38:00
+MAC0051,Paint Shop Line 2,SUCCESS,202,Wei Zhang,B,2,2026-07-11T13:15:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,77,Natalie Fournier,B,3,2026-07-12T05:54:00
+MAC0056,Packaging Line 2,SUCCESS,420,Kenji Watanabe,C,1,2026-07-01T13:21:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,278,Carlos Mendoza,C,1,2026-07-01T10:29:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,538,Michael O'Brien,B,3,2026-07-02T19:41:00
+MAC0043,Packaging Line 1,RUNNING,185,Emily Rodriguez,C,3,2026-07-12T08:31:00
+MAC0047,Packaging Line 1,SUCCESS,262,Natalie Fournier,B,1,2026-07-22T15:30:00
+MAC0040,Final Assembly Line 1,SUCCESS,507,Lucas Silva,C,3,2026-07-17T12:08:00
+MAC0053,Machining Line 1,SUCCESS,427,Elena Popescu,A,2,2026-06-17T02:38:00
+MAC0003,Final Assembly Line 1,SUCCESS,154,Vikram Patel,B,1,2026-07-20T22:36:00
+MAC0047,Packaging Line 1,SUCCESS,598,Robert Nakamura,A,2,2026-06-13T15:59:00
+MAC0051,Paint Shop Line 2,SUCCESS,411,Grace Park,C,4,2026-07-08T08:09:00
+MAC0048,Final Assembly Line 3,SUCCESS,99,Lucas Silva,B,5,2026-07-24T23:26:00
+MAC0013,Quality Inspection Line,RUNNING,454,Natalie Fournier,B,3,2026-07-26T09:02:00
+MAC0046,Final Assembly Line 3,SUCCESS,36,Kavya Reddy,C,6,2026-07-24T18:10:00
+MAC0039,Packaging Line 2,QUEUED,274,Laura Kowalski,B,4,2026-07-16T10:36:00
+MAC0042,Final Assembly Line 1,FAILED,340,Laura Kowalski,B,2,2026-06-28T03:09:00
+MAC0001,Final Assembly Line 2,QUEUED,356,Elena Popescu,C,5,2026-06-07T14:04:00
+MAC0005,Body Assembly Line 1,CANCELLED,430,Samuel Okafor,C,2,2026-07-16T15:27:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,436,Rajesh Kumar,B,2,2026-07-17T21:22:00
+MAC0031,Quality Inspection Line,SUCCESS,245,Emily Rodriguez,C,4,2026-07-13T08:45:00
+MAC0017,Final Assembly Line 3,FAILED,285,Hannah Schmidt,A,3,2026-07-03T11:41:00
+MAC0006,Paint Shop Line 1,SUCCESS,383,Natalie Fournier,A,2,2026-07-25T02:34:00
+MAC0047,Packaging Line 1,SUCCESS,234,Vikram Patel,C,4,2026-06-21T04:59:00
+MAC0049,Welding Line 1,RUNNING,246,Jennifer Walsh,A,1,2026-06-05T15:46:00
+MAC0038,Packaging Line 1,SUCCESS,599,Vikram Patel,B,8,2026-07-26T02:33:00
+MAC0022,Packaging Line 1,SUCCESS,373,Olivia Martin,B,1,2026-07-22T04:39:00
+MAC0033,Quality Inspection Line,SUCCESS,526,Mark Thompson,C,1,2026-07-09T23:06:00
+MAC0034,Quality Inspection Line,SUCCESS,418,Rachel Cohen,A,4,2026-06-29T12:09:00
+MAC0044,Machining Line 1,SUCCESS,272,Mark Thompson,B,1,2026-07-25T15:14:00
+MAC0026,Welding Line 2,SUCCESS,461,Robert Nakamura,C,2,2026-06-26T14:10:00
+MAC0012,Quality Inspection Line,SUCCESS,127,Rajesh Kumar,B,1,2026-07-25T08:08:00
+MAC0027,Paint Shop Line 2,FAILED,143,Kenji Watanabe,A,3,2026-07-10T03:28:00
+MAC0036,Welding Line 1,SUCCESS,554,David Chen,C,5,2026-07-26T14:04:00
+MAC0046,Final Assembly Line 3,SUCCESS,244,Hannah Schmidt,B,4,2026-07-06T03:19:00
+MAC0013,Quality Inspection Line,SUCCESS,508,Sarah Mitchell,A,6,2026-06-19T02:50:00
+MAC0037,Body Assembly Line 2,SUCCESS,66,Kavya Reddy,C,5,2026-06-25T21:10:00
+MAC0026,Welding Line 2,SUCCESS,339,Jennifer Walsh,A,4,2026-07-06T01:51:00
+MAC0022,Packaging Line 1,SUCCESS,178,Olivia Martin,A,3,2026-06-17T14:13:00
+MAC0018,Packaging Line 1,RUNNING,400,Rachel Cohen,C,3,2026-06-08T03:42:00
+MAC0009,Body Assembly Line 1,SUCCESS,538,Zainab Ibrahim,A,4,2026-07-23T08:43:00
+MAC0016,Final Assembly Line 1,SUCCESS,311,Mark Thompson,A,2,2026-07-16T09:12:00
+MAC0012,Quality Inspection Line,FAILED,155,Vikram Patel,B,4,2026-07-17T16:07:00
+MAC0034,Quality Inspection Line,RUNNING,454,Samuel Okafor,A,5,2026-06-27T14:44:00
+MAC0026,Welding Line 2,RUNNING,37,Carlos Mendoza,B,5,2026-06-06T20:10:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,349,Nina Petrova,C,3,2026-07-22T22:43:00
+MAC0012,Quality Inspection Line,CANCELLED,429,Nina Petrova,A,4,2026-06-24T01:18:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,475,Sofia Rossi,C,3,2026-06-08T12:08:00
+MAC0057,Body Assembly Line 2,SUCCESS,126,David Chen,A,3,2026-07-14T12:19:00
+MAC0044,Machining Line 1,SUCCESS,303,Nina Petrova,A,4,2026-06-21T22:43:00
+MAC0027,Paint Shop Line 2,SUCCESS,308,Elena Popescu,A,2,2026-07-21T02:32:00
+MAC0018,Packaging Line 1,SUCCESS,175,Lucas Silva,A,1,2026-07-05T08:08:00
+MAC0003,Final Assembly Line 1,SUCCESS,367,Andrew Campbell,B,4,2026-07-25T20:18:00
+MAC0010,Final Assembly Line 1,SUCCESS,475,Carlos Mendoza,B,2,2026-06-09T19:23:00
+MAC0058,Body Assembly Line 2,SUCCESS,543,Christopher Lee,A,1,2026-06-14T17:18:00
+MAC0019,Body Assembly Line 2,FAILED,257,Maria Gonzalez,B,4,2026-07-26T04:12:00
+MAC0047,Packaging Line 1,SUCCESS,581,Grace Park,C,4,2026-07-21T19:52:00
+MAC0005,Body Assembly Line 1,SUCCESS,189,Daniel Osei,A,8,2026-07-27T16:02:00
+MAC0014,Packaging Line 2,SUCCESS,493,Andrew Campbell,A,4,2026-07-10T14:34:00
+MAC0037,Body Assembly Line 2,SUCCESS,87,Rajesh Kumar,B,2,2026-07-27T16:01:00
+MAC0018,Packaging Line 1,SUCCESS,226,Samuel Okafor,B,3,2026-06-04T21:18:00
+MAC0050,Final Assembly Line 3,SUCCESS,198,Arjun Nair,A,3,2026-07-16T19:50:00
+MAC0034,Quality Inspection Line,RUNNING,177,Ahmed Hassan,A,4,2026-06-13T00:08:00
+MAC0001,Final Assembly Line 2,SUCCESS,53,Olivia Martin,C,8,2026-06-03T00:42:00
+MAC0019,Body Assembly Line 2,SUCCESS,599,Christopher Lee,B,4,2026-06-11T18:07:00
+MAC0007,Component Sub-Assembly Line,FAILED,571,Vikram Patel,C,1,2026-06-12T08:59:00
+MAC0035,Paint Shop Line 2,SUCCESS,72,Rajesh Kumar,A,0,2026-06-05T09:52:00
+MAC0005,Body Assembly Line 1,SUCCESS,90,Ahmed Hassan,C,6,2026-06-24T06:44:00
+MAC0052,Component Sub-Assembly Line,QUEUED,412,Arjun Nair,A,4,2026-07-10T04:21:00
+MAC0021,Welding Line 2,CANCELLED,225,Aisha Khan,B,2,2026-07-09T17:19:00
+MAC0020,Body Assembly Line 2,QUEUED,465,Fatima Al-Sayed,A,4,2026-06-18T16:16:00
+MAC0029,Packaging Line 1,SUCCESS,329,Isaac Newton-Boyd,B,1,2026-06-27T16:45:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,585,Arjun Nair,C,4,2026-07-10T10:20:00
+MAC0016,Final Assembly Line 1,SUCCESS,125,Ahmed Hassan,A,0,2026-07-13T07:44:00
+MAC0049,Welding Line 1,SUCCESS,54,Fatima Al-Sayed,B,3,2026-06-05T15:46:00
+MAC0022,Packaging Line 1,SUCCESS,493,Hannah Schmidt,C,5,2026-07-10T03:08:00
+MAC0057,Body Assembly Line 2,SUCCESS,506,Sarah Mitchell,C,4,2026-07-20T15:48:00
+MAC0056,Packaging Line 2,RUNNING,216,Elena Popescu,A,4,2026-06-11T00:13:00
+MAC0015,Quality Inspection Line,SUCCESS,449,Rajesh Kumar,A,1,2026-07-10T15:31:00
+MAC0056,Packaging Line 2,SUCCESS,167,Daniel Osei,C,3,2026-06-15T11:07:00
+MAC0018,Packaging Line 1,SUCCESS,110,Samuel Okafor,B,4,2026-07-15T13:59:00
+MAC0060,Final Assembly Line 3,SUCCESS,405,Christopher Lee,A,0,2026-06-16T16:49:00
+MAC0060,Final Assembly Line 3,SUCCESS,67,Jennifer Walsh,B,1,2026-07-05T13:36:00
+MAC0034,Quality Inspection Line,FAILED,525,Natalie Fournier,B,2,2026-06-16T09:37:00
+MAC0040,Final Assembly Line 1,FAILED,443,Hannah Schmidt,A,4,2026-06-27T02:09:00
+MAC0031,Quality Inspection Line,SUCCESS,456,Samuel Okafor,C,2,2026-07-12T17:29:00
+MAC0035,Paint Shop Line 2,SUCCESS,498,Andrew Campbell,C,2,2026-06-12T00:02:00
+MAC0025,Body Assembly Line 2,SUCCESS,68,Yuki Tanaka,C,5,2026-06-11T01:31:00
+MAC0024,Packaging Line 1,RUNNING,399,Kavya Reddy,A,0,2026-07-24T17:08:00
+MAC0006,Paint Shop Line 1,SUCCESS,173,Elena Popescu,A,5,2026-07-16T07:41:00
+MAC0012,Quality Inspection Line,FAILED,292,Grace Park,B,1,2026-06-09T06:57:00
+MAC0055,Component Sub-Assembly Line,FAILED,219,Michael O'Brien,C,3,2026-07-03T08:09:00
+MAC0038,Packaging Line 1,SUCCESS,545,Rajesh Kumar,C,3,2026-06-30T17:11:00
+MAC0013,Quality Inspection Line,SUCCESS,50,Aisha Khan,A,0,2026-06-26T03:01:00
+MAC0058,Body Assembly Line 2,QUEUED,501,Julia Ferreira,A,2,2026-06-07T22:07:00
+MAC0048,Final Assembly Line 3,CANCELLED,554,Kavya Reddy,C,2,2026-06-26T05:57:00
+MAC0044,Machining Line 1,SUCCESS,590,Sarah Mitchell,C,4,2026-06-07T04:16:00
+MAC0024,Packaging Line 1,SUCCESS,337,Rajesh Kumar,B,2,2026-07-05T12:43:00
+MAC0049,Welding Line 1,SUCCESS,564,Maria Gonzalez,A,3,2026-07-10T17:08:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,171,Natalie Fournier,C,4,2026-06-29T04:07:00
+MAC0057,Body Assembly Line 2,SUCCESS,536,Sofia Rossi,A,2,2026-07-21T15:50:00
+MAC0032,Welding Line 2,SUCCESS,352,Lucas Silva,A,1,2026-07-11T20:55:00
+MAC0021,Welding Line 2,RUNNING,120,Yuki Tanaka,C,2,2026-06-27T06:51:00
+MAC0030,Paint Shop Line 1,SUCCESS,83,Zainab Ibrahim,A,0,2026-07-23T12:15:00
+MAC0045,Component Sub-Assembly Line,FAILED,89,Elena Popescu,A,1,2026-07-16T06:59:00
+MAC0018,Packaging Line 1,SUCCESS,579,Ahmed Hassan,C,4,2026-06-12T13:07:00
+MAC0054,Welding Line 2,SUCCESS,409,Hannah Schmidt,C,1,2026-07-19T23:52:00
+MAC0015,Quality Inspection Line,RUNNING,67,Emily Rodriguez,A,4,2026-06-25T05:19:00
+MAC0040,Final Assembly Line 1,FAILED,138,Robert Nakamura,A,3,2026-07-01T12:27:00
+MAC0033,Quality Inspection Line,SUCCESS,504,Hannah Schmidt,B,5,2026-06-16T09:50:00
+MAC0033,Quality Inspection Line,SUCCESS,386,Maria Gonzalez,B,4,2026-07-15T04:51:00
+MAC0004,Welding Line 2,SUCCESS,356,Ahmed Hassan,C,3,2026-07-16T01:50:00
+MAC0008,Packaging Line 1,FAILED,139,Hannah Schmidt,C,3,2026-06-17T16:44:00
+MAC0012,Quality Inspection Line,SUCCESS,492,Rajesh Kumar,A,3,2026-06-29T09:10:00
+MAC0058,Body Assembly Line 2,FAILED,79,Rajesh Kumar,C,3,2026-06-09T13:22:00
+MAC0018,Packaging Line 1,SUCCESS,266,Daniel Osei,A,3,2026-06-07T16:13:00
+MAC0032,Welding Line 2,SUCCESS,592,Michael O'Brien,B,4,2026-06-11T18:41:00
+MAC0050,Final Assembly Line 3,SUCCESS,575,Olivia Martin,A,5,2026-06-19T13:54:00
+MAC0003,Final Assembly Line 1,FAILED,542,Sarah Mitchell,A,2,2026-06-01T09:41:00
+MAC0011,Final Assembly Line 3,RUNNING,582,Zainab Ibrahim,B,7,2026-06-23T02:20:00
+MAC0017,Final Assembly Line 3,SUCCESS,430,Lucas Silva,C,5,2026-06-05T01:24:00
+MAC0009,Body Assembly Line 1,SUCCESS,229,Aisha Khan,C,3,2026-07-09T07:40:00
+MAC0057,Body Assembly Line 2,SUCCESS,370,Robert Nakamura,C,4,2026-07-13T19:32:00
+MAC0031,Quality Inspection Line,SUCCESS,460,Christopher Lee,A,0,2026-06-21T02:20:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,486,Maria Gonzalez,A,2,2026-07-22T11:43:00
+MAC0018,Packaging Line 1,SUCCESS,325,Fatima Al-Sayed,B,4,2026-06-06T17:25:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,553,Julia Ferreira,C,2,2026-06-04T06:19:00
+MAC0040,Final Assembly Line 1,SUCCESS,421,Daniel Osei,B,1,2026-06-08T16:43:00
+MAC0036,Welding Line 1,FAILED,158,Priya Sharma,B,5,2026-07-12T02:13:00
+MAC0026,Welding Line 2,SUCCESS,42,Sarah Mitchell,C,1,2026-07-07T03:39:00
+MAC0017,Final Assembly Line 3,CANCELLED,190,Nina Petrova,A,6,2026-07-15T07:49:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,119,Ahmed Hassan,B,6,2026-06-18T00:37:00
+MAC0018,Packaging Line 1,SUCCESS,457,Julia Ferreira,B,5,2026-07-09T19:54:00
+MAC0048,Final Assembly Line 3,SUCCESS,537,Sofia Rossi,C,3,2026-07-27T07:33:00
+MAC0060,Final Assembly Line 3,SUCCESS,310,Kenji Watanabe,A,4,2026-06-29T10:37:00
+MAC0004,Welding Line 2,SUCCESS,323,Carlos Mendoza,A,7,2026-06-09T18:26:00
+MAC0019,Body Assembly Line 2,SUCCESS,294,Kavya Reddy,A,2,2026-06-28T16:10:00
+MAC0053,Machining Line 1,SUCCESS,340,Samuel Okafor,C,2,2026-06-04T12:29:00
+MAC0029,Packaging Line 1,RUNNING,223,Laura Kowalski,C,5,2026-07-10T14:17:00
+MAC0014,Packaging Line 2,FAILED,151,Sofia Rossi,A,4,2026-06-29T18:49:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,60,Christopher Lee,A,1,2026-06-14T23:13:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,192,Thomas Baptiste,A,2,2026-07-17T23:11:00
+MAC0036,Welding Line 1,FAILED,75,Lucas Silva,C,2,2026-07-13T21:31:00
+MAC0011,Final Assembly Line 3,FAILED,246,Hannah Schmidt,A,0,2026-07-03T09:42:00
+MAC0036,Welding Line 1,SUCCESS,503,Zainab Ibrahim,C,3,2026-06-11T23:04:00
+MAC0004,Welding Line 2,SUCCESS,587,Mark Thompson,C,3,2026-06-18T00:06:00
+MAC0001,Final Assembly Line 2,SUCCESS,567,Christopher Lee,C,1,2026-06-03T00:08:00
+MAC0029,Packaging Line 1,SUCCESS,550,Sarah Mitchell,C,6,2026-06-08T11:44:00
+MAC0060,Final Assembly Line 3,SUCCESS,174,Isaac Newton-Boyd,A,4,2026-07-24T05:19:00
+MAC0048,Final Assembly Line 3,RUNNING,157,Sarah Mitchell,B,5,2026-06-27T22:35:00
+MAC0033,Quality Inspection Line,FAILED,597,Grace Park,B,2,2026-06-06T03:50:00
+MAC0047,Packaging Line 1,SUCCESS,472,Grace Park,A,3,2026-07-15T16:31:00
+MAC0041,Packaging Line 1,SUCCESS,347,Isaac Newton-Boyd,B,4,2026-06-12T05:02:00
+MAC0005,Body Assembly Line 1,FAILED,134,Laura Kowalski,C,4,2026-07-05T09:39:00
+MAC0054,Welding Line 2,SUCCESS,69,Zainab Ibrahim,B,1,2026-06-04T04:33:00
+MAC0026,Welding Line 2,SUCCESS,87,Thomas Baptiste,A,2,2026-07-13T03:41:00
+MAC0004,Welding Line 2,RUNNING,176,Jennifer Walsh,A,3,2026-06-01T14:00:00
+MAC0022,Packaging Line 1,SUCCESS,141,Isaac Newton-Boyd,C,1,2026-07-04T07:17:00
+MAC0017,Final Assembly Line 3,SUCCESS,497,Robert Nakamura,C,3,2026-06-08T01:38:00
+MAC0029,Packaging Line 1,SUCCESS,506,Vikram Patel,C,4,2026-06-25T18:42:00
+MAC0037,Body Assembly Line 2,SUCCESS,207,Hannah Schmidt,C,1,2026-07-23T12:23:00
+MAC0014,Packaging Line 2,SUCCESS,580,Wei Zhang,A,0,2026-07-08T16:13:00
+MAC0029,Packaging Line 1,FAILED,411,Carlos Mendoza,A,3,2026-07-10T15:28:00
+MAC0059,Packaging Line 2,SUCCESS,118,Elena Popescu,B,2,2026-07-24T17:57:00
+MAC0030,Paint Shop Line 1,CANCELLED,93,Nina Petrova,B,4,2026-06-24T02:04:00
+MAC0005,Body Assembly Line 1,SUCCESS,257,Mark Thompson,C,2,2026-06-15T13:28:00
+MAC0029,Packaging Line 1,SUCCESS,448,Sarah Mitchell,B,7,2026-06-01T09:00:00
+MAC0026,Welding Line 2,SUCCESS,78,Maria Gonzalez,B,4,2026-07-17T04:32:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,289,Nina Petrova,C,2,2026-07-18T05:10:00
+MAC0022,Packaging Line 1,RUNNING,452,Elena Popescu,A,2,2026-06-30T00:39:00
+MAC0014,Packaging Line 2,FAILED,140,Hannah Schmidt,C,1,2026-06-28T15:19:00
+MAC0033,Quality Inspection Line,SUCCESS,162,Kavya Reddy,B,3,2026-06-13T08:14:00
+MAC0035,Paint Shop Line 2,SUCCESS,241,Daniel Osei,B,2,2026-07-19T15:59:00
+MAC0054,Welding Line 2,CANCELLED,561,Daniel Osei,B,3,2026-07-13T19:04:00
+MAC0053,Machining Line 1,SUCCESS,358,Lucas Silva,A,3,2026-06-29T17:44:00
+MAC0025,Body Assembly Line 2,SUCCESS,351,Kavya Reddy,B,3,2026-07-09T16:30:00
+MAC0012,Quality Inspection Line,SUCCESS,33,Robert Nakamura,A,2,2026-06-05T11:12:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,412,Ahmed Hassan,B,3,2026-07-26T22:12:00
+MAC0053,Machining Line 1,RUNNING,580,Daniel Osei,C,4,2026-06-05T04:53:00
+MAC0015,Quality Inspection Line,SUCCESS,215,Rachel Cohen,A,3,2026-06-10T16:12:00
+MAC0050,Final Assembly Line 3,SUCCESS,180,Michael O'Brien,A,4,2026-07-16T00:27:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,195,Thomas Baptiste,B,3,2026-07-03T11:24:00
+MAC0024,Packaging Line 1,SUCCESS,358,Daniel Osei,B,3,2026-06-13T16:18:00
+MAC0027,Paint Shop Line 2,SUCCESS,444,Samuel Okafor,A,7,2026-06-21T13:51:00
+MAC0055,Component Sub-Assembly Line,FAILED,186,Sarah Mitchell,B,3,2026-06-09T13:26:00
+MAC0003,Final Assembly Line 1,SUCCESS,85,Grace Park,C,5,2026-07-12T00:33:00
+MAC0011,Final Assembly Line 3,SUCCESS,438,Mark Thompson,A,0,2026-06-24T07:49:00
+MAC0011,Final Assembly Line 3,SUCCESS,51,Arjun Nair,B,1,2026-06-29T07:10:00
+MAC0043,Packaging Line 1,SUCCESS,188,Christopher Lee,A,3,2026-06-15T21:43:00
+MAC0054,Welding Line 2,SUCCESS,66,Zainab Ibrahim,C,8,2026-06-30T02:28:00
+MAC0047,Packaging Line 1,SUCCESS,519,Sofia Rossi,C,3,2026-06-16T18:34:00
+MAC0036,Welding Line 1,SUCCESS,249,Robert Nakamura,C,8,2026-06-20T23:09:00
+MAC0021,Welding Line 2,SUCCESS,211,Thomas Baptiste,B,7,2026-07-16T05:18:00
+MAC0030,Paint Shop Line 1,SUCCESS,409,Thomas Baptiste,A,3,2026-06-14T07:42:00
+MAC0060,Final Assembly Line 3,RUNNING,165,Isaac Newton-Boyd,C,3,2026-06-27T18:03:00
+MAC0004,Welding Line 2,CANCELLED,132,Arjun Nair,C,2,2026-06-22T08:41:00
+MAC0006,Paint Shop Line 1,RUNNING,167,Sofia Rossi,C,1,2026-07-27T18:14:00
+MAC0054,Welding Line 2,SUCCESS,166,Zainab Ibrahim,B,1,2026-06-15T23:21:00
+MAC0051,Paint Shop Line 2,SUCCESS,249,Thomas Baptiste,C,3,2026-06-06T14:31:00
+MAC0030,Paint Shop Line 1,SUCCESS,475,Yuki Tanaka,B,0,2026-07-15T06:06:00
+MAC0053,Machining Line 1,SUCCESS,598,Lucas Silva,C,2,2026-06-17T18:50:00
+MAC0048,Final Assembly Line 3,CANCELLED,46,Samuel Okafor,C,5,2026-06-10T01:13:00
+MAC0007,Component Sub-Assembly Line,FAILED,283,Daniel Osei,B,4,2026-07-21T05:35:00
+MAC0051,Paint Shop Line 2,SUCCESS,119,Kavya Reddy,A,1,2026-07-11T17:31:00
+MAC0041,Packaging Line 1,FAILED,99,Thomas Baptiste,A,4,2026-06-25T19:34:00
+MAC0009,Body Assembly Line 1,CANCELLED,297,David Chen,C,3,2026-06-13T19:08:00
+MAC0008,Packaging Line 1,SUCCESS,594,Rajesh Kumar,B,3,2026-07-14T20:42:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,67,Thomas Baptiste,A,2,2026-06-23T02:54:00
+MAC0032,Welding Line 2,RUNNING,405,Olivia Martin,B,4,2026-06-25T16:26:00
+MAC0038,Packaging Line 1,FAILED,57,Priya Sharma,C,5,2026-07-18T13:31:00
+MAC0008,Packaging Line 1,SUCCESS,293,Andrew Campbell,A,2,2026-06-24T03:18:00
+MAC0029,Packaging Line 1,FAILED,236,Maria Gonzalez,A,3,2026-07-01T16:53:00
+MAC0020,Body Assembly Line 2,QUEUED,185,James Anderson,B,2,2026-07-21T12:02:00
+MAC0025,Body Assembly Line 2,SUCCESS,581,Samuel Okafor,C,1,2026-06-18T08:49:00
+MAC0042,Final Assembly Line 1,SUCCESS,111,Kavya Reddy,B,5,2026-06-18T21:10:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,49,Natalie Fournier,B,3,2026-07-02T00:48:00
+MAC0027,Paint Shop Line 2,SUCCESS,158,Robert Nakamura,A,2,2026-07-02T03:31:00
+MAC0003,Final Assembly Line 1,SUCCESS,49,Sarah Mitchell,A,4,2026-06-12T10:22:00
+MAC0028,Final Assembly Line 3,SUCCESS,148,Carlos Mendoza,C,2,2026-07-03T04:18:00
+MAC0016,Final Assembly Line 1,SUCCESS,429,Maria Gonzalez,C,5,2026-07-22T05:47:00
+MAC0041,Packaging Line 1,SUCCESS,390,Samuel Okafor,A,0,2026-06-03T11:14:00
+MAC0015,Quality Inspection Line,SUCCESS,107,David Chen,B,4,2026-06-16T19:03:00
+MAC0044,Machining Line 1,SUCCESS,376,Sarah Mitchell,A,0,2026-06-06T15:20:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,209,Sofia Rossi,C,1,2026-07-16T19:01:00
+MAC0022,Packaging Line 1,SUCCESS,168,Elena Popescu,C,3,2026-06-14T10:57:00
+MAC0056,Packaging Line 2,RUNNING,72,Wei Zhang,A,1,2026-07-03T22:12:00
+MAC0047,Packaging Line 1,SUCCESS,237,Samuel Okafor,B,3,2026-06-01T03:43:00
+MAC0051,Paint Shop Line 2,RUNNING,152,Wei Zhang,A,6,2026-06-23T06:28:00
+MAC0013,Quality Inspection Line,SUCCESS,118,Natalie Fournier,C,1,2026-07-09T22:43:00
+MAC0009,Body Assembly Line 1,FAILED,287,Rajesh Kumar,A,1,2026-07-18T08:28:00
+MAC0013,Quality Inspection Line,SUCCESS,340,Kenji Watanabe,B,0,2026-07-03T23:32:00
+MAC0016,Final Assembly Line 1,SUCCESS,442,Benjamin Wright,A,3,2026-06-17T23:33:00
+MAC0016,Final Assembly Line 1,SUCCESS,347,Christopher Lee,B,4,2026-06-20T11:51:00
+MAC0042,Final Assembly Line 1,SUCCESS,537,Vikram Patel,C,3,2026-06-16T15:16:00
+MAC0012,Quality Inspection Line,SUCCESS,563,Sofia Rossi,C,4,2026-06-24T21:21:00
+MAC0021,Welding Line 2,SUCCESS,407,Aisha Khan,C,2,2026-07-22T19:57:00
+MAC0001,Final Assembly Line 2,CANCELLED,551,Vikram Patel,A,2,2026-06-03T08:03:00
+MAC0005,Body Assembly Line 1,SUCCESS,126,Samuel Okafor,B,3,2026-07-17T00:24:00
+MAC0046,Final Assembly Line 3,SUCCESS,295,Ahmed Hassan,C,1,2026-06-23T20:30:00
+MAC0008,Packaging Line 1,SUCCESS,251,Ahmed Hassan,A,3,2026-06-01T10:32:00
+MAC0036,Welding Line 1,FAILED,50,Kenji Watanabe,A,4,2026-07-18T22:51:00
+MAC0008,Packaging Line 1,SUCCESS,543,Zainab Ibrahim,A,1,2026-06-11T16:12:00
+MAC0049,Welding Line 1,SUCCESS,234,Carlos Mendoza,A,0,2026-06-03T03:46:00
+MAC0032,Welding Line 2,SUCCESS,470,David Chen,C,4,2026-07-26T11:47:00
+MAC0034,Quality Inspection Line,SUCCESS,67,Julia Ferreira,C,2,2026-07-08T05:29:00
+MAC0004,Welding Line 2,FAILED,191,Wei Zhang,B,3,2026-06-21T10:36:00
+MAC0053,Machining Line 1,SUCCESS,36,Jennifer Walsh,B,1,2026-07-10T09:44:00
+MAC0046,Final Assembly Line 3,SUCCESS,177,Laura Kowalski,B,1,2026-06-27T17:22:00
+MAC0043,Packaging Line 1,SUCCESS,126,Priya Sharma,A,1,2026-06-13T11:56:00
+MAC0054,Welding Line 2,FAILED,495,Robert Nakamura,A,1,2026-06-05T03:28:00
+MAC0008,Packaging Line 1,CANCELLED,368,Fatima Al-Sayed,A,2,2026-06-17T20:14:00
+MAC0016,Final Assembly Line 1,SUCCESS,165,Maria Gonzalez,A,6,2026-06-08T11:48:00
+MAC0027,Paint Shop Line 2,QUEUED,477,Zainab Ibrahim,C,3,2026-06-11T05:41:00
+MAC0042,Final Assembly Line 1,SUCCESS,559,Daniel Osei,C,2,2026-06-26T09:58:00
+MAC0036,Welding Line 1,SUCCESS,551,Vikram Patel,C,2,2026-07-03T06:09:00
+MAC0001,Final Assembly Line 2,CANCELLED,103,Priya Sharma,B,2,2026-06-01T22:58:00
+MAC0038,Packaging Line 1,SUCCESS,151,Thomas Baptiste,C,2,2026-06-22T01:11:00
+MAC0050,Final Assembly Line 3,SUCCESS,319,David Chen,C,4,2026-07-20T02:42:00
+MAC0032,Welding Line 2,SUCCESS,447,Arjun Nair,A,4,2026-06-08T10:02:00
+MAC0049,Welding Line 1,SUCCESS,572,Lucas Silva,A,3,2026-07-17T06:19:00
+MAC0026,Welding Line 2,RUNNING,451,Aisha Khan,A,1,2026-06-17T11:22:00
+MAC0044,Machining Line 1,SUCCESS,221,Isaac Newton-Boyd,B,2,2026-07-16T08:40:00
+MAC0054,Welding Line 2,SUCCESS,431,Olivia Martin,A,3,2026-06-14T22:18:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,142,Rajesh Kumar,A,6,2026-07-10T05:46:00
+MAC0001,Final Assembly Line 2,SUCCESS,481,Grace Park,A,1,2026-07-27T06:01:00
+MAC0043,Packaging Line 1,SUCCESS,485,Grace Park,B,4,2026-06-30T15:05:00
+MAC0055,Component Sub-Assembly Line,FAILED,529,Daniel Osei,C,6,2026-07-05T18:56:00
+MAC0016,Final Assembly Line 1,SUCCESS,288,Arjun Nair,B,4,2026-07-22T00:28:00
+MAC0026,Welding Line 2,SUCCESS,515,Kenji Watanabe,C,2,2026-06-28T06:46:00
+MAC0048,Final Assembly Line 3,SUCCESS,240,Rachel Cohen,C,0,2026-07-14T03:00:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,163,James Anderson,A,1,2026-06-28T20:53:00
+MAC0022,Packaging Line 1,SUCCESS,78,Olivia Martin,C,3,2026-06-27T12:15:00
+MAC0020,Body Assembly Line 2,SUCCESS,112,Samuel Okafor,C,2,2026-07-03T19:56:00
+MAC0060,Final Assembly Line 3,SUCCESS,156,Isaac Newton-Boyd,B,0,2026-07-23T17:15:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,300,Wei Zhang,B,5,2026-07-26T22:05:00
+MAC0046,Final Assembly Line 3,SUCCESS,107,Olivia Martin,C,5,2026-06-15T10:04:00
+MAC0005,Body Assembly Line 1,RUNNING,36,Emily Rodriguez,C,5,2026-06-22T22:32:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,142,Aisha Khan,B,2,2026-06-04T01:27:00
+MAC0025,Body Assembly Line 2,SUCCESS,395,Mark Thompson,B,3,2026-06-04T06:14:00
+MAC0037,Body Assembly Line 2,SUCCESS,237,Elena Popescu,B,1,2026-07-22T00:14:00
+MAC0047,Packaging Line 1,QUEUED,545,Ahmed Hassan,B,5,2026-06-11T12:28:00
+MAC0006,Paint Shop Line 1,QUEUED,545,Ahmed Hassan,C,7,2026-06-30T10:50:00
+MAC0012,Quality Inspection Line,SUCCESS,375,Maria Gonzalez,A,3,2026-06-01T10:15:00
+MAC0014,Packaging Line 2,CANCELLED,197,Nina Petrova,C,1,2026-07-21T18:59:00
+MAC0030,Paint Shop Line 1,FAILED,197,Carlos Mendoza,C,3,2026-06-12T11:56:00
+MAC0047,Packaging Line 1,SUCCESS,544,Christopher Lee,B,4,2026-07-27T00:16:00
+MAC0060,Final Assembly Line 3,SUCCESS,110,Julia Ferreira,C,4,2026-07-05T08:14:00
+MAC0003,Final Assembly Line 1,SUCCESS,553,David Chen,C,2,2026-06-07T09:05:00
+MAC0033,Quality Inspection Line,SUCCESS,599,Rachel Cohen,B,3,2026-06-15T15:59:00
+MAC0040,Final Assembly Line 1,RUNNING,91,Aisha Khan,C,4,2026-06-29T09:29:00
+MAC0018,Packaging Line 1,SUCCESS,278,Julia Ferreira,B,1,2026-07-18T15:50:00
+MAC0030,Paint Shop Line 1,QUEUED,185,Carlos Mendoza,B,3,2026-06-06T21:01:00
+MAC0043,Packaging Line 1,SUCCESS,70,Laura Kowalski,A,1,2026-07-25T05:44:00
+MAC0054,Welding Line 2,SUCCESS,518,Rajesh Kumar,B,7,2026-06-28T18:51:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,333,Robert Nakamura,C,3,2026-06-07T23:19:00
+MAC0013,Quality Inspection Line,SUCCESS,172,Elena Popescu,B,1,2026-07-04T23:25:00
+MAC0014,Packaging Line 2,RUNNING,435,Daniel Osei,C,3,2026-07-16T22:35:00
+MAC0001,Final Assembly Line 2,CANCELLED,554,Robert Nakamura,C,2,2026-06-18T18:07:00
+MAC0034,Quality Inspection Line,QUEUED,437,Mark Thompson,B,3,2026-07-08T17:01:00
+MAC0050,Final Assembly Line 3,SUCCESS,331,Jennifer Walsh,A,3,2026-06-11T05:25:00
+MAC0022,Packaging Line 1,SUCCESS,205,Mark Thompson,B,1,2026-07-27T14:18:00
+MAC0036,Welding Line 1,SUCCESS,532,Isaac Newton-Boyd,A,0,2026-07-08T10:49:00
+MAC0010,Final Assembly Line 1,FAILED,175,Grace Park,B,4,2026-06-11T18:28:00
+MAC0049,Welding Line 1,SUCCESS,361,Robert Nakamura,C,2,2026-06-09T04:11:00
+MAC0016,Final Assembly Line 1,SUCCESS,94,Julia Ferreira,A,3,2026-07-14T14:56:00
+MAC0043,Packaging Line 1,SUCCESS,196,Carlos Mendoza,A,4,2026-06-30T14:39:00
+MAC0054,Welding Line 2,SUCCESS,593,Christopher Lee,C,3,2026-06-19T22:06:00
+MAC0024,Packaging Line 1,SUCCESS,251,Nina Petrova,A,8,2026-07-20T20:09:00
+MAC0050,Final Assembly Line 3,SUCCESS,566,Carlos Mendoza,B,2,2026-06-12T08:10:00
+MAC0040,Final Assembly Line 1,SUCCESS,98,Michael O'Brien,C,2,2026-07-14T03:27:00
+MAC0030,Paint Shop Line 1,SUCCESS,96,Kenji Watanabe,B,6,2026-06-15T19:02:00
+MAC0053,Machining Line 1,CANCELLED,492,Daniel Osei,A,6,2026-07-25T09:10:00
+MAC0033,Quality Inspection Line,RUNNING,416,Hannah Schmidt,C,3,2026-07-24T11:27:00
+MAC0026,Welding Line 2,SUCCESS,342,Samuel Okafor,C,3,2026-06-30T19:59:00
+MAC0031,Quality Inspection Line,SUCCESS,599,Jennifer Walsh,B,5,2026-06-28T07:06:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,311,Priya Sharma,A,2,2026-06-30T03:03:00
+MAC0036,Welding Line 1,FAILED,508,Michael O'Brien,C,2,2026-06-25T19:10:00
+MAC0023,Component Sub-Assembly Line,QUEUED,75,Rachel Cohen,C,1,2026-06-15T01:47:00
+MAC0001,Final Assembly Line 2,SUCCESS,330,Yuki Tanaka,C,3,2026-07-20T16:55:00
+MAC0027,Paint Shop Line 2,RUNNING,373,Priya Sharma,A,1,2026-06-02T13:22:00
+MAC0018,Packaging Line 1,SUCCESS,169,Emily Rodriguez,B,2,2026-07-19T20:51:00
+MAC0011,Final Assembly Line 3,SUCCESS,273,Aisha Khan,C,2,2026-07-02T16:43:00
+MAC0016,Final Assembly Line 1,FAILED,231,Hannah Schmidt,A,2,2026-07-22T02:51:00
+MAC0027,Paint Shop Line 2,QUEUED,134,Sofia Rossi,B,3,2026-07-17T16:40:00
+MAC0047,Packaging Line 1,SUCCESS,487,Wei Zhang,B,2,2026-06-02T06:50:00
+MAC0029,Packaging Line 1,RUNNING,499,Vikram Patel,C,0,2026-06-05T17:28:00
+MAC0033,Quality Inspection Line,SUCCESS,417,Arjun Nair,A,1,2026-07-27T17:59:00
+MAC0059,Packaging Line 2,SUCCESS,229,Lucas Silva,B,3,2026-06-19T11:14:00
+MAC0057,Body Assembly Line 2,SUCCESS,105,Ahmed Hassan,C,1,2026-07-10T02:51:00
+MAC0003,Final Assembly Line 1,SUCCESS,34,Carlos Mendoza,A,3,2026-06-14T08:18:00
+MAC0028,Final Assembly Line 3,RUNNING,114,Nina Petrova,A,3,2026-07-22T11:02:00
+MAC0041,Packaging Line 1,RUNNING,496,Elena Popescu,C,0,2026-06-07T09:31:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,248,Zainab Ibrahim,B,2,2026-07-16T18:30:00
+MAC0056,Packaging Line 2,SUCCESS,452,Olivia Martin,C,3,2026-06-22T16:01:00
+MAC0031,Quality Inspection Line,SUCCESS,104,James Anderson,B,2,2026-07-22T04:47:00
+MAC0059,Packaging Line 2,QUEUED,377,Natalie Fournier,C,1,2026-07-02T09:33:00
+MAC0057,Body Assembly Line 2,SUCCESS,82,Natalie Fournier,B,2,2026-07-21T11:58:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,274,Benjamin Wright,C,2,2026-06-19T19:58:00
+MAC0020,Body Assembly Line 2,SUCCESS,91,Nina Petrova,C,5,2026-07-07T21:16:00
+MAC0030,Paint Shop Line 1,SUCCESS,446,Andrew Campbell,A,3,2026-06-19T17:32:00
+MAC0040,Final Assembly Line 1,SUCCESS,228,Ahmed Hassan,C,0,2026-06-08T06:11:00
+MAC0046,Final Assembly Line 3,RUNNING,73,Maria Gonzalez,B,1,2026-07-14T13:29:00
+MAC0007,Component Sub-Assembly Line,FAILED,473,Grace Park,A,3,2026-07-09T18:05:00
+MAC0003,Final Assembly Line 1,FAILED,533,Julia Ferreira,A,5,2026-07-11T03:59:00
+MAC0049,Welding Line 1,FAILED,342,Sofia Rossi,A,2,2026-06-03T00:54:00
+MAC0042,Final Assembly Line 1,RUNNING,427,Elena Popescu,A,2,2026-07-24T00:07:00
+MAC0032,Welding Line 2,RUNNING,219,Thomas Baptiste,A,6,2026-06-20T22:51:00
+MAC0037,Body Assembly Line 2,QUEUED,220,David Chen,B,4,2026-07-03T12:06:00
+MAC0059,Packaging Line 2,SUCCESS,164,Aisha Khan,B,4,2026-06-17T03:37:00
+MAC0056,Packaging Line 2,SUCCESS,117,Sofia Rossi,C,3,2026-06-04T13:19:00
+MAC0052,Component Sub-Assembly Line,QUEUED,275,Mark Thompson,B,4,2026-06-17T19:53:00
+MAC0030,Paint Shop Line 1,SUCCESS,298,Olivia Martin,B,1,2026-06-05T22:51:00
+MAC0035,Paint Shop Line 2,RUNNING,455,Yuki Tanaka,C,2,2026-07-16T22:41:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,191,Laura Kowalski,B,3,2026-07-05T07:43:00
+MAC0008,Packaging Line 1,SUCCESS,263,Priya Sharma,A,1,2026-07-21T06:51:00
+MAC0019,Body Assembly Line 2,RUNNING,383,Daniel Osei,B,2,2026-07-23T16:21:00
+MAC0020,Body Assembly Line 2,SUCCESS,367,Maria Gonzalez,B,3,2026-07-22T08:40:00
+MAC0020,Body Assembly Line 2,SUCCESS,558,Jennifer Walsh,A,3,2026-06-25T09:13:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,70,Arjun Nair,B,4,2026-07-06T07:36:00
+MAC0056,Packaging Line 2,SUCCESS,35,Benjamin Wright,A,2,2026-07-13T22:22:00
+MAC0039,Packaging Line 2,SUCCESS,562,James Anderson,A,2,2026-07-15T00:11:00
+MAC0036,Welding Line 1,SUCCESS,210,Laura Kowalski,B,6,2026-06-29T23:34:00
+MAC0042,Final Assembly Line 1,FAILED,447,Sarah Mitchell,B,3,2026-06-08T04:15:00
+MAC0044,Machining Line 1,SUCCESS,90,Rajesh Kumar,B,4,2026-07-10T05:05:00
+MAC0031,Quality Inspection Line,SUCCESS,473,Benjamin Wright,A,2,2026-06-20T18:07:00
+MAC0046,Final Assembly Line 3,SUCCESS,169,Robert Nakamura,A,2,2026-06-03T16:00:00
+MAC0038,Packaging Line 1,SUCCESS,491,Rachel Cohen,B,1,2026-07-15T20:28:00
+MAC0059,Packaging Line 2,FAILED,573,Isaac Newton-Boyd,B,4,2026-06-05T04:34:00
+MAC0013,Quality Inspection Line,SUCCESS,123,Robert Nakamura,A,1,2026-06-26T22:07:00
+MAC0059,Packaging Line 2,SUCCESS,440,Rajesh Kumar,A,2,2026-07-21T16:13:00
+MAC0014,Packaging Line 2,CANCELLED,591,Emily Rodriguez,B,5,2026-06-29T04:25:00
+MAC0013,Quality Inspection Line,SUCCESS,259,Elena Popescu,B,4,2026-07-24T19:11:00
+MAC0012,Quality Inspection Line,RUNNING,200,Vikram Patel,A,5,2026-07-15T17:44:00
+MAC0029,Packaging Line 1,RUNNING,193,Hannah Schmidt,B,2,2026-07-04T02:44:00
+MAC0031,Quality Inspection Line,SUCCESS,389,David Chen,C,5,2026-06-13T17:48:00
+MAC0004,Welding Line 2,SUCCESS,335,Grace Park,B,1,2026-06-08T07:03:00
+MAC0010,Final Assembly Line 1,RUNNING,49,Kenji Watanabe,C,1,2026-07-20T09:06:00
+MAC0006,Paint Shop Line 1,SUCCESS,452,Maria Gonzalez,C,2,2026-07-21T16:38:00
+MAC0035,Paint Shop Line 2,FAILED,236,Vikram Patel,B,6,2026-07-13T04:34:00
+MAC0051,Paint Shop Line 2,SUCCESS,529,Elena Popescu,A,0,2026-07-09T00:51:00
+MAC0009,Body Assembly Line 1,SUCCESS,401,Julia Ferreira,C,2,2026-06-05T09:06:00
+MAC0015,Quality Inspection Line,SUCCESS,296,Christopher Lee,A,3,2026-07-16T04:39:00
+MAC0054,Welding Line 2,FAILED,394,Aisha Khan,A,3,2026-06-25T04:38:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,94,David Chen,C,4,2026-07-14T21:45:00
+MAC0045,Component Sub-Assembly Line,FAILED,127,Kenji Watanabe,B,2,2026-07-23T05:39:00
+MAC0003,Final Assembly Line 1,FAILED,76,Kavya Reddy,A,4,2026-06-10T17:19:00
+MAC0012,Quality Inspection Line,SUCCESS,278,Emily Rodriguez,C,1,2026-06-16T10:04:00
+MAC0015,Quality Inspection Line,SUCCESS,107,Nina Petrova,A,1,2026-06-12T23:14:00
+MAC0060,Final Assembly Line 3,SUCCESS,587,James Anderson,A,5,2026-06-01T17:17:00
+MAC0056,Packaging Line 2,SUCCESS,224,Thomas Baptiste,C,1,2026-07-23T05:27:00
+MAC0050,Final Assembly Line 3,QUEUED,435,Jennifer Walsh,C,6,2026-06-10T17:42:00
+MAC0041,Packaging Line 1,SUCCESS,393,Lucas Silva,A,4,2026-06-24T22:52:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,139,Maria Gonzalez,B,3,2026-07-01T22:49:00
+MAC0060,Final Assembly Line 3,SUCCESS,110,Priya Sharma,C,4,2026-06-27T01:54:00
+MAC0015,Quality Inspection Line,FAILED,351,Nina Petrova,B,4,2026-06-06T19:23:00
+MAC0004,Welding Line 2,SUCCESS,376,Andrew Campbell,C,1,2026-06-18T03:21:00
+MAC0025,Body Assembly Line 2,SUCCESS,92,Benjamin Wright,C,3,2026-06-04T01:53:00
+MAC0014,Packaging Line 2,SUCCESS,473,Natalie Fournier,A,7,2026-07-23T09:05:00
+MAC0058,Body Assembly Line 2,SUCCESS,184,Mark Thompson,C,4,2026-06-08T19:16:00
+MAC0033,Quality Inspection Line,SUCCESS,363,Sofia Rossi,B,3,2026-07-21T02:42:00
+MAC0029,Packaging Line 1,SUCCESS,166,Kavya Reddy,C,5,2026-07-18T00:23:00
+MAC0029,Packaging Line 1,SUCCESS,484,Rachel Cohen,C,1,2026-07-24T01:46:00
+MAC0043,Packaging Line 1,CANCELLED,98,Christopher Lee,C,2,2026-07-26T04:13:00
+MAC0042,Final Assembly Line 1,SUCCESS,36,Lucas Silva,B,3,2026-07-13T08:31:00
+MAC0017,Final Assembly Line 3,SUCCESS,125,Christopher Lee,A,6,2026-06-08T16:56:00
+MAC0037,Body Assembly Line 2,SUCCESS,238,Kenji Watanabe,C,1,2026-07-25T06:42:00
+MAC0060,Final Assembly Line 3,FAILED,256,Vikram Patel,C,2,2026-07-02T19:49:00
+MAC0015,Quality Inspection Line,SUCCESS,479,Maria Gonzalez,A,2,2026-07-24T22:17:00
+MAC0026,Welding Line 2,CANCELLED,458,Daniel Osei,B,2,2026-07-09T19:02:00
+MAC0050,Final Assembly Line 3,QUEUED,170,Andrew Campbell,C,4,2026-06-12T07:24:00
+MAC0033,Quality Inspection Line,SUCCESS,216,Sofia Rossi,A,2,2026-06-05T00:30:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,478,Ahmed Hassan,A,4,2026-06-10T07:41:00
+MAC0026,Welding Line 2,RUNNING,212,Jennifer Walsh,C,6,2026-07-21T03:53:00
+MAC0048,Final Assembly Line 3,SUCCESS,216,Mark Thompson,A,1,2026-07-13T10:30:00
+MAC0005,Body Assembly Line 1,SUCCESS,545,Fatima Al-Sayed,A,3,2026-07-13T14:45:00
+MAC0008,Packaging Line 1,SUCCESS,437,Kavya Reddy,A,3,2026-06-25T00:03:00
+MAC0005,Body Assembly Line 1,RUNNING,313,Hannah Schmidt,A,2,2026-07-09T19:40:00
+MAC0049,Welding Line 1,SUCCESS,510,Rachel Cohen,A,2,2026-07-11T12:11:00
+MAC0013,Quality Inspection Line,SUCCESS,375,Samuel Okafor,C,4,2026-06-28T09:09:00
+MAC0057,Body Assembly Line 2,SUCCESS,302,Thomas Baptiste,C,0,2026-06-28T14:03:00
+MAC0058,Body Assembly Line 2,SUCCESS,315,Olivia Martin,B,2,2026-07-16T00:53:00
+MAC0030,Paint Shop Line 1,SUCCESS,457,Laura Kowalski,B,5,2026-06-14T06:36:00
+MAC0060,Final Assembly Line 3,SUCCESS,590,Wei Zhang,C,2,2026-07-18T00:26:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,183,Sofia Rossi,B,4,2026-06-24T16:29:00
+MAC0026,Welding Line 2,QUEUED,395,Laura Kowalski,A,4,2026-06-17T06:51:00
+MAC0014,Packaging Line 2,SUCCESS,401,Arjun Nair,A,0,2026-06-18T13:43:00
+MAC0014,Packaging Line 2,SUCCESS,159,Zainab Ibrahim,B,1,2026-06-14T12:10:00
+MAC0044,Machining Line 1,SUCCESS,413,Sofia Rossi,A,1,2026-06-22T14:38:00
+MAC0053,Machining Line 1,SUCCESS,272,Arjun Nair,A,2,2026-07-27T01:16:00
+MAC0048,Final Assembly Line 3,RUNNING,33,Christopher Lee,C,2,2026-07-04T13:23:00
+MAC0040,Final Assembly Line 1,CANCELLED,48,Rajesh Kumar,A,3,2026-06-28T15:07:00
+MAC0043,Packaging Line 1,QUEUED,391,Mark Thompson,C,0,2026-06-04T17:17:00
+MAC0047,Packaging Line 1,SUCCESS,97,Lucas Silva,C,3,2026-06-24T12:28:00
+MAC0018,Packaging Line 1,SUCCESS,440,Aisha Khan,B,5,2026-07-09T13:28:00
+MAC0041,Packaging Line 1,SUCCESS,573,Natalie Fournier,B,2,2026-07-24T06:37:00
+MAC0009,Body Assembly Line 1,SUCCESS,416,Ahmed Hassan,B,1,2026-06-23T14:39:00
+MAC0030,Paint Shop Line 1,SUCCESS,577,Yuki Tanaka,A,1,2026-07-12T02:39:00
+MAC0040,Final Assembly Line 1,SUCCESS,230,Ahmed Hassan,C,2,2026-06-10T03:33:00
+MAC0044,Machining Line 1,SUCCESS,303,Sarah Mitchell,A,4,2026-07-13T13:20:00
+MAC0053,Machining Line 1,SUCCESS,362,Hannah Schmidt,A,2,2026-07-06T22:21:00
+MAC0009,Body Assembly Line 1,SUCCESS,251,Kavya Reddy,A,2,2026-07-16T20:19:00
+MAC0034,Quality Inspection Line,QUEUED,259,David Chen,A,0,2026-07-10T00:37:00
+MAC0057,Body Assembly Line 2,SUCCESS,580,Fatima Al-Sayed,C,3,2026-07-18T13:52:00
+MAC0018,Packaging Line 1,RUNNING,346,Aisha Khan,C,6,2026-07-20T18:32:00
+MAC0027,Paint Shop Line 2,SUCCESS,75,James Anderson,A,1,2026-07-09T21:57:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,400,Vikram Patel,B,6,2026-06-22T23:32:00
+MAC0052,Component Sub-Assembly Line,RUNNING,557,Laura Kowalski,C,3,2026-07-27T17:15:00
+MAC0022,Packaging Line 1,SUCCESS,260,Laura Kowalski,A,1,2026-07-19T17:28:00
+MAC0030,Paint Shop Line 1,SUCCESS,92,Laura Kowalski,A,3,2026-07-16T01:51:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,309,Ahmed Hassan,C,2,2026-07-27T07:59:00
+MAC0050,Final Assembly Line 3,FAILED,246,Olivia Martin,A,5,2026-07-18T04:04:00
+MAC0009,Body Assembly Line 1,FAILED,51,Yuki Tanaka,B,1,2026-06-02T19:28:00
+MAC0021,Welding Line 2,SUCCESS,38,Benjamin Wright,C,5,2026-07-18T08:50:00
+MAC0016,Final Assembly Line 1,SUCCESS,108,Maria Gonzalez,A,2,2026-06-19T05:28:00
+MAC0044,Machining Line 1,SUCCESS,145,Kavya Reddy,A,5,2026-06-03T15:30:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,129,Nina Petrova,A,5,2026-07-03T03:48:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,536,Arjun Nair,A,2,2026-07-27T10:03:00
+MAC0039,Packaging Line 2,SUCCESS,181,Lucas Silva,A,2,2026-06-04T17:38:00
+MAC0049,Welding Line 1,SUCCESS,296,Samuel Okafor,A,3,2026-07-14T13:42:00
+MAC0001,Final Assembly Line 2,SUCCESS,446,James Anderson,A,3,2026-07-02T03:03:00
+MAC0021,Welding Line 2,SUCCESS,340,Aisha Khan,B,7,2026-06-05T19:51:00
+MAC0009,Body Assembly Line 1,SUCCESS,361,Yuki Tanaka,B,5,2026-07-12T12:34:00
+MAC0036,Welding Line 1,SUCCESS,418,Grace Park,C,5,2026-07-12T02:19:00
+MAC0056,Packaging Line 2,SUCCESS,531,Nina Petrova,A,4,2026-07-11T11:15:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,392,David Chen,C,2,2026-07-11T09:36:00
+MAC0037,Body Assembly Line 2,SUCCESS,104,Elena Popescu,B,3,2026-07-07T11:59:00
+MAC0052,Component Sub-Assembly Line,FAILED,344,Sofia Rossi,C,3,2026-06-29T10:03:00
+MAC0039,Packaging Line 2,SUCCESS,317,Aisha Khan,A,1,2026-06-26T18:52:00
+MAC0035,Paint Shop Line 2,SUCCESS,104,Daniel Osei,C,1,2026-06-18T06:10:00
+MAC0017,Final Assembly Line 3,SUCCESS,35,Olivia Martin,B,7,2026-07-09T11:29:00
+MAC0026,Welding Line 2,FAILED,104,Natalie Fournier,A,5,2026-07-01T17:19:00
+MAC0022,Packaging Line 1,SUCCESS,364,Aisha Khan,A,4,2026-07-12T12:02:00
+MAC0013,Quality Inspection Line,SUCCESS,230,Andrew Campbell,C,3,2026-06-10T06:45:00
+MAC0019,Body Assembly Line 2,SUCCESS,380,David Chen,C,5,2026-06-13T05:07:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,246,Rajesh Kumar,C,2,2026-06-23T10:41:00
+MAC0041,Packaging Line 1,RUNNING,49,Kavya Reddy,B,2,2026-07-12T01:24:00
+MAC0035,Paint Shop Line 2,SUCCESS,201,Wei Zhang,C,3,2026-07-06T12:54:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,279,Wei Zhang,C,1,2026-07-02T00:00:00
+MAC0025,Body Assembly Line 2,SUCCESS,439,Priya Sharma,B,3,2026-07-11T18:26:00
+MAC0057,Body Assembly Line 2,QUEUED,405,Elena Popescu,C,1,2026-07-17T16:10:00
+MAC0030,Paint Shop Line 1,SUCCESS,167,Rajesh Kumar,B,4,2026-07-01T23:22:00
+MAC0044,Machining Line 1,SUCCESS,92,Laura Kowalski,C,2,2026-06-09T04:10:00
+MAC0009,Body Assembly Line 1,SUCCESS,344,Carlos Mendoza,B,3,2026-07-21T16:02:00
+MAC0034,Quality Inspection Line,SUCCESS,104,Andrew Campbell,A,2,2026-07-07T15:35:00
+MAC0006,Paint Shop Line 1,SUCCESS,494,Aisha Khan,B,1,2026-07-21T21:23:00
+MAC0017,Final Assembly Line 3,QUEUED,462,Zainab Ibrahim,B,4,2026-07-12T02:38:00
+MAC0021,Welding Line 2,SUCCESS,140,Arjun Nair,A,4,2026-07-22T20:45:00
+MAC0048,Final Assembly Line 3,SUCCESS,188,Julia Ferreira,B,2,2026-06-25T08:42:00
+MAC0044,Machining Line 1,SUCCESS,36,Mark Thompson,C,2,2026-07-04T18:44:00
+MAC0039,Packaging Line 2,SUCCESS,36,Samuel Okafor,B,2,2026-06-12T19:57:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,487,Isaac Newton-Boyd,A,3,2026-06-15T04:41:00
+MAC0048,Final Assembly Line 3,SUCCESS,531,David Chen,B,4,2026-06-21T19:21:00
+MAC0025,Body Assembly Line 2,SUCCESS,103,Kenji Watanabe,C,5,2026-06-03T14:47:00
+MAC0005,Body Assembly Line 1,SUCCESS,111,Emily Rodriguez,A,4,2026-06-20T04:57:00
+MAC0019,Body Assembly Line 2,SUCCESS,142,James Anderson,B,4,2026-07-04T01:22:00
+MAC0043,Packaging Line 1,FAILED,444,Kenji Watanabe,B,4,2026-07-17T03:14:00
+MAC0016,Final Assembly Line 1,SUCCESS,361,Daniel Osei,B,5,2026-06-30T10:50:00
+MAC0057,Body Assembly Line 2,SUCCESS,461,Olivia Martin,A,1,2026-07-17T09:54:00
+MAC0033,Quality Inspection Line,SUCCESS,112,Hannah Schmidt,A,4,2026-06-01T02:17:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,300,David Chen,A,1,2026-07-14T02:35:00
+MAC0012,Quality Inspection Line,SUCCESS,554,Olivia Martin,C,1,2026-06-09T02:50:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,302,Michael O'Brien,C,3,2026-06-28T23:44:00
+MAC0015,Quality Inspection Line,SUCCESS,326,Emily Rodriguez,B,4,2026-07-26T03:30:00
+MAC0059,Packaging Line 2,QUEUED,302,Carlos Mendoza,C,2,2026-07-03T19:43:00
+MAC0037,Body Assembly Line 2,SUCCESS,252,Daniel Osei,B,3,2026-07-13T19:57:00
+MAC0009,Body Assembly Line 1,SUCCESS,501,David Chen,C,2,2026-07-06T18:37:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,230,Grace Park,B,4,2026-07-22T13:39:00
+MAC0036,Welding Line 1,SUCCESS,132,Hannah Schmidt,C,2,2026-07-22T11:38:00
+MAC0026,Welding Line 2,RUNNING,306,Thomas Baptiste,C,2,2026-06-19T11:24:00
+MAC0014,Packaging Line 2,SUCCESS,94,Sofia Rossi,A,6,2026-07-15T02:52:00
+MAC0050,Final Assembly Line 3,SUCCESS,434,David Chen,A,5,2026-06-25T14:35:00
+MAC0011,Final Assembly Line 3,SUCCESS,501,Daniel Osei,A,2,2026-07-24T23:13:00
+MAC0041,Packaging Line 1,SUCCESS,244,Laura Kowalski,B,2,2026-07-04T07:04:00
+MAC0019,Body Assembly Line 2,FAILED,72,Sarah Mitchell,A,2,2026-06-29T15:37:00
+MAC0048,Final Assembly Line 3,SUCCESS,520,Sarah Mitchell,A,2,2026-06-23T22:16:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,195,Carlos Mendoza,B,4,2026-06-22T04:11:00
+MAC0012,Quality Inspection Line,SUCCESS,407,Ahmed Hassan,A,2,2026-06-02T19:00:00
+MAC0008,Packaging Line 1,RUNNING,539,Sarah Mitchell,B,1,2026-07-07T02:37:00
+MAC0035,Paint Shop Line 2,SUCCESS,249,Thomas Baptiste,A,3,2026-06-27T18:41:00
+MAC0008,Packaging Line 1,SUCCESS,156,Zainab Ibrahim,C,2,2026-07-11T08:21:00
+MAC0005,Body Assembly Line 1,SUCCESS,60,Isaac Newton-Boyd,B,4,2026-07-08T23:22:00
+MAC0026,Welding Line 2,SUCCESS,197,Priya Sharma,C,4,2026-07-27T23:45:00
+MAC0056,Packaging Line 2,SUCCESS,97,Kavya Reddy,A,5,2026-06-21T09:23:00
+MAC0056,Packaging Line 2,SUCCESS,469,Kavya Reddy,B,3,2026-06-30T15:35:00
+MAC0025,Body Assembly Line 2,SUCCESS,597,Rajesh Kumar,C,2,2026-07-23T16:00:00
+MAC0050,Final Assembly Line 3,SUCCESS,103,Fatima Al-Sayed,C,4,2026-06-05T14:34:00
+MAC0006,Paint Shop Line 1,SUCCESS,96,Isaac Newton-Boyd,C,3,2026-07-24T03:55:00
+MAC0043,Packaging Line 1,SUCCESS,382,Aisha Khan,A,2,2026-07-05T03:30:00
+MAC0007,Component Sub-Assembly Line,FAILED,312,Priya Sharma,C,3,2026-06-02T15:31:00
+MAC0016,Final Assembly Line 1,SUCCESS,133,Jennifer Walsh,B,2,2026-06-28T13:13:00
+MAC0040,Final Assembly Line 1,SUCCESS,41,Priya Sharma,A,1,2026-06-24T16:58:00
+MAC0053,Machining Line 1,FAILED,580,Robert Nakamura,A,9,2026-07-05T03:19:00
+MAC0023,Component Sub-Assembly Line,QUEUED,515,Sarah Mitchell,B,6,2026-07-05T09:54:00
+MAC0027,Paint Shop Line 2,SUCCESS,459,Robert Nakamura,B,2,2026-06-27T15:05:00
+MAC0009,Body Assembly Line 1,SUCCESS,154,Julia Ferreira,A,1,2026-06-24T05:58:00
+MAC0041,Packaging Line 1,SUCCESS,598,Sofia Rossi,C,2,2026-07-03T18:33:00
+MAC0005,Body Assembly Line 1,FAILED,195,Julia Ferreira,B,2,2026-07-26T18:17:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,106,Kenji Watanabe,B,3,2026-06-09T00:40:00
+MAC0018,Packaging Line 1,SUCCESS,132,Aisha Khan,B,3,2026-06-18T04:37:00
+MAC0003,Final Assembly Line 1,SUCCESS,411,Rachel Cohen,A,6,2026-07-09T10:34:00
+MAC0004,Welding Line 2,CANCELLED,370,Lucas Silva,C,2,2026-07-22T04:15:00
+MAC0009,Body Assembly Line 1,SUCCESS,549,Christopher Lee,C,5,2026-06-01T06:09:00
+MAC0016,Final Assembly Line 1,RUNNING,349,Arjun Nair,A,4,2026-06-20T15:19:00
+MAC0015,Quality Inspection Line,SUCCESS,385,Emily Rodriguez,A,2,2026-06-03T14:20:00
+MAC0041,Packaging Line 1,SUCCESS,305,Andrew Campbell,A,2,2026-07-21T12:59:00
+MAC0048,Final Assembly Line 3,SUCCESS,390,Laura Kowalski,A,1,2026-06-05T09:01:00
+MAC0012,Quality Inspection Line,CANCELLED,568,Robert Nakamura,A,3,2026-06-06T18:03:00
+MAC0041,Packaging Line 1,QUEUED,368,Ahmed Hassan,A,3,2026-07-01T11:14:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,352,David Chen,C,3,2026-07-19T12:53:00
+MAC0049,Welding Line 1,SUCCESS,389,Zainab Ibrahim,B,1,2026-07-07T23:53:00
+MAC0014,Packaging Line 2,SUCCESS,175,Arjun Nair,C,5,2026-07-18T23:44:00
+MAC0019,Body Assembly Line 2,SUCCESS,159,Nina Petrova,C,3,2026-07-25T04:20:00
+MAC0041,Packaging Line 1,SUCCESS,392,Mark Thompson,B,6,2026-07-03T03:17:00
+MAC0012,Quality Inspection Line,SUCCESS,280,Rajesh Kumar,B,1,2026-06-18T00:46:00
+MAC0002,Component Sub-Assembly Line,CANCELLED,386,Aisha Khan,B,2,2026-06-18T08:15:00
+MAC0040,Final Assembly Line 1,SUCCESS,43,Lucas Silva,B,5,2026-07-15T20:29:00
+MAC0008,Packaging Line 1,SUCCESS,262,Michael O'Brien,A,6,2026-06-23T05:48:00
+MAC0055,Component Sub-Assembly Line,FAILED,181,Sarah Mitchell,A,5,2026-06-25T00:53:00
+MAC0025,Body Assembly Line 2,FAILED,437,Michael O'Brien,C,3,2026-06-08T06:14:00
+MAC0015,Quality Inspection Line,SUCCESS,154,Jennifer Walsh,B,5,2026-06-25T11:21:00
+MAC0023,Component Sub-Assembly Line,RUNNING,516,Sofia Rossi,B,2,2026-06-16T22:09:00
+MAC0051,Paint Shop Line 2,RUNNING,70,Carlos Mendoza,B,2,2026-07-11T21:31:00
+MAC0044,Machining Line 1,FAILED,268,Fatima Al-Sayed,A,2,2026-06-30T09:45:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,506,Lucas Silva,C,2,2026-06-09T09:05:00
+MAC0018,Packaging Line 1,SUCCESS,208,Laura Kowalski,C,1,2026-06-30T17:53:00
+MAC0003,Final Assembly Line 1,RUNNING,217,Fatima Al-Sayed,C,2,2026-06-12T09:20:00
+MAC0016,Final Assembly Line 1,SUCCESS,364,Natalie Fournier,C,1,2026-06-27T19:41:00
+MAC0060,Final Assembly Line 3,SUCCESS,521,Yuki Tanaka,A,3,2026-07-06T18:08:00
+MAC0004,Welding Line 2,SUCCESS,377,Daniel Osei,A,2,2026-07-20T17:43:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,485,Christopher Lee,B,3,2026-07-11T16:28:00
+MAC0005,Body Assembly Line 1,FAILED,260,Daniel Osei,A,2,2026-06-13T04:23:00
+MAC0046,Final Assembly Line 3,SUCCESS,399,Nina Petrova,B,4,2026-06-15T14:43:00
+MAC0017,Final Assembly Line 3,SUCCESS,597,Sarah Mitchell,C,1,2026-07-15T15:29:00
+MAC0044,Machining Line 1,QUEUED,49,Rajesh Kumar,B,3,2026-07-19T17:33:00
+MAC0017,Final Assembly Line 3,QUEUED,215,Rajesh Kumar,B,2,2026-07-20T03:41:00
+MAC0018,Packaging Line 1,RUNNING,301,Kenji Watanabe,A,5,2026-06-21T07:15:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,148,Jennifer Walsh,C,3,2026-06-21T05:29:00
+MAC0049,Welding Line 1,SUCCESS,57,Samuel Okafor,A,4,2026-07-25T20:19:00
+MAC0047,Packaging Line 1,SUCCESS,165,Mark Thompson,C,5,2026-06-04T06:17:00
+MAC0056,Packaging Line 2,CANCELLED,331,Natalie Fournier,A,2,2026-07-09T03:26:00
+MAC0005,Body Assembly Line 1,SUCCESS,169,Natalie Fournier,B,2,2026-07-17T17:54:00
+MAC0053,Machining Line 1,SUCCESS,410,Yuki Tanaka,A,4,2026-07-03T06:06:00
+MAC0024,Packaging Line 1,RUNNING,370,Maria Gonzalez,C,3,2026-07-12T13:56:00
+MAC0027,Paint Shop Line 2,SUCCESS,463,Olivia Martin,B,6,2026-06-10T21:13:00
+MAC0040,Final Assembly Line 1,SUCCESS,88,Fatima Al-Sayed,C,4,2026-06-28T14:58:00
+MAC0050,Final Assembly Line 3,SUCCESS,466,Daniel Osei,A,3,2026-07-11T16:09:00
+MAC0019,Body Assembly Line 2,SUCCESS,266,Natalie Fournier,B,2,2026-07-23T18:54:00
+MAC0038,Packaging Line 1,SUCCESS,68,Rachel Cohen,C,1,2026-06-28T21:27:00
+MAC0011,Final Assembly Line 3,SUCCESS,98,Maria Gonzalez,A,5,2026-06-15T19:42:00
+MAC0003,Final Assembly Line 1,CANCELLED,144,James Anderson,B,2,2026-07-10T12:10:00
+MAC0028,Final Assembly Line 3,SUCCESS,188,Vikram Patel,B,1,2026-07-12T10:09:00
+MAC0001,Final Assembly Line 2,SUCCESS,262,Laura Kowalski,C,4,2026-06-09T00:46:00
+MAC0024,Packaging Line 1,SUCCESS,383,Jennifer Walsh,C,7,2026-07-07T22:39:00
+MAC0049,Welding Line 1,CANCELLED,371,Thomas Baptiste,B,2,2026-06-13T03:29:00
+MAC0040,Final Assembly Line 1,SUCCESS,233,Christopher Lee,A,5,2026-06-23T02:01:00
+MAC0050,Final Assembly Line 3,SUCCESS,358,Elena Popescu,A,2,2026-06-17T02:14:00
+MAC0005,Body Assembly Line 1,CANCELLED,68,Jennifer Walsh,C,2,2026-07-15T09:20:00
+MAC0060,Final Assembly Line 3,SUCCESS,477,Christopher Lee,B,2,2026-06-07T03:15:00
+MAC0032,Welding Line 2,SUCCESS,512,Natalie Fournier,A,2,2026-06-07T01:44:00
+MAC0021,Welding Line 2,SUCCESS,393,Sarah Mitchell,B,2,2026-06-07T05:13:00
+MAC0046,Final Assembly Line 3,SUCCESS,265,Andrew Campbell,C,6,2026-06-18T13:43:00
+MAC0003,Final Assembly Line 1,SUCCESS,578,Sarah Mitchell,B,1,2026-07-22T17:21:00
+MAC0020,Body Assembly Line 2,SUCCESS,133,Hannah Schmidt,C,1,2026-06-29T03:56:00
+MAC0001,Final Assembly Line 2,SUCCESS,326,Sarah Mitchell,A,5,2026-07-25T04:57:00
+MAC0005,Body Assembly Line 1,FAILED,170,Lucas Silva,A,4,2026-07-25T23:43:00
+MAC0033,Quality Inspection Line,SUCCESS,434,Kavya Reddy,B,5,2026-07-08T05:55:00
+MAC0053,Machining Line 1,RUNNING,34,Laura Kowalski,B,3,2026-07-14T11:19:00
+MAC0001,Final Assembly Line 2,SUCCESS,39,Rachel Cohen,A,5,2026-06-04T11:21:00
+MAC0019,Body Assembly Line 2,SUCCESS,526,Fatima Al-Sayed,C,3,2026-06-04T04:48:00
+MAC0033,Quality Inspection Line,SUCCESS,506,Emily Rodriguez,B,3,2026-07-22T09:42:00
+MAC0030,Paint Shop Line 1,RUNNING,433,Olivia Martin,B,1,2026-07-06T16:07:00
+MAC0049,Welding Line 1,RUNNING,588,Carlos Mendoza,C,4,2026-06-07T03:36:00
+MAC0031,Quality Inspection Line,SUCCESS,213,Kavya Reddy,C,3,2026-06-08T20:11:00
+MAC0025,Body Assembly Line 2,SUCCESS,88,Carlos Mendoza,A,1,2026-07-24T18:50:00
+MAC0036,Welding Line 1,SUCCESS,61,Ahmed Hassan,C,2,2026-06-23T06:03:00
+MAC0027,Paint Shop Line 2,RUNNING,330,Mark Thompson,C,4,2026-06-28T18:25:00
+MAC0053,Machining Line 1,FAILED,117,Emily Rodriguez,A,7,2026-07-25T22:35:00
+MAC0057,Body Assembly Line 2,FAILED,461,Vikram Patel,C,1,2026-07-15T01:18:00
+MAC0014,Packaging Line 2,FAILED,313,Benjamin Wright,C,4,2026-06-16T14:43:00
+MAC0031,Quality Inspection Line,SUCCESS,281,Priya Sharma,A,4,2026-07-13T14:45:00
+MAC0018,Packaging Line 1,SUCCESS,329,Kavya Reddy,A,1,2026-06-06T21:30:00
+MAC0041,Packaging Line 1,SUCCESS,162,Wei Zhang,C,4,2026-06-04T01:15:00
+MAC0056,Packaging Line 2,SUCCESS,512,Olivia Martin,A,3,2026-07-23T20:31:00
+MAC0059,Packaging Line 2,SUCCESS,116,Nina Petrova,B,5,2026-06-24T11:42:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,348,Nina Petrova,C,1,2026-06-13T03:46:00
+MAC0010,Final Assembly Line 1,SUCCESS,276,Ahmed Hassan,C,0,2026-07-02T18:04:00
+MAC0036,Welding Line 1,SUCCESS,105,Sofia Rossi,A,4,2026-07-04T13:05:00
+MAC0057,Body Assembly Line 2,FAILED,67,Laura Kowalski,C,2,2026-06-07T21:43:00
+MAC0057,Body Assembly Line 2,FAILED,131,Lucas Silva,C,8,2026-06-15T21:32:00
+MAC0009,Body Assembly Line 1,SUCCESS,175,Elena Popescu,C,1,2026-07-23T19:40:00
+MAC0045,Component Sub-Assembly Line,FAILED,434,Elena Popescu,C,3,2026-07-24T20:43:00
+MAC0021,Welding Line 2,SUCCESS,166,Kenji Watanabe,B,6,2026-07-17T02:01:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,513,Rachel Cohen,A,2,2026-07-13T20:21:00
+MAC0044,Machining Line 1,FAILED,551,James Anderson,B,3,2026-07-07T00:47:00
+MAC0035,Paint Shop Line 2,SUCCESS,217,Priya Sharma,A,4,2026-07-16T13:59:00
+MAC0024,Packaging Line 1,SUCCESS,38,Vikram Patel,B,3,2026-07-19T04:32:00
+MAC0008,Packaging Line 1,QUEUED,294,Michael O'Brien,B,0,2026-06-06T19:32:00
+MAC0004,Welding Line 2,SUCCESS,387,Michael O'Brien,C,4,2026-06-26T11:10:00
+MAC0022,Packaging Line 1,RUNNING,164,Daniel Osei,B,5,2026-06-21T14:50:00
+MAC0056,Packaging Line 2,RUNNING,483,Thomas Baptiste,C,3,2026-07-07T20:12:00
+MAC0004,Welding Line 2,RUNNING,265,Olivia Martin,C,3,2026-07-19T18:37:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,89,Thomas Baptiste,A,3,2026-06-25T19:56:00
+MAC0012,Quality Inspection Line,SUCCESS,423,James Anderson,B,6,2026-06-17T18:22:00
+MAC0019,Body Assembly Line 2,SUCCESS,94,Sofia Rossi,B,1,2026-06-10T22:20:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,377,Robert Nakamura,A,1,2026-06-07T03:16:00
+MAC0060,Final Assembly Line 3,SUCCESS,53,Christopher Lee,B,8,2026-07-21T20:28:00
+MAC0021,Welding Line 2,SUCCESS,42,Thomas Baptiste,B,4,2026-07-19T18:45:00
+MAC0003,Final Assembly Line 1,FAILED,30,Sarah Mitchell,A,5,2026-06-28T04:13:00
+MAC0016,Final Assembly Line 1,SUCCESS,145,Sofia Rossi,A,5,2026-06-16T08:36:00
+MAC0016,Final Assembly Line 1,QUEUED,597,Fatima Al-Sayed,A,3,2026-07-14T01:41:00
+MAC0033,Quality Inspection Line,SUCCESS,208,Hannah Schmidt,A,5,2026-07-04T17:09:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,341,Samuel Okafor,B,0,2026-07-27T12:31:00
+MAC0029,Packaging Line 1,SUCCESS,158,Christopher Lee,A,2,2026-06-11T20:44:00
+MAC0026,Welding Line 2,SUCCESS,160,Rachel Cohen,B,2,2026-07-09T17:01:00
+MAC0006,Paint Shop Line 1,FAILED,268,Jennifer Walsh,A,2,2026-06-07T21:39:00
+MAC0020,Body Assembly Line 2,RUNNING,570,Sofia Rossi,B,4,2026-07-06T04:20:00
+MAC0056,Packaging Line 2,SUCCESS,427,Benjamin Wright,B,2,2026-06-29T01:41:00
+MAC0021,Welding Line 2,SUCCESS,527,David Chen,C,4,2026-06-26T00:25:00
+MAC0015,Quality Inspection Line,SUCCESS,267,Fatima Al-Sayed,B,2,2026-07-07T10:16:00
+MAC0032,Welding Line 2,SUCCESS,589,Sarah Mitchell,A,2,2026-06-26T20:27:00
+MAC0057,Body Assembly Line 2,SUCCESS,303,Zainab Ibrahim,C,2,2026-07-14T20:33:00
+MAC0023,Component Sub-Assembly Line,FAILED,578,Arjun Nair,C,2,2026-06-20T08:24:00
+MAC0026,Welding Line 2,SUCCESS,273,Nina Petrova,C,2,2026-07-24T02:55:00
+MAC0025,Body Assembly Line 2,SUCCESS,125,Zainab Ibrahim,B,2,2026-06-04T17:49:00
+MAC0018,Packaging Line 1,SUCCESS,535,Thomas Baptiste,C,2,2026-06-30T15:05:00
+MAC0030,Paint Shop Line 1,SUCCESS,486,Arjun Nair,B,1,2026-06-19T13:32:00
+MAC0050,Final Assembly Line 3,SUCCESS,479,Isaac Newton-Boyd,A,1,2026-07-10T03:51:00
+MAC0010,Final Assembly Line 1,SUCCESS,295,Andrew Campbell,C,2,2026-06-18T18:31:00
+MAC0041,Packaging Line 1,CANCELLED,181,Elena Popescu,C,1,2026-06-18T18:56:00
+MAC0025,Body Assembly Line 2,SUCCESS,94,Lucas Silva,B,0,2026-06-01T11:02:00
+MAC0012,Quality Inspection Line,SUCCESS,32,Olivia Martin,B,3,2026-07-21T20:41:00
+MAC0023,Component Sub-Assembly Line,SUCCESS,35,Jennifer Walsh,A,1,2026-06-24T12:31:00
+MAC0044,Machining Line 1,SUCCESS,472,Lucas Silva,B,2,2026-06-20T14:57:00
+MAC0028,Final Assembly Line 3,SUCCESS,552,Samuel Okafor,A,3,2026-07-04T21:50:00
+MAC0048,Final Assembly Line 3,SUCCESS,114,Maria Gonzalez,C,2,2026-06-03T02:55:00
+MAC0051,Paint Shop Line 2,FAILED,35,Sofia Rossi,A,0,2026-07-09T18:42:00
+MAC0017,Final Assembly Line 3,CANCELLED,466,Sofia Rossi,B,1,2026-06-13T00:00:00
+MAC0004,Welding Line 2,SUCCESS,206,Benjamin Wright,A,3,2026-06-14T00:40:00
+MAC0010,Final Assembly Line 1,SUCCESS,514,Daniel Osei,B,5,2026-06-09T05:22:00
+MAC0058,Body Assembly Line 2,SUCCESS,362,Grace Park,A,4,2026-06-09T13:28:00
+MAC0003,Final Assembly Line 1,SUCCESS,51,Christopher Lee,C,2,2026-07-07T10:58:00
+MAC0059,Packaging Line 2,SUCCESS,526,Yuki Tanaka,A,2,2026-07-17T01:32:00
+MAC0019,Body Assembly Line 2,QUEUED,300,David Chen,B,1,2026-06-10T01:25:00
+MAC0019,Body Assembly Line 2,RUNNING,279,Julia Ferreira,A,0,2026-06-27T04:22:00
+MAC0024,Packaging Line 1,SUCCESS,43,Andrew Campbell,B,3,2026-06-26T23:22:00
+MAC0037,Body Assembly Line 2,SUCCESS,118,Ahmed Hassan,C,4,2026-06-01T23:17:00
+MAC0040,Final Assembly Line 1,FAILED,130,Robert Nakamura,C,5,2026-06-19T17:28:00
+MAC0012,Quality Inspection Line,RUNNING,336,Robert Nakamura,B,4,2026-07-24T11:26:00
+MAC0003,Final Assembly Line 1,SUCCESS,338,Benjamin Wright,B,7,2026-07-16T07:34:00
+MAC0034,Quality Inspection Line,SUCCESS,190,Kavya Reddy,A,1,2026-06-17T03:19:00
+MAC0027,Paint Shop Line 2,FAILED,113,Kenji Watanabe,C,3,2026-06-17T13:09:00
+MAC0025,Body Assembly Line 2,SUCCESS,542,Lucas Silva,B,3,2026-06-25T04:03:00
+MAC0039,Packaging Line 2,SUCCESS,327,Isaac Newton-Boyd,B,1,2026-06-14T12:50:00
+MAC0053,Machining Line 1,SUCCESS,512,Daniel Osei,A,3,2026-07-24T12:39:00
+MAC0003,Final Assembly Line 1,SUCCESS,301,Aisha Khan,C,4,2026-06-17T10:17:00
+MAC0044,Machining Line 1,SUCCESS,186,Michael O'Brien,A,2,2026-07-14T10:18:00
+MAC0036,Welding Line 1,SUCCESS,455,Hannah Schmidt,B,3,2026-06-11T20:30:00
+MAC0009,Body Assembly Line 1,FAILED,151,Carlos Mendoza,C,5,2026-06-02T21:20:00
+MAC0024,Packaging Line 1,SUCCESS,479,Zainab Ibrahim,C,3,2026-07-08T09:18:00
+MAC0051,Paint Shop Line 2,SUCCESS,324,Maria Gonzalez,C,1,2026-07-14T07:05:00
+MAC0048,Final Assembly Line 3,SUCCESS,177,Priya Sharma,A,2,2026-06-30T19:06:00
+MAC0027,Paint Shop Line 2,SUCCESS,128,Thomas Baptiste,C,3,2026-06-06T12:21:00
+MAC0032,Welding Line 2,SUCCESS,226,Julia Ferreira,C,4,2026-07-10T15:01:00
+MAC0054,Welding Line 2,SUCCESS,188,Zainab Ibrahim,A,3,2026-07-17T08:55:00
+MAC0011,Final Assembly Line 3,SUCCESS,123,Kavya Reddy,B,1,2026-06-07T15:20:00
+MAC0031,Quality Inspection Line,SUCCESS,93,Aisha Khan,C,1,2026-07-05T12:40:00
+MAC0033,Quality Inspection Line,SUCCESS,413,Yuki Tanaka,C,3,2026-07-16T16:54:00
+MAC0033,Quality Inspection Line,SUCCESS,81,Fatima Al-Sayed,B,1,2026-07-22T05:47:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,254,Elena Popescu,B,2,2026-07-01T22:29:00
+MAC0051,Paint Shop Line 2,SUCCESS,260,Rajesh Kumar,A,0,2026-07-18T16:16:00
+MAC0013,Quality Inspection Line,QUEUED,589,Thomas Baptiste,A,2,2026-07-26T12:34:00
+MAC0014,Packaging Line 2,FAILED,118,Julia Ferreira,A,2,2026-07-03T16:03:00
+MAC0031,Quality Inspection Line,SUCCESS,195,Hannah Schmidt,C,4,2026-07-27T08:09:00
+MAC0046,Final Assembly Line 3,SUCCESS,434,Maria Gonzalez,B,1,2026-07-04T05:30:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,595,Fatima Al-Sayed,A,4,2026-06-01T20:10:00
+MAC0026,Welding Line 2,SUCCESS,302,Olivia Martin,A,4,2026-06-13T02:54:00
+MAC0016,Final Assembly Line 1,SUCCESS,551,Benjamin Wright,A,8,2026-07-05T07:16:00
+MAC0046,Final Assembly Line 3,SUCCESS,130,Thomas Baptiste,B,1,2026-06-06T15:55:00
+MAC0014,Packaging Line 2,SUCCESS,527,Aisha Khan,B,1,2026-06-15T11:40:00
+MAC0048,Final Assembly Line 3,SUCCESS,88,Grace Park,A,2,2026-06-16T03:16:00
+MAC0043,Packaging Line 1,RUNNING,578,Julia Ferreira,C,1,2026-07-10T13:29:00
+MAC0032,Welding Line 2,SUCCESS,465,Hannah Schmidt,C,2,2026-06-03T02:40:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,139,Zainab Ibrahim,A,4,2026-06-08T19:13:00
+MAC0002,Component Sub-Assembly Line,FAILED,523,Arjun Nair,A,3,2026-06-05T09:29:00
+MAC0006,Paint Shop Line 1,SUCCESS,380,Maria Gonzalez,A,3,2026-07-03T07:49:00
+MAC0024,Packaging Line 1,SUCCESS,430,Olivia Martin,B,1,2026-06-26T21:32:00
+MAC0023,Component Sub-Assembly Line,FAILED,515,Michael O'Brien,A,4,2026-07-14T09:44:00
+MAC0035,Paint Shop Line 2,SUCCESS,311,Grace Park,C,3,2026-07-17T04:27:00
+MAC0028,Final Assembly Line 3,SUCCESS,503,James Anderson,A,2,2026-07-03T11:16:00
+MAC0058,Body Assembly Line 2,RUNNING,496,Ahmed Hassan,B,3,2026-06-08T16:46:00
+MAC0008,Packaging Line 1,FAILED,253,Arjun Nair,A,2,2026-06-18T05:17:00
+MAC0009,Body Assembly Line 1,QUEUED,100,Aisha Khan,C,2,2026-07-03T07:51:00
+MAC0017,Final Assembly Line 3,FAILED,492,Daniel Osei,A,4,2026-07-13T11:03:00
+MAC0032,Welding Line 2,SUCCESS,410,Vikram Patel,B,5,2026-07-01T08:50:00
+MAC0054,Welding Line 2,SUCCESS,564,James Anderson,A,4,2026-07-24T06:22:00
+MAC0020,Body Assembly Line 2,FAILED,565,Kenji Watanabe,A,0,2026-06-11T11:22:00
+MAC0004,Welding Line 2,RUNNING,442,Ahmed Hassan,C,5,2026-06-16T17:49:00
+MAC0051,Paint Shop Line 2,SUCCESS,451,Samuel Okafor,B,3,2026-06-03T11:51:00
+MAC0001,Final Assembly Line 2,SUCCESS,532,Christopher Lee,A,3,2026-06-07T06:08:00
+MAC0046,Final Assembly Line 3,SUCCESS,586,Ahmed Hassan,C,1,2026-07-13T16:56:00
+MAC0019,Body Assembly Line 2,QUEUED,201,Benjamin Wright,C,2,2026-06-23T11:48:00
+MAC0024,Packaging Line 1,RUNNING,537,Maria Gonzalez,B,6,2026-07-12T04:50:00
+MAC0041,Packaging Line 1,SUCCESS,343,Ahmed Hassan,A,4,2026-06-24T06:57:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,295,Hannah Schmidt,A,0,2026-07-13T02:46:00
+MAC0013,Quality Inspection Line,SUCCESS,444,Arjun Nair,C,4,2026-06-23T08:59:00
+MAC0037,Body Assembly Line 2,SUCCESS,88,Natalie Fournier,B,1,2026-06-19T03:03:00
+MAC0001,Final Assembly Line 2,SUCCESS,360,James Anderson,C,4,2026-07-25T01:47:00
+MAC0051,Paint Shop Line 2,SUCCESS,221,Priya Sharma,C,1,2026-07-02T03:56:00
+MAC0010,Final Assembly Line 1,SUCCESS,343,Hannah Schmidt,B,3,2026-06-14T17:23:00
+MAC0041,Packaging Line 1,FAILED,481,Arjun Nair,A,2,2026-06-06T17:54:00
+MAC0002,Component Sub-Assembly Line,RUNNING,579,Michael O'Brien,A,4,2026-06-04T05:31:00
+MAC0057,Body Assembly Line 2,SUCCESS,466,Vikram Patel,A,4,2026-07-18T10:04:00
+MAC0014,Packaging Line 2,SUCCESS,581,Isaac Newton-Boyd,C,2,2026-06-01T20:07:00
+MAC0008,Packaging Line 1,FAILED,61,David Chen,B,3,2026-06-08T12:00:00
+MAC0026,Welding Line 2,SUCCESS,341,Benjamin Wright,C,3,2026-06-28T11:45:00
+MAC0009,Body Assembly Line 1,SUCCESS,452,Fatima Al-Sayed,A,2,2026-07-06T09:40:00
+MAC0054,Welding Line 2,SUCCESS,298,Rajesh Kumar,C,1,2026-06-16T08:07:00
+MAC0011,Final Assembly Line 3,RUNNING,428,Hannah Schmidt,A,2,2026-07-23T06:03:00
+MAC0006,Paint Shop Line 1,SUCCESS,162,David Chen,C,4,2026-06-28T20:34:00
+MAC0023,Component Sub-Assembly Line,RUNNING,142,Nina Petrova,C,5,2026-06-12T03:07:00
+MAC0002,Component Sub-Assembly Line,QUEUED,31,Maria Gonzalez,C,1,2026-07-10T11:32:00
+MAC0008,Packaging Line 1,FAILED,370,Rajesh Kumar,A,4,2026-06-06T12:25:00
+MAC0052,Component Sub-Assembly Line,SUCCESS,159,Isaac Newton-Boyd,C,2,2026-06-19T08:46:00
+MAC0038,Packaging Line 1,SUCCESS,323,Emily Rodriguez,A,6,2026-07-26T06:41:00
+MAC0032,Welding Line 2,SUCCESS,102,Hannah Schmidt,C,1,2026-06-08T08:44:00
+MAC0001,Final Assembly Line 2,QUEUED,261,Lucas Silva,A,2,2026-06-18T07:30:00
+MAC0057,Body Assembly Line 2,SUCCESS,396,Aisha Khan,C,1,2026-07-22T23:53:00
+MAC0060,Final Assembly Line 3,FAILED,319,Isaac Newton-Boyd,A,4,2026-06-13T05:04:00
+MAC0027,Paint Shop Line 2,SUCCESS,297,Yuki Tanaka,B,3,2026-06-11T13:24:00
+MAC0024,Packaging Line 1,SUCCESS,90,Hannah Schmidt,A,2,2026-07-18T09:52:00
+MAC0039,Packaging Line 2,CANCELLED,555,Rajesh Kumar,C,6,2026-06-18T17:07:00
+MAC0038,Packaging Line 1,RUNNING,48,Lucas Silva,C,7,2026-06-08T20:10:00
+MAC0039,Packaging Line 2,SUCCESS,494,Olivia Martin,B,3,2026-06-02T06:24:00
+MAC0040,Final Assembly Line 1,SUCCESS,530,Lucas Silva,B,2,2026-07-07T04:21:00
+MAC0028,Final Assembly Line 3,SUCCESS,315,Carlos Mendoza,B,1,2026-07-05T20:24:00
+MAC0012,Quality Inspection Line,SUCCESS,194,Isaac Newton-Boyd,A,5,2026-07-17T12:49:00
+MAC0059,Packaging Line 2,FAILED,441,Hannah Schmidt,B,5,2026-06-14T13:57:00
+MAC0018,Packaging Line 1,CANCELLED,338,Emily Rodriguez,A,3,2026-06-23T23:33:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,542,Isaac Newton-Boyd,C,4,2026-07-13T14:38:00
+MAC0054,Welding Line 2,QUEUED,182,Vikram Patel,B,2,2026-06-22T14:28:00
+MAC0007,Component Sub-Assembly Line,QUEUED,366,Sofia Rossi,C,1,2026-06-25T11:14:00
+MAC0042,Final Assembly Line 1,FAILED,565,Kavya Reddy,A,3,2026-07-13T11:18:00
+MAC0028,Final Assembly Line 3,RUNNING,84,Zainab Ibrahim,A,2,2026-07-18T03:25:00
+MAC0011,Final Assembly Line 3,SUCCESS,288,Kavya Reddy,B,3,2026-07-12T06:57:00
+MAC0041,Packaging Line 1,QUEUED,328,Hannah Schmidt,A,2,2026-06-20T02:19:00
+MAC0047,Packaging Line 1,SUCCESS,124,Hannah Schmidt,C,3,2026-07-03T13:25:00
+MAC0019,Body Assembly Line 2,SUCCESS,460,Robert Nakamura,B,4,2026-07-15T11:46:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,596,Sarah Mitchell,B,3,2026-06-02T06:07:00
+MAC0013,Quality Inspection Line,SUCCESS,486,Natalie Fournier,B,2,2026-06-05T01:20:00
+MAC0026,Welding Line 2,SUCCESS,82,Michael O'Brien,B,6,2026-06-18T07:05:00
+MAC0053,Machining Line 1,SUCCESS,138,Samuel Okafor,A,1,2026-06-21T04:20:00
+MAC0008,Packaging Line 1,SUCCESS,399,Andrew Campbell,A,1,2026-07-08T11:46:00
+MAC0049,Welding Line 1,SUCCESS,343,Aisha Khan,C,3,2026-06-19T08:26:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,184,Ahmed Hassan,A,2,2026-06-17T01:50:00
+MAC0039,Packaging Line 2,FAILED,163,Kavya Reddy,B,0,2026-06-24T06:26:00
+MAC0053,Machining Line 1,SUCCESS,581,Priya Sharma,C,3,2026-06-10T02:40:00
+MAC0033,Quality Inspection Line,SUCCESS,235,Carlos Mendoza,C,3,2026-06-13T08:54:00
+MAC0006,Paint Shop Line 1,SUCCESS,404,Benjamin Wright,C,2,2026-06-20T12:24:00
+MAC0029,Packaging Line 1,SUCCESS,431,Vikram Patel,C,5,2026-06-17T16:42:00
+MAC0046,Final Assembly Line 3,SUCCESS,527,Olivia Martin,B,3,2026-06-30T15:43:00
+MAC0048,Final Assembly Line 3,RUNNING,315,Ahmed Hassan,C,2,2026-07-26T10:27:00
+MAC0009,Body Assembly Line 1,SUCCESS,128,Samuel Okafor,A,2,2026-06-03T08:13:00
+MAC0008,Packaging Line 1,SUCCESS,574,Thomas Baptiste,A,2,2026-06-05T15:19:00
+MAC0051,Paint Shop Line 2,RUNNING,208,Kenji Watanabe,C,3,2026-06-08T19:34:00
+MAC0004,Welding Line 2,SUCCESS,584,Andrew Campbell,B,4,2026-06-29T05:57:00
+MAC0037,Body Assembly Line 2,FAILED,421,Samuel Okafor,C,5,2026-07-18T03:58:00
+MAC0029,Packaging Line 1,SUCCESS,566,Arjun Nair,C,4,2026-07-22T14:16:00
+MAC0025,Body Assembly Line 2,SUCCESS,391,Fatima Al-Sayed,C,3,2026-06-12T01:37:00
+MAC0031,Quality Inspection Line,SUCCESS,299,Vikram Patel,C,3,2026-06-27T08:42:00
+MAC0012,Quality Inspection Line,FAILED,534,Jennifer Walsh,B,2,2026-06-05T22:15:00
+MAC0050,Final Assembly Line 3,SUCCESS,129,Wei Zhang,B,4,2026-06-26T09:35:00
+MAC0047,Packaging Line 1,SUCCESS,323,Carlos Mendoza,B,2,2026-07-03T19:00:00
+MAC0024,Packaging Line 1,SUCCESS,230,Natalie Fournier,B,4,2026-06-30T17:48:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,534,Ahmed Hassan,A,3,2026-07-15T19:34:00
+MAC0011,Final Assembly Line 3,SUCCESS,113,Jennifer Walsh,C,2,2026-06-08T15:08:00
+MAC0047,Packaging Line 1,FAILED,516,Lucas Silva,C,2,2026-07-01T15:33:00
+MAC0029,Packaging Line 1,SUCCESS,190,Rachel Cohen,A,7,2026-06-12T09:42:00
+MAC0060,Final Assembly Line 3,RUNNING,226,Natalie Fournier,B,3,2026-06-03T21:32:00
+MAC0005,Body Assembly Line 1,QUEUED,54,Yuki Tanaka,B,6,2026-07-10T23:21:00
+MAC0032,Welding Line 2,SUCCESS,80,Grace Park,B,5,2026-07-08T10:04:00
+MAC0009,Body Assembly Line 1,SUCCESS,294,Michael O'Brien,B,5,2026-07-05T02:32:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,230,Robert Nakamura,B,3,2026-06-25T17:28:00
+MAC0017,Final Assembly Line 3,SUCCESS,377,Vikram Patel,C,2,2026-06-14T01:14:00
+MAC0036,Welding Line 1,QUEUED,231,Wei Zhang,C,10,2026-07-01T18:42:00
+MAC0043,Packaging Line 1,CANCELLED,453,Daniel Osei,B,2,2026-06-28T10:05:00
+MAC0045,Component Sub-Assembly Line,SUCCESS,76,Sofia Rossi,B,3,2026-06-12T13:07:00
+MAC0041,Packaging Line 1,SUCCESS,137,Mark Thompson,B,2,2026-07-27T05:06:00
+MAC0039,Packaging Line 2,SUCCESS,473,Maria Gonzalez,B,3,2026-07-04T15:37:00
+MAC0019,Body Assembly Line 2,SUCCESS,113,Andrew Campbell,A,2,2026-06-12T15:39:00
+MAC0013,Quality Inspection Line,SUCCESS,138,Andrew Campbell,C,3,2026-06-11T23:44:00
+MAC0039,Packaging Line 2,SUCCESS,153,Priya Sharma,C,1,2026-07-16T14:19:00
+MAC0059,Packaging Line 2,FAILED,68,Rajesh Kumar,B,3,2026-06-19T20:22:00
+MAC0008,Packaging Line 1,SUCCESS,168,Sofia Rossi,B,3,2026-07-24T11:07:00
+MAC0050,Final Assembly Line 3,QUEUED,489,Carlos Mendoza,C,0,2026-07-27T05:18:00
+MAC0013,Quality Inspection Line,SUCCESS,510,Nina Petrova,B,6,2026-07-01T20:02:00
+MAC0041,Packaging Line 1,SUCCESS,152,Kenji Watanabe,A,2,2026-07-03T05:52:00
+MAC0025,Body Assembly Line 2,SUCCESS,407,Wei Zhang,C,0,2026-06-10T04:48:00
+MAC0059,Packaging Line 2,SUCCESS,443,Emily Rodriguez,A,2,2026-07-24T16:52:00
+MAC0017,Final Assembly Line 3,SUCCESS,124,Thomas Baptiste,B,4,2026-06-27T22:40:00
+MAC0056,Packaging Line 2,CANCELLED,445,Isaac Newton-Boyd,C,4,2026-06-18T12:30:00
+MAC0046,Final Assembly Line 3,RUNNING,117,Wei Zhang,A,6,2026-07-15T16:55:00
+MAC0012,Quality Inspection Line,SUCCESS,148,Thomas Baptiste,A,3,2026-06-17T10:26:00
+MAC0010,Final Assembly Line 1,SUCCESS,208,James Anderson,B,1,2026-07-08T15:02:00
+MAC0017,Final Assembly Line 3,SUCCESS,595,Nina Petrova,B,4,2026-06-26T00:42:00
+MAC0027,Paint Shop Line 2,FAILED,82,Daniel Osei,A,3,2026-07-19T00:26:00
+MAC0011,Final Assembly Line 3,SUCCESS,331,Grace Park,B,2,2026-07-19T18:44:00
+MAC0011,Final Assembly Line 3,CANCELLED,590,Yuki Tanaka,A,4,2026-06-29T15:30:00
+MAC0020,Body Assembly Line 2,RUNNING,369,Daniel Osei,C,3,2026-06-13T07:59:00
+MAC0002,Component Sub-Assembly Line,SUCCESS,83,Kenji Watanabe,C,4,2026-06-01T09:07:00
+MAC0015,Quality Inspection Line,RUNNING,132,Isaac Newton-Boyd,A,5,2026-07-02T06:04:00
+MAC0013,Quality Inspection Line,SUCCESS,366,Wei Zhang,C,1,2026-06-02T20:23:00
+MAC0059,Packaging Line 2,FAILED,282,Benjamin Wright,A,2,2026-07-15T14:22:00
+MAC0003,Final Assembly Line 1,SUCCESS,467,Emily Rodriguez,B,1,2026-07-16T11:39:00
+MAC0023,Component Sub-Assembly Line,RUNNING,38,Kavya Reddy,A,4,2026-07-24T00:55:00
+MAC0032,Welding Line 2,SUCCESS,34,Julia Ferreira,C,2,2026-07-01T14:29:00
+MAC0008,Packaging Line 1,SUCCESS,418,Robert Nakamura,C,6,2026-07-27T23:21:00
+MAC0037,Body Assembly Line 2,SUCCESS,285,Zainab Ibrahim,A,1,2026-07-22T20:13:00
+MAC0012,Quality Inspection Line,FAILED,164,Fatima Al-Sayed,A,3,2026-06-01T11:38:00
+MAC0027,Paint Shop Line 2,SUCCESS,209,Robert Nakamura,B,4,2026-07-19T05:24:00
+MAC0057,Body Assembly Line 2,RUNNING,32,Zainab Ibrahim,A,3,2026-07-18T03:38:00
+MAC0036,Welding Line 1,SUCCESS,358,Emily Rodriguez,C,2,2026-07-07T14:46:00
+MAC0032,Welding Line 2,SUCCESS,222,Rachel Cohen,A,2,2026-06-20T14:53:00
+MAC0019,Body Assembly Line 2,RUNNING,542,Elena Popescu,A,4,2026-07-04T19:37:00
+MAC0037,Body Assembly Line 2,FAILED,504,Sofia Rossi,A,2,2026-06-18T23:08:00
+MAC0032,Welding Line 2,SUCCESS,163,Robert Nakamura,B,4,2026-07-15T04:48:00
+MAC0013,Quality Inspection Line,FAILED,451,Benjamin Wright,B,3,2026-06-02T09:56:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,438,Emily Rodriguez,B,5,2026-06-10T17:55:00
+MAC0013,Quality Inspection Line,SUCCESS,406,Kavya Reddy,B,7,2026-06-25T19:49:00
+MAC0009,Body Assembly Line 1,SUCCESS,456,Robert Nakamura,C,1,2026-06-22T01:18:00
+MAC0041,Packaging Line 1,QUEUED,552,Julia Ferreira,B,1,2026-07-13T12:58:00
+MAC0014,Packaging Line 2,SUCCESS,198,Priya Sharma,C,5,2026-07-07T13:46:00
+MAC0049,Welding Line 1,SUCCESS,461,Priya Sharma,A,3,2026-07-19T20:52:00
+MAC0026,Welding Line 2,SUCCESS,425,Rajesh Kumar,B,2,2026-06-30T19:05:00
+MAC0018,Packaging Line 1,FAILED,422,Fatima Al-Sayed,A,3,2026-06-08T16:11:00
+MAC0020,Body Assembly Line 2,FAILED,144,Lucas Silva,A,3,2026-06-10T11:30:00
+MAC0053,Machining Line 1,SUCCESS,542,Ahmed Hassan,B,4,2026-06-05T20:07:00
+MAC0027,Paint Shop Line 2,SUCCESS,286,Zainab Ibrahim,A,5,2026-06-19T11:55:00
+MAC0009,Body Assembly Line 1,SUCCESS,522,Rajesh Kumar,B,1,2026-06-26T19:46:00
+MAC0059,Packaging Line 2,SUCCESS,42,David Chen,A,4,2026-06-08T18:17:00
+MAC0007,Component Sub-Assembly Line,SUCCESS,221,James Anderson,C,6,2026-07-16T06:04:00
+MAC0058,Body Assembly Line 2,SUCCESS,224,Andrew Campbell,A,4,2026-07-18T14:38:00
+MAC0020,Body Assembly Line 2,SUCCESS,540,Priya Sharma,A,2,2026-06-18T11:47:00
+MAC0052,Component Sub-Assembly Line,FAILED,553,Elena Popescu,A,4,2026-06-11T08:30:00
+MAC0038,Packaging Line 1,SUCCESS,368,Yuki Tanaka,B,3,2026-07-08T22:17:00
+MAC0018,Packaging Line 1,SUCCESS,440,Nina Petrova,B,3,2026-07-07T22:37:00
+MAC0044,Machining Line 1,SUCCESS,394,Nina Petrova,A,3,2026-06-18T10:06:00
+MAC0033,Quality Inspection Line,SUCCESS,569,Daniel Osei,C,5,2026-06-10T15:20:00
+MAC0059,Packaging Line 2,RUNNING,57,Nina Petrova,A,2,2026-06-25T00:46:00
+MAC0058,Body Assembly Line 2,SUCCESS,462,Fatima Al-Sayed,B,2,2026-06-08T05:58:00
+MAC0017,Final Assembly Line 3,SUCCESS,249,Priya Sharma,B,2,2026-06-08T03:05:00
+MAC0022,Packaging Line 1,SUCCESS,74,Sarah Mitchell,B,1,2026-06-03T08:45:00
+MAC0050,Final Assembly Line 3,QUEUED,392,Christopher Lee,C,3,2026-06-27T06:41:00
+MAC0026,Welding Line 2,RUNNING,105,Ahmed Hassan,A,3,2026-06-21T12:56:00
+MAC0048,Final Assembly Line 3,SUCCESS,486,Hannah Schmidt,B,8,2026-06-20T15:02:00
+MAC0003,Final Assembly Line 1,SUCCESS,600,Grace Park,C,4,2026-07-18T16:22:00
+MAC0015,Quality Inspection Line,SUCCESS,597,Arjun Nair,B,1,2026-07-13T08:43:00
+MAC0039,Packaging Line 2,QUEUED,49,Rachel Cohen,A,4,2026-07-22T19:54:00
+MAC0029,Packaging Line 1,SUCCESS,263,Elena Popescu,C,6,2026-06-25T11:30:00
+MAC0054,Welding Line 2,SUCCESS,544,Kenji Watanabe,A,2,2026-07-01T15:43:00
+MAC0007,Component Sub-Assembly Line,FAILED,349,Ahmed Hassan,A,1,2026-07-17T04:50:00
+MAC0030,Paint Shop Line 1,SUCCESS,122,Vikram Patel,A,1,2026-07-20T05:56:00
+MAC0055,Component Sub-Assembly Line,SUCCESS,201,Kenji Watanabe,C,5,2026-06-20T18:21:00
+MAC0055,Component Sub-Assembly Line,QUEUED,388,Mark Thompson,C,2,2026-07-08T06:27:00
+MAC0014,Packaging Line 2,RUNNING,219,Carlos Mendoza,A,4,2026-07-10T10:25:00
+MAC0003,Final Assembly Line 1,SUCCESS,267,Emily Rodriguez,B,5,2026-07-25T14:32:00

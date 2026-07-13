@@ -1,0 +1,321 @@
+# ==========================================================
+# Adaptive Intelligence Fabric (AIF)
+# Capability Adapter Layer
+# Mapping Configuration
+# ==========================================================
+
+# ----------------------------------------------------------
+# Dataset → Profile Mapping
+# ----------------------------------------------------------
+
+dataset_profiles:
+
+  airflow: airflow
+  kafka: kafka
+  kubernetes: kubernetes
+  azure_data_factory: azure_data_factory
+  sap: sap
+  manufacturing: manufacturing
+  iot: iot
+
+
+# ==========================================================
+# Mapping Profiles
+# ==========================================================
+
+profiles:
+
+# ==========================================================
+# AIRFLOW
+# ==========================================================
+
+  airflow:
+
+    entity_id:
+      source: run_id
+
+    entity_name:
+      source: dag_name
+
+    entity_type:
+      const: Pipeline
+
+    execution_status:
+      source: state
+
+    elapsed_runtime:
+      source: duration_seconds
+
+    owner:
+      source: owner
+
+    event_timestamp:
+      source: execution_date
+
+    source_system:
+      const: Airflow
+
+    schedule:
+      source: schedule
+
+    retry_count:
+      source: try_number
+
+    execution_queue:
+      source: queue
+
+    executor:
+      source: executor
+
+    priority:
+      source: priority_weight
+
+    severity:
+      default: INFO
+
+
+# ==========================================================
+# KAFKA
+# ==========================================================
+
+  kafka:
+
+    entity_id:
+      source: broker_id
+
+    entity_name:
+      source: topic_name
+
+    entity_type:
+      const: Stream
+
+    execution_status:
+      source: status
+
+    consumer_group:
+      source: consumer_group
+
+    partition:
+      source: partition
+
+    offset:
+      source: offset
+
+    consumer_lag:
+      source: lag
+
+    throughput:
+      source: throughput_msg_sec
+
+    event_timestamp:
+      source: timestamp
+
+    source_system:
+      const: Kafka
+
+    severity:
+      default: INFO
+
+
+# ==========================================================
+# KUBERNETES
+# ==========================================================
+
+  kubernetes:
+
+    entity_id:
+      source: pod_name
+
+    entity_name:
+      source: pod_name
+
+    entity_type:
+      const: Pod
+
+    execution_status:
+      source: pod_status
+
+    namespace:
+      source: namespace
+
+    node:
+      source: node
+
+    cpu_usage:
+      source: cpu_percent
+
+    memory_usage:
+      source: memory_percent
+
+    restart_count:
+      source: restart_count
+
+    image:
+      source: image
+
+    event_timestamp:
+      source: timestamp
+
+    source_system:
+      const: Kubernetes
+
+    severity:
+      default: INFO
+
+
+# ==========================================================
+# AZURE DATA FACTORY
+# ==========================================================
+
+  azure_data_factory:
+
+    entity_id:
+      source: pipelineRunId
+
+    entity_name:
+      source: pipelineName
+
+    entity_type:
+      const: Pipeline
+
+    execution_status:
+      source: status
+
+    elapsed_runtime:
+      source: duration_ms
+
+    integration_runtime:
+      source: integrationRuntime
+
+    trigger_type:
+      source: triggerType
+
+    start_time:
+      source: startTime
+
+    end_time:
+      source: endTime
+
+    source_system:
+      const: Azure Data Factory
+
+    severity:
+      default: INFO
+
+    event_timestamp: startTime
+    event_timestamp: endTime
+# ==========================================================
+# SAP
+# ==========================================================
+
+  sap:
+
+    entity_id:
+      source: job_number
+
+    entity_name:
+      source: job_description
+
+    entity_type:
+      const: Batch Job
+
+    execution_status:
+      source: job_status
+
+    business_unit:
+      source: department
+
+    elapsed_runtime:
+      source: runtime_minutes
+
+    owner:
+      source: scheduled_by
+
+    event_timestamp:
+      source: execution_date
+
+    source_system:
+      const: SAP ERP
+
+    severity:
+      default: INFO
+
+
+# ==========================================================
+# MANUFACTURING
+# ==========================================================
+
+  manufacturing:
+
+    entity_id:
+      source: machine_id
+
+    entity_name:
+      source: production_line
+
+    entity_type:
+      const: Machine
+
+    execution_status:
+      source: machine_state
+
+    elapsed_runtime:
+      source: cycle_time_seconds
+
+    operator:
+      source: operator
+
+    shift:
+      source: shift
+
+    defect_count:
+      source: defect_count
+
+    event_timestamp:
+      source: event_time
+
+    source_system:
+      const: Manufacturing
+
+    severity:
+      default: INFO
+
+
+# ==========================================================
+# IOT
+# ==========================================================
+
+  iot:
+
+    entity_id:
+      source: device_id
+
+    entity_name:
+      source: device_id
+
+    entity_type:
+      const: IoT Device
+
+    execution_status:
+      source: sensor_status
+
+    temperature:
+      source: temperature
+
+    humidity:
+      source: humidity
+
+    battery_level:
+      source: battery_level
+
+    signal_strength:
+      source: signal_strength
+
+    event_timestamp:
+      source: event_time
+
+    source_system:
+      const: IoT
+
+    severity:
+      default: INFO

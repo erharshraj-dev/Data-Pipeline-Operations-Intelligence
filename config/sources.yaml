@@ -1,0 +1,37 @@
+sources:
+
+  airflow:
+    path: datasets/raw_sources/airflow_pipeline_runs.csv
+
+  kafka:
+    path: datasets/raw_sources/kafka_stream_metrics.csv
+
+  kubernetes:
+    path: datasets/raw_sources/kubernetes_pods.csv
+
+  azure_data_factory:
+    path: datasets/raw_sources/azure_data_factory.csv
+
+  sap:
+    path: datasets/raw_sources/sap_jobs.csv
+
+  manufacturing:
+    path: datasets/raw_sources/manufacturing_events.csv
+
+  iot:
+    path: datasets/raw_sources/iot_sensor_events.csv
+
+  business_context:
+    path: datasets/canonical/business_context.csv
+
+  historical_baselines:
+    path: datasets/canonical/historical_baselines.csv
+
+  incident_history:
+    path: datasets/canonical/incident_history.csv
+
+  pipeline_lineage:
+    path: datasets/canonical/pipeline_lineage.csv
+
+  recommendation_history:
+    path: datasets/canonical/recommendation_history.csv
