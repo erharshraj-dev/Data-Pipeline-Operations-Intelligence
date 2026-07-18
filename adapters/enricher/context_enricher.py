@@ -220,14 +220,10 @@ class ContextEnricher:
 
         logger.info("Running Context Enricher Health Check...")
 
-        print("Business Context :", len(self.business_index))
-
-        print("Historical :", len(self.history_index))
-
-        print("Incident :", len(self.incident_index))
-
-        print("Lineage :", len(self.lineage_index))
-
-        print("Recommendation :", len(self.recommendation_index))
+        logger.debug(f"Business Context : {len(self.business_index)}")
+        logger.debug(f"Historical : {len(self.history_index)}")
+        logger.debug(f"Incident : {len(self.incident_index)}")
+        logger.debug(f"Lineage : {len(self.lineage_index)}")
+        logger.debug(f"Recommendation : {len(self.recommendation_index)}")
 
         return True

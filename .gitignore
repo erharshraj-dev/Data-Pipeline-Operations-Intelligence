@@ -75,3 +75,4 @@ build/
 # OS
 ehthumbs.db
 Desktop.ini
+output/execution_output.json
