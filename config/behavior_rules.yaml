@@ -1,0 +1,127 @@
+# ==========================================================
+# Adaptive Intelligence Fabric (AIF)
+# Behavior Agent
+# Rule Configuration
+# ==========================================================
+
+# ----------------------------------------------------------
+# Metric -> Historical Baseline Field Mapping
+#
+# The only place a metric name is ever written down.
+# Deviation Analyzer walks this map to decide which
+# attributes to compare against historical_context, so
+# adding a new metric or a new domain later means editing
+# this file only, never the code.
+# ----------------------------------------------------------
+
+metric_baseline_map:
+
+  elapsed_runtime: avg_runtime_sec
+  cpu_usage: avg_cpu
+  memory_usage: avg_memory
+  throughput: avg_throughput
+
+
+# ----------------------------------------------------------
+# Severity Thresholds
+#
+# Applied to absolute deviation percentage.
+# <= normal_max        -> NORMAL
+# <= warning_max        -> WARNING
+# >  warning_max        -> CRITICAL
+# ----------------------------------------------------------
+
+severity_thresholds:
+
+  normal_max: 10
+  warning_max: 30
+
+
+# ----------------------------------------------------------
+# Severity -> Score Mapping (used by Behavior Score Calculator)
+# ----------------------------------------------------------
+
+severity_scores:
+
+  NORMAL: 0
+  WARNING: 50
+  CRITICAL: 100
+  UNKNOWN: 0
+
+
+# ----------------------------------------------------------
+# Drift Detection
+#
+# A single bad reading is not drift. A metric is considered
+# drifting once it has been at or above a "drift" severity
+# level for at least sustained_drift_minimum_occurrences
+# out of the last rolling_window_size observations tracked
+# for that entity/metric pair.
+# ----------------------------------------------------------
+
+drift_detection:
+
+  rolling_window_size: 5
+  sustained_drift_minimum_occurrences: 3
+
+  drift_severity_levels:
+    - WARNING
+    - CRITICAL
+
+
+# ----------------------------------------------------------
+# Pattern Rules
+#
+# Patterns are detected purely by counting how many metrics
+# crossed a severity level in a single observation — never
+# by naming specific metrics.
+# ----------------------------------------------------------
+
+pattern_rules:
+
+  multi_metric_anomaly:
+    minimum_critical_metrics: 2
+    pattern_name: "Multi-Metric Critical Deviation"
+
+  sustained_warning:
+    minimum_warning_metrics: 3
+    pattern_name: "Widespread Warning-Level Deviation"
+
+  isolated_anomaly:
+    pattern_name: "Isolated Metric Anomaly"
+
+
+# ----------------------------------------------------------
+# Behavior Score
+#
+# aggregation_strategy options: weighted_average, average, max
+# ----------------------------------------------------------
+
+behavior_score:
+
+  aggregation_strategy: weighted_average
+
+  default_weight: 1.0
+
+  metric_weights:
+    elapsed_runtime: 1.0
+    cpu_usage: 1.0
+    memory_usage: 1.0
+    throughput: 1.0
+
+
+# ----------------------------------------------------------
+# Confidence
+#
+# Confidence blends how many metrics were actually
+# analyzable against how many were expected, and whether
+# historical context was available at all for the entity.
+# ----------------------------------------------------------
+
+confidence:
+
+  max_expected_metrics: 4
+  metric_coverage_weight: 0.5
+  context_completeness_weight: 0.5
+  minimum_confidence: 0.0
+  maximum_confidence: 1.0

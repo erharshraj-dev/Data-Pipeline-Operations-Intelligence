@@ -94,15 +94,11 @@ class ValidationEngine:
 
         logger.info("Running Validation Engine Health Check...")
 
-        print()
-
-        print("Required Fields :", len(self.required_fields))
-
-        print("Datatype Rules :", len(self.expected_types))
-
-        print("Allowed Status :", self.allowed_status)
-
-        print()
+        logger.debug("")
+        logger.debug(f"Required Fields : {len(self.required_fields)}")
+        logger.debug(f"Datatype Rules : {len(self.expected_types)}")
+        logger.debug(f"Allowed Status : {self.allowed_status}")
+        logger.debug("")
 
         logger.info("Validation Engine Health Check PASSED.")
 
