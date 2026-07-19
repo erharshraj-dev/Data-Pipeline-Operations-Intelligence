@@ -1,0 +1,382 @@
+# ==========================================================
+# Adaptive Intelligence Fabric (AIF)
+# Integrity Agent
+# Rule Configuration
+# ==========================================================
+#
+# The Integrity Agent consumes the Operational Entity and the
+# Observation Object (NOT the Behavior/Risk Objects — it
+# validates output correctness independently of anomaly
+# detection or risk prediction). It runs five checks:
+# Record Count, Data Quality, Business Rules, Schema, and
+# Lineage — each producing its own 0-100 score and
+# PASS/WARNING/FAILED status — then combines them into a
+# single weighted Integrity Score.
+#
+# ----------------------------------------------------------
+# A note on data availability
+#
+# The Capability Adapter currently loads 7 raw sources and 5
+# canonical lookup datasets (business_context,
+# historical_baselines, incident_history, pipeline_lineage,
+# recommendation_history). There is no dedicated
+# "expected_record_counts", "business_rules",
+# "data_quality_metrics" or "pipeline_metadata" dataset. Per
+# instructions the Capability Adapter is not being changed to
+# add one, so:
+#
+#   - Data Quality reuses the validation_score / errors /
+#     warnings already computed by the existing Validation
+#     Engine and carried on every Operational Entity — this
+#     is real, already-computed, per-entity data quality
+#     signal, not a new dataset.
+#   - Business Rules are expressed as rule DEFINITIONS here
+#     (not a business_rules dataset) and evaluated directly
+#     against entity fields/attributes — the same pattern
+#     risk_rules.yaml already uses for category_rules.
+#   - Lineage reuses entity.context.lineage_context, which is
+#     already populated from pipeline_lineage.csv by the
+#     existing Context Enricher.
+#   - Record Count has no genuine expected-vs-actual source
+#     for most domains. Rather than fabricate one, it is wired
+#     up generically (see record_count.fields below) and
+#     simply returns NOT_EVALUATED — excluded from the
+#     weighted score, weight redistributed among the other
+#     four checks — wherever no field mapping is configured
+#     for a given source_system. Kafka is the one domain with
+#     a genuine per-entity volume signal (throughput) and a
+#     matching historical baseline (avg_throughput), so it is
+#     configured below as a working example.
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# Agent Metadata
+#
+# Stamped onto every Integrity Object so downstream consumers
+# (Recommendation Agent) know which rule configuration
+# produced a given evaluation. Previously hardcoded as "1.0"
+# directly in IntegrityObjectBuilder; a version bump no longer
+# requires a code change.
+# ----------------------------------------------------------
+
+agent:
+
+  version: "1.0"
+
+
+# ----------------------------------------------------------
+# Check Weights
+#
+# Contribution of each check to the overall Integrity Score.
+# A check that returns NOT_EVALUATED for a given entity is
+# excluded from the weighted sum and the remaining weights are
+# re-normalized — the same missing-signal handling already
+# used by risk_score_calculator.py, so a check with no data
+# for a given domain never silently drags the score down.
+# ----------------------------------------------------------
+
+weights:
+
+  record_count: 0.25
+  data_quality: 0.25
+  business_rules: 0.20
+  schema: 0.15
+  lineage: 0.15
+
+
+# ----------------------------------------------------------
+# Per-Check Score Thresholds
+#
+# Each check produces its own 0-100 score. This maps that
+# score to PASS / WARNING / FAILED for that individual check
+# (used in validation_results and to pick primary_failure_
+# reason). A check-specific entry overrides "default".
+# ----------------------------------------------------------
+
+check_thresholds:
+
+  default:
+    pass_min: 90
+    warning_min: 70
+
+  data_quality:
+    pass_min: 90
+    warning_min: 70
+
+  schema:
+    pass_min: 90
+    warning_min: 70
+
+  business_rules:
+    pass_min: 90
+    warning_min: 70
+
+  lineage:
+    pass_min: 90
+    warning_min: 50
+
+  record_count:
+    pass_min: 90
+    warning_min: 70
+
+
+# ----------------------------------------------------------
+# Overall Integrity Status Thresholds
+#
+# Applied to the final weighted Integrity Score.
+# ----------------------------------------------------------
+
+status_thresholds:
+
+  pass_min: 90
+  warning_min: 70
+
+
+# ----------------------------------------------------------
+# Output Trust Level Thresholds
+# ----------------------------------------------------------
+
+trust_level_thresholds:
+
+  high_min: 90
+  medium_min: 70
+
+
+# ----------------------------------------------------------
+# Validation Priority (Primary Failure Reason)
+#
+# When more than one check is FAILED (or, failing that, more
+# than one is WARNING), the highest-priority one here is
+# reported as primary_failure_reason — schema problems are
+# treated as more fundamental than a lineage gap, for example.
+# Purely a display/reporting ranking; it does not affect the
+# Integrity Score itself.
+# ----------------------------------------------------------
+
+validation_priority:
+
+  schema: 100
+  business_rules: 90
+  record_count: 80
+  data_quality: 70
+  lineage: 60
+
+
+# ----------------------------------------------------------
+# Display Names
+#
+# Human-readable label per check, used for
+# primary_failure_reason and validation_results — kept in
+# config rather than hardcoded in Python so relabeling never
+# requires a code change.
+# ----------------------------------------------------------
+
+check_display_names:
+
+  record_count: "Record Count Validation"
+  data_quality: "Data Quality Validation"
+  business_rules: "Business Rule Validation"
+  schema: "Schema Validation"
+  lineage: "Lineage Validation"
+
+
+# ----------------------------------------------------------
+# Record Count Validation
+#
+# fields.<source_system>.actual_field   -> attribute holding
+#   the actual per-entity volume/count metric
+# fields.<source_system>.expected_context/expected_field ->
+#   where the expected baseline value lives on the entity's
+#   context block
+#
+# Score = 100 - abs(actual - expected) / expected * 100,
+# clipped to [0, 100] — an exact match scores 100, and the
+# score falls off linearly with percentage deviation.
+# tolerance_percent is the deviation still treated as a full
+# PASS-level score (i.e. subtracted before the score is
+# clipped), so small, expected fluctuation isn't penalized.
+# ----------------------------------------------------------
+
+record_count:
+
+  tolerance_percent: 10
+
+  fields:
+
+    Kafka:
+      actual_field: throughput
+      expected_context: historical_context
+      expected_field: avg_throughput
+
+    # Add an entry here (any source_system key) the moment a
+    # genuine expected-vs-actual record count source exists
+    # for another domain — no code change required.
+
+
+# ----------------------------------------------------------
+# Data Quality Validation
+#
+# Reuses entity.validation.validation_score (0-100) as the
+# check score directly — it is already the Validation Engine's
+# own assessment of null%, duplicate%, completeness, accuracy
+# for this entity. errors/warnings counts ride along in
+# validation_results for diagnostic detail only; they do not
+# change the score independently of validation_score.
+# ----------------------------------------------------------
+
+data_quality:
+
+  use_field: "validation_score"
+
+
+# ----------------------------------------------------------
+# Schema Validation
+#
+# required_top_level_fields: must be present and non-null
+# directly on the Operational Entity.
+#
+# required_attributes: per-source_system list of keys that
+# must be present and non-null inside entity.attributes.
+# "default" applies to every source_system; a source_system
+# entry adds to (never replaces) the default list — merged the
+# same way normalization_profiles merges onto risk features.
+# ----------------------------------------------------------
+
+schema:
+
+  required_top_level_fields:
+    - entity_id
+    - source_system
+    - execution_status
+    - event_timestamp
+
+  required_attributes:
+
+    default: []
+
+    Airflow:
+      - elapsed_runtime
+      - owner
+      - schedule
+      - retry_count
+      - execution_queue
+      - executor
+      - priority
+
+    Kafka:
+      - consumer_group
+      - partition
+      - offset
+      - consumer_lag
+      - throughput
+
+    Kubernetes:
+      - namespace
+      - node
+      - cpu_usage
+      - memory_usage
+      - restart_count
+      - image
+
+    "Azure Data Factory":
+      - elapsed_runtime
+      - integration_runtime
+      - trigger_type
+      - start_time
+      - end_time
+
+    "SAP ERP":
+      - business_unit
+      - elapsed_runtime
+      - owner
+
+    Manufacturing:
+      - elapsed_runtime
+      - operator
+      - shift
+      - defect_count
+
+    IoT:
+      - temperature
+      - humidity
+      - battery_level
+      - signal_strength
+
+
+# ----------------------------------------------------------
+# Business Rule Validation
+#
+# Generic rule engine, same operator set as risk_rules.yaml's
+# category_rules: exists / min / max / equals / in. Evaluated
+# against a flat record built from the entity's top-level
+# fields plus its attributes. A rule whose field is simply not
+# applicable to a given domain (e.g. elapsed_runtime on a Kafka
+# entity, which has no such attribute) is excluded from that
+# entity's rule count rather than counted as a failure — except
+# for "exists" rules, where absence IS the thing being checked.
+#
+# Score = (rules_passed / rules_evaluated) * 100.
+# ----------------------------------------------------------
+
+business_rules:
+
+  rules:
+
+    - name: "Entity ID Present"
+      field: entity_id
+      operator: exists
+
+    - name: "Execution Status Present"
+      field: execution_status
+      operator: exists
+
+    - name: "Valid Execution Status"
+      field: execution_status
+      operator: in
+      value: [SUCCESS, FAILED, RUNNING, QUEUED, CANCELLED]
+
+    - name: "Event Timestamp Present"
+      field: event_timestamp
+      operator: exists
+
+    - name: "Non-Negative Runtime"
+      field: elapsed_runtime
+      operator: min
+      value: 0
+
+    - name: "Non-Negative Retry Count"
+      field: retry_count
+      operator: min
+      value: 0
+
+    - name: "CPU Usage Within Bounds"
+      field: cpu_usage
+      operator: max
+      value: 100
+
+    - name: "Memory Usage Within Bounds"
+      field: memory_usage
+      operator: max
+      value: 100
+
+
+# ----------------------------------------------------------
+# Lineage Validation
+#
+# Reuses entity.context.lineage_context, already populated
+# from pipeline_lineage.csv by the Context Enricher. An entity
+# with no lineage record at all (empty lineage_context) fails
+# this check outright — that is the "broken lineage" case the
+# spec calls out. depends_on / downstream presence are used as
+# the available proxies for "dependencies completed" and
+# "reached expected destination" respectively; this project has
+# no per-dependency execution-status cross-reference, so those
+# two checks confirm the lineage link is declared and intact,
+# not that the upstream/downstream run itself succeeded.
+# ----------------------------------------------------------
+
+lineage:
+
+  require_depends_on: true
+  require_downstream: true

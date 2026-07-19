@@ -12,6 +12,8 @@ from adapters.validation.validation_engine import ValidationEngine
 from adapters.entity_builder.operational_entity_builder import OperationalEntityBuilder
 from agents.observer.observer_agent import ObserverAgent
 from agents.behavior.behavior_agent import BehaviorAgent
+from agents.risk.risk_agent import RiskPredictionAgent
+from agents.integrity.integrity_agent import IntegrityAgent
 
 # ==========================================================
 # Logging Configuration
@@ -165,6 +167,10 @@ def main():
     total_entities = sum(len(v) for v in operational_entities.values())
     logger.debug(f"Operational Entities Generated : {total_entities}")
 
+    # ======================================================
+    # STEP 8 : OBSERVER AGENT
+    # ======================================================
+
     observer = ObserverAgent()
 
     observer.health_check()
@@ -173,10 +179,47 @@ def main():
         operational_entities
     )
 
+    # ======================================================
+    # STEP 9 : BEHAVIOR AGENT
+    # ======================================================
+
     behavior_agent = BehaviorAgent("config/behavior_rules.yaml")
     behavior_agent.health_check()
 
     behavior_objects = behavior_agent.analyze_all(observation_objects)
+
+    # ======================================================
+    # STEP 10 : RISK PREDICTION AGENT
+    # ======================================================
+
+    risk_agent = RiskPredictionAgent("config/risk_rules.yaml")
+    risk_agent.health_check()
+
+    risk_objects = risk_agent.predict_all(behavior_objects)
+
+    # ======================================================
+    # STEP 11 : INTEGRITY AGENT
+    #
+    # Consumes the Observation Object directly (which already
+    # carries the Operational Entity) rather than the Behavior
+    # or Risk Object -- Integrity validates output correctness,
+    # data quality, business rule compliance and lineage
+    # completeness, independent of anomaly detection or risk
+    # prediction, so it does not depend on their outputs.
+    # ======================================================
+
+    integrity_agent = IntegrityAgent("config/integrity_rules.yaml")
+    integrity_agent.health_check()
+
+    integrity_objects = integrity_agent.evaluate_all(observation_objects)
+
+    # ======================================================
+    # SUMMARIES
+    #
+    # Built from each agent's own counters rather than from
+    # summary()'s return value, since summary() only prints
+    # and is not guaranteed to return a dict.
+    # ======================================================
 
     adapter_summary = {
         "data_sources_loaded": len(datasets),
@@ -190,14 +233,40 @@ def main():
         "operational_entities": total_entities
     }
 
-    observer_summary = observer.summary()
+    observer.summary()
 
-    behavior_summary = behavior_agent.summary()
+    observer_summary = {
+        "operational_entities": observer.total_entities,
+        "observation_objects": observer.total_observations
+    }
+
+    behavior_agent.summary()
+
+    behavior_summary = {
+        "observation_objects": behavior_agent.total_observations,
+        "behavior_objects": behavior_agent.total_behaviors
+    }
+
+    risk_agent.summary()
+
+    risk_summary = {
+        "behavior_objects": risk_agent.total_behaviors,
+        "risk_objects": risk_agent.total_risks
+    }
+
+    integrity_agent.summary()
+
+    integrity_summary = {
+        "observation_objects": integrity_agent.total_observations,
+        "integrity_objects": integrity_agent.total_integrities
+    }
 
     representative_flow = build_representative_flow(
         operational_entities,
         observation_objects,
-        behavior_objects
+        behavior_objects,
+        risk_objects,
+        integrity_objects
     )
 
     # ======================================================
@@ -215,7 +284,9 @@ def main():
         },
         "operational_entity": operational_entities,
         "observer_output": observation_objects,
-        "behavior_output": behavior_objects
+        "behavior_output": behavior_objects,
+        "risk_output": risk_objects,
+        "integrity_output": integrity_objects
     }
 
     output_dir = "output"
@@ -233,6 +304,8 @@ def main():
         adapter_summary,
         observer_summary,
         behavior_summary,
+        risk_summary,
+        integrity_summary,
         representative_flow,
         execution_time,
         output_path
@@ -241,7 +314,7 @@ def main():
     logger.debug("Output saved")
 
 
-def build_representative_flow(operational_entities, observation_objects, behavior_objects):
+def build_representative_flow(operational_entities, observation_objects, behavior_objects, risk_objects, integrity_objects):
 
     dataset_name = "kafka" if "kafka" in operational_entities else next(iter(operational_entities))
 
@@ -260,6 +333,18 @@ def build_representative_flow(operational_entities, observation_objects, behavio
         if behavior.get("entity_id") == representative_entity_id
     )
 
+    representative_risk = next(
+        risk
+        for risk in risk_objects[dataset_name]
+        if risk.get("entity_id") == representative_entity_id
+    )
+
+    representative_integrity = next(
+        integrity
+        for integrity in integrity_objects[dataset_name]
+        if integrity.get("entity_id") == representative_entity_id
+    )
+
     observation_state = representative_observation.get("observations", {}).get("state", {})
     observation_metrics = representative_observation.get("observations", {}).get("metrics", {})
     observation_baseline = representative_observation.get("observations", {}).get("baseline", {})
@@ -268,17 +353,33 @@ def build_representative_flow(operational_entities, observation_objects, behavio
 
     behavior_analysis = representative_behavior.get("behavior", {})
 
+    # Risk Object is already flat (entity_id, risk_score, risk_severity,
+    # risk_probability, risk_category, prediction_confidence) — it has
+    # no nested "risk" sub-dict the way Behavior Object nests
+    # behavior_analysis, so it doubles as its own analysis view here.
+    risk_analysis = representative_risk
+
+    # Integrity Object is likewise already flat (entity_id,
+    # integrity_score, integrity_status, output_trust_level,
+    # validation_summary, validation_results, primary_failure_reason,
+    # evaluation_timestamp, agent_version).
+    integrity_analysis = representative_integrity
+
     return {
         "dataset_name": dataset_name,
         "entity": representative_entity,
         "observation": representative_observation,
         "behavior": representative_behavior,
+        "risk": representative_risk,
+        "integrity": representative_integrity,
         "observation_state": observation_state,
         "observation_metrics": observation_metrics,
         "observation_baseline": observation_baseline,
         "observation_trend": observation_trend,
         "observation_events": observation_events,
         "behavior_analysis": behavior_analysis,
+        "risk_analysis": risk_analysis,
+        "integrity_analysis": integrity_analysis,
     }
 
 
@@ -286,6 +387,8 @@ def print_execution_summary(
     adapter_summary,
     observer_summary,
     behavior_summary,
+    risk_summary,
+    integrity_summary,
     representative_flow,
     execution_time,
     output_path
@@ -294,10 +397,14 @@ def print_execution_summary(
     print_capability_adapter_summary(adapter_summary, representative_flow)
     print_observer_summary(observer_summary, representative_flow)
     print_behavior_summary(behavior_summary, representative_flow)
+    print_risk_summary(risk_summary, representative_flow)
+    print_integrity_summary(integrity_summary, representative_flow)
     print_footer_summary(
         adapter_summary,
         observer_summary,
         behavior_summary,
+        risk_summary,
+        integrity_summary,
         execution_time,
         output_path
     )
@@ -319,6 +426,14 @@ def print_workflow_banner():
     print("Behavior Agent")
     print("        ↓")
     print("Behavior Object")
+    print("        ↓")
+    print("Risk Prediction Agent")
+    print("        ↓")
+    print("Risk Object")
+    print("        ↓")
+    print("Integrity Agent")
+    print("        ↓")
+    print("Integrity Object")
     print("=" * 80)
 
 
@@ -387,6 +502,8 @@ def print_footer_summary(
     adapter_summary,
     observer_summary,
     behavior_summary,
+    risk_summary,
+    integrity_summary,
     execution_time,
     output_path
 ):
@@ -404,6 +521,12 @@ def print_footer_summary(
     print()
     print("Behavior Agent")
     print_label("Behavior Objects Created", behavior_summary["behavior_objects"], 30)
+    print()
+    print("Risk Prediction Agent")
+    print_label("Risk Objects Created", risk_summary["risk_objects"], 30)
+    print()
+    print("Integrity Agent")
+    print_label("Integrity Objects Created", integrity_summary["integrity_objects"], 30)
     print()
     print_label("Execution Status", "SUCCESS", 30)
     print_label("Execution Time", f"{execution_time:.2f} seconds", 30)
@@ -581,6 +704,91 @@ def print_behavior_summary(behavior_summary, representative_flow):
     print_label("Behavior Object", "Generated Successfully", 18)
 
 
+def print_risk_summary(risk_summary, representative_flow):
+
+    print_section_header(4, "RISK PREDICTION AGENT")
+    print("Risk Prediction Agent Received Behavior Object")
+    print("------------------------------------------------")
+    print_label("Entity ID", representative_flow["entity"].get("entity_id"), 18)
+
+    print()
+    print("Predicting Risk...")
+    print()
+
+    risk_analysis = representative_flow.get("risk_analysis", {})
+
+    print_label("Risk Score", f"{risk_analysis.get('risk_score')} /100", 18)
+    print_label("Risk Severity", risk_analysis.get('risk_severity'), 18)
+    print_label("Risk Category", risk_analysis.get('risk_category'), 18)
+    print_label("Risk Probability", f"{risk_analysis.get('risk_probability')}%", 18)
+    confidence_percent = round((risk_analysis.get('prediction_confidence') or 0) * 100)
+    print_label("Prediction Confidence", f"{confidence_percent}%", 18)
+
+    print()
+    print("Final Risk Assessment")
+    print("----------------------")
+    print_label(
+        "Risk Status",
+        derive_risk_status(risk_analysis),
+        18
+    )
+
+    print()
+    print("Risk Object Generated Successfully.")
+
+    print("Completion Status")
+    print("------------------")
+    print_label("Risk Object", "Generated Successfully", 18)
+
+
+def print_integrity_summary(integrity_summary, representative_flow):
+
+    print_section_header(5, "INTEGRITY AGENT")
+    print("Integrity Agent Received Operational Entity")
+    print("------------------------------------------------")
+    print_label("Entity ID", representative_flow["entity"].get("entity_id"), 18)
+
+    print()
+    print("Extracting Validation Features...")
+    print()
+
+    integrity_analysis = representative_flow.get("integrity_analysis", {})
+    validation_results = integrity_analysis.get("validation_results", {})
+
+    print("Validating Record Count...")
+    print_label("  Status", validation_results.get("record_count", {}).get("status"), 18)
+
+    print("Validating Schema...")
+    print_label("  Status", validation_results.get("schema", {}).get("status"), 18)
+
+    print("Validating Business Rules...")
+    print_label("  Status", validation_results.get("business_rules", {}).get("status"), 18)
+
+    print("Validating Data Quality...")
+    print_label("  Status", validation_results.get("data_quality", {}).get("status"), 18)
+
+    print("Validating Lineage...")
+    print_label("  Status", validation_results.get("lineage", {}).get("status"), 18)
+
+    print()
+    print("Calculating Integrity Score...")
+    print("Determining Trust Level...")
+    print("Generating Integrity Object...")
+
+    print()
+    print("Integrity Object Generated Successfully")
+    print("----------------------------------------")
+    print_label("Integrity Score", f"{integrity_analysis.get('integrity_score')} /100", 18)
+    print_label("Integrity Status", integrity_analysis.get('integrity_status'), 18)
+    print_label("Output Trust Level", integrity_analysis.get('output_trust_level'), 18)
+    print_label("Primary Failure", integrity_analysis.get('primary_failure_reason'), 18)
+
+    print()
+    print("Completion Status")
+    print("------------------")
+    print_label("Integrity Object", "Generated Successfully", 18)
+
+
 def derive_observation_status(events, baseline):
 
     if events or any(
@@ -632,6 +840,15 @@ def derive_behavior_status(behavior_analysis, events, baseline, trend):
         return "ATTENTION REQUIRED"
 
     if any(value == "Increasing" for value in trend.values()):
+
+        return "ATTENTION REQUIRED"
+
+    return "NORMAL"
+
+
+def derive_risk_status(risk_analysis):
+
+    if risk_analysis.get("risk_severity") in {"HIGH", "CRITICAL"}:
 
         return "ATTENTION REQUIRED"
 
