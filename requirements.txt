@@ -1,1 +1,10 @@
 # Requirements
+fastapi
+uvicorn
+pandas
+pyyaml
+pydantic
+loguru
+python-dotenv
+openpyxl
+pytest
