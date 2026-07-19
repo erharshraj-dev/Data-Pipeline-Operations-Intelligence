@@ -1,0 +1,495 @@
+# ==========================================================
+# Adaptive Intelligence Fabric (AIF)
+# Risk Prediction Agent
+# Rule Configuration
+# ==========================================================
+
+# ----------------------------------------------------------
+# Feature Definitions
+#
+# weight   -> contribution to the weighted Risk Score
+# min/max  -> normalization bounds (raw value is clipped
+#             into this range, then scaled to 0-1). These are
+#             the DEFAULT bounds. Domain-specific overrides
+#             live in normalization_profiles below and are
+#             selected automatically by entity source_system.
+# invert   -> if true, a HIGHER raw value means LOWER risk
+#             (e.g. SLA margin), so the normalized value is
+#             flipped before weighting
+#
+# Weights sum to 1.0. A feature missing for a given entity
+# is simply left out of the weighted sum and the remaining
+# weights are re-normalized by the calculator, so a missing
+# feature never silently drags the score toward zero.
+#
+# ----------------------------------------------------------
+# Double-Counting Rebalance (Issue 8)
+#
+# behavior_score, behavior_severity and metric_deviation are
+# all derived from the exact same Behavior Agent deviation
+# dict (elapsed_runtime / cpu_usage / memory_usage /
+# throughput vs. baseline) — one is its weighted average, one
+# is its worst-case label, one is its raw max percentage.
+# cpu_usage, memory_usage and execution_runtime then repeat
+# two of those same four metrics a second time as raw
+# attribute values instead of deviations.
+#
+# These six overlapping features are capped at 0.31 combined,
+# with behavior_score itself reduced so it is one contributor
+# among several rather than the largest single feature.
+#
+# ----------------------------------------------------------
+# Confidence Removed From Risk Score (Issue 2)
+#
+# behavior_confidence used to sit inside this weighted sum.
+# Confidence describes how trustworthy a prediction is, not
+# how risky the entity is — including it let a low-confidence
+# reading push the Risk Score in either direction, which is a
+# measurement-quality signal leaking into a risk signal. It
+# has been removed entirely from the feature set below. Its
+# freed weight (0.04) moved to sla_margin_ratio and
+# retry_count. Behavior Confidence is still used — exclusively
+# inside the Prediction Confidence calculation further down
+# this file, via the confidence: block.
+# ----------------------------------------------------------
+
+features:
+
+  # -- Behavior Score cluster (redundant with each other) --
+  # Combined weight: 0.31
+
+  behavior_score:
+    weight: 0.12
+    min: 0
+    max: 100
+    invert: false
+
+  behavior_severity:
+    weight: 0.05
+    min: 0
+    max: 1
+    invert: false
+
+  metric_deviation:
+    weight: 0.05
+    min: 0
+    max: 100
+    invert: false
+
+  cpu_usage:
+    weight: 0.03
+    min: 0
+    max: 100
+    invert: false
+
+  memory_usage:
+    weight: 0.03
+    min: 0
+    max: 100
+    invert: false
+
+  execution_runtime:
+    weight: 0.03
+    min: 0
+    max: 3600
+    invert: false
+
+  # -- Independent risk dimensions, not derived from --
+  # -- Behavior Score / its underlying metrics       --
+  # Combined weight: 0.69
+
+  adverse_trend_ratio:
+    weight: 0.12
+    min: 0
+    max: 1
+    invert: false
+
+  event_count:
+    weight: 0.09
+    min: 0
+    max: 5
+    invert: false
+
+  historical_incident_count:
+    weight: 0.14
+    min: 0
+    max: 20
+    invert: false
+
+  business_criticality:
+    weight: 0.14
+    min: 0
+    max: 1
+    invert: false
+
+  sla_margin_ratio:
+    weight: 0.12
+    min: -1
+    max: 1
+    invert: true
+
+  retry_count:
+    weight: 0.08
+    min: 0
+    max: 5
+    invert: false
+
+
+# ----------------------------------------------------------
+# Normalization Profiles (Issue 3)
+#
+# AIF is domain-agnostic by design, but a handful of raw
+# attributes are reported in domain-specific units:
+#
+#   Airflow            elapsed_runtime -> seconds
+#   Azure Data Factory  elapsed_runtime -> milliseconds
+#   SAP ERP             elapsed_runtime -> minutes
+#   Manufacturing        elapsed_runtime -> seconds (cycle time)
+#
+# A single hardcoded bound (e.g. execution_runtime max: 3600)
+# is meaningless across those units — an Azure Data Factory
+# duration in milliseconds would saturate that bound almost
+# immediately, silently maxing out its risk contribution.
+#
+# Resolution order (later entries win):
+#   1. base bounds from the `features:` block above
+#   2. `default` profile below
+#   3. the profile matching the entity's source_system
+#
+# A feature not listed in a profile simply keeps whatever
+# bound the previous step in that order already gave it.
+# Feature *weights* are never overridden by a profile — only
+# min/max normalization bounds vary by domain.
+#
+# The Rule Engine selects the profile using the entity's
+# source_system value automatically; no code change is needed
+# to add a new domain, only a new profile entry here.
+# ----------------------------------------------------------
+
+normalization_profiles:
+
+  default:
+    execution_runtime:
+      min: 0
+      max: 3600
+    retry_count:
+      min: 0
+      max: 5
+
+  Airflow:
+    execution_runtime:
+      min: 0
+      max: 3600          # seconds
+
+  "Azure Data Factory":
+    execution_runtime:
+      min: 0
+      max: 3600000        # milliseconds (duration_ms)
+
+  "SAP ERP":
+    execution_runtime:
+      min: 0
+      max: 60             # minutes (runtime_minutes)
+
+  Manufacturing:
+    execution_runtime:
+      min: 0
+      max: 300             # seconds (cycle_time_seconds)
+
+  Kafka:
+    retry_count:
+      min: 0
+      max: 5
+
+  Kubernetes:
+    retry_count:
+      min: 0
+      max: 5
+
+  IoT:
+    retry_count:
+      min: 0
+      max: 5
+
+
+# ----------------------------------------------------------
+# Behavior Severity Mapping
+#
+# Behavior Agent reports severity per-metric. Feature
+# Extractor collapses those to a single worst-case severity
+# for the entity, then this map turns it into a number.
+# ----------------------------------------------------------
+
+behavior_severity_map:
+
+  NORMAL: 0.0
+  WARNING: 0.5
+  CRITICAL: 1.0
+  UNKNOWN: 0.0
+
+
+# ----------------------------------------------------------
+# Business Criticality Mapping
+# ----------------------------------------------------------
+
+business_criticality_map:
+
+  Low: 0.25
+  Medium: 0.5
+  High: 0.75
+  Critical: 1.0
+
+
+# ----------------------------------------------------------
+# Trend Directions Considered Adverse — Legacy Fallback
+#
+# Retained only as a fallback for is_trend_adverse() when a
+# metric has no entry (and no "default" entry) under
+# trend_adversity below, so existing deployments that never
+# touch trend_adversity keep working unchanged. New behavior
+# should be configured via trend_adversity instead.
+# ----------------------------------------------------------
+
+adverse_trend_values:
+  - Increasing
+  - Decreasing
+
+
+# ----------------------------------------------------------
+# Metric-Aware Trend Adversity (Issue 4)
+#
+# Whether a trend direction is "bad" depends on the metric,
+# not just the direction. CPU/memory/runtime/retries rising is
+# bad; throughput rising is usually good. This maps
+# metric_name -> direction -> is_adverse (true/false),
+# checked against the metric names the Observer Agent already
+# emits in observations.trend (runtime, cpu_usage,
+# memory_usage, throughput). A metric name with no entry here
+# falls back to the "default" entry below, and if
+# trend_adversity is missing entirely, to adverse_trend_values
+# above.
+#
+# Extra entries (retry_count, consumer_lag, latency,
+# queue_size) are included so new domains/metrics can be
+# classified correctly by editing this file only — no code
+# change required — the moment the Observer Agent starts
+# reporting a trend for them.
+# ----------------------------------------------------------
+
+trend_adversity:
+
+  default:
+    Increasing: true
+    Decreasing: true
+    Stable: false
+
+  runtime:
+    Increasing: true
+    Decreasing: false
+    Stable: false
+
+  cpu_usage:
+    Increasing: true
+    Decreasing: false
+    Stable: false
+
+  memory_usage:
+    Increasing: true
+    Decreasing: false
+    Stable: false
+
+  throughput:
+    Increasing: false
+    Decreasing: true
+    Stable: false
+
+  retry_count:
+    Increasing: true
+    Decreasing: false
+    Stable: false
+
+  consumer_lag:
+    Increasing: true
+    Decreasing: false
+    Stable: false
+
+  latency:
+    Increasing: true
+    Decreasing: false
+    Stable: false
+
+  queue_size:
+    Increasing: true
+    Decreasing: false
+    Stable: false
+
+
+# ----------------------------------------------------------
+# Risk Severity Thresholds
+#
+# Applied to the final 0-100 Risk Score.
+# <= low_max              -> LOW
+# <= medium_max            -> MEDIUM
+# <= high_max              -> HIGH
+# >  high_max              -> CRITICAL
+# ----------------------------------------------------------
+
+severity_thresholds:
+
+  low_max: 25
+  medium_max: 50
+  high_max: 75
+
+
+# ----------------------------------------------------------
+# Risk Severity -> Legacy Category Mapping
+#
+# No longer used to derive risk_category (see category_rules
+# below — Issue 1 made Risk Category independent of Risk
+# Severity). Left in place, still loaded by the Rule Engine
+# and still returned by SeverityClassifier.categorize(), for
+# backward compatibility with anything that may call it
+# directly.
+# ----------------------------------------------------------
+
+category_mapping:
+
+  LOW: "Stable"
+  MEDIUM: "Elevated Risk"
+  HIGH: "High Risk"
+  CRITICAL: "Imminent Risk"
+
+
+# ----------------------------------------------------------
+# Risk Category Rules (Issue 1)
+#
+# Risk Category describes WHAT KIND of operational risk was
+# predicted (Pipeline Failure, SLA Breach, ...) and is
+# evaluated completely independently of Risk Score / Risk
+# Severity — it is derived only from the raw signals below,
+# never from the score.
+#
+# Each rule is a generic condition check, not category-specific
+# code: `conditions` is a map of "<signal>_<operator>": value.
+#
+# Supported operators (suffix on the condition key):
+#   _min      signal value >= expected
+#   _max      signal value <= expected
+#   _equals   signal value == expected
+#   _contains signal is a list; true if it contains ANY of the
+#             expected value(s)
+#
+# `match: all` (default) requires every condition in the rule
+# to hold; `match: any` requires at least one.
+#
+# Available signals (built by CategoryClassifier from the
+# Operational Entity, Observation Object and Behavior Object):
+#   source_system, execution_status, events, patterns,
+#   behavior_severity, trend, adverse_trend_metrics,
+#   adverse_trend_count, max_deviation_severity, retry_count,
+#   cpu_usage, memory_usage, elapsed_runtime, throughput,
+#   consumer_lag, temperature, humidity, battery_level,
+#   signal_strength, is_valid, validation_error_count,
+#   validation_warning_count, business_criticality,
+#   sla_minutes, sla_margin_ratio, historical_incident_count,
+#   historical_root_cause
+#
+# Rules are evaluated highest `priority` first; the first rule
+# whose conditions match wins. If no rule matches,
+# default_risk_category below is used.
+# ----------------------------------------------------------
+
+category_rules:
+
+  - category: "Pipeline Failure"
+    priority: 100
+    match: any
+    conditions:
+      events_contains: ["Execution Failure", "Pipeline Cancelled"]
+      execution_status_equals: "FAILED"
+
+  - category: "SLA Breach"
+    priority: 95
+    match: all
+    conditions:
+      sla_margin_ratio_max: 0
+
+  - category: "Resource Exhaustion"
+    priority: 90
+    match: any
+    conditions:
+      cpu_usage_min: 85
+      memory_usage_min: 85
+
+  - category: "Dependency Failure"
+    priority: 85
+    match: any
+    conditions:
+      retry_count_min: 3
+
+  - category: "Data Quality Risk"
+    priority: 80
+    match: any
+    conditions:
+      is_valid_equals: false
+      validation_error_count_min: 1
+
+  - category: "Infrastructure Risk"
+    priority: 75
+    match: any
+    conditions:
+      events_contains: ["High Temperature", "Low Temperature", "High Humidity", "Low Battery", "Weak Signal"]
+
+  - category: "Configuration Risk"
+    priority: 70
+    match: all
+    conditions:
+      adverse_trend_count_min: 3
+      max_deviation_severity_equals: "CRITICAL"
+
+
+# ----------------------------------------------------------
+# Default Risk Category
+#
+# Returned when no category_rules entry matches — the entity
+# shows some elevated risk signal (that's why the Risk
+# Prediction Agent ran at all) but not one that fits a more
+# specific, named category.
+# ----------------------------------------------------------
+
+default_risk_category: "Operational Risk"
+
+
+# ----------------------------------------------------------
+# Probability Settings
+#
+# Risk Score (0-100) is passed through a logistic sigmoid to
+# produce a smooth 0-100 probability instead of hard
+# threshold buckets:
+#
+#   probability = 100 / (1 + e^(-steepness * (score - midpoint) / 100))
+# ----------------------------------------------------------
+
+probability:
+
+  midpoint: 50
+  steepness: 8
+
+
+# ----------------------------------------------------------
+# Confidence Settings
+#
+# Prediction Confidence blends the Behavior Agent's own
+# confidence (behavior_confidence_weight) with how many of the
+# configured Risk Score features were actually available for
+# this entity (feature_completeness_weight). This is the only
+# place Behavior Confidence feeds into — it no longer appears
+# in the `features:` weighted sum above (Issue 2).
+# ----------------------------------------------------------
+
+confidence:
+
+  behavior_confidence_weight: 0.5
+  feature_completeness_weight: 0.5
+  minimum_confidence: 0.0
+  maximum_confidence: 1.0
