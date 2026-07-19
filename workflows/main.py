@@ -312,7 +312,16 @@ def main():
     )
 
     logger.debug("Output saved")
-
+    return {
+        "status": "SUCCESS",
+        "execution_time": execution_time,
+        "output_file": output_path,
+        "adapter_summary": adapter_summary,
+        "observer_summary": observer_summary,
+        "behavior_summary": behavior_summary,
+        "risk_summary": risk_summary,
+        "integrity_summary": integrity_summary,
+    }
 
 def build_representative_flow(operational_entities, observation_objects, behavior_objects, risk_objects, integrity_objects):
 
