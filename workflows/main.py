@@ -797,6 +797,78 @@ def print_integrity_summary(integrity_summary, representative_flow):
     print("------------------")
     print_label("Integrity Object", "Generated Successfully", 18)
 
+def print_recommendation_summary(recommendation_summary,representative_flow):
+
+    print_section_header(6, "RECOMMENDATION AGENT")
+
+    print("Recommendation Agent Received")
+    print("--------------------------------------------")
+
+    print_label("Entity ID",representative_flow["entity"].get("entity_id"),18)
+    print()
+
+    print("Analyzing Complete Context...")
+    print()
+
+    recommendation = representative_flow.get(
+        "recommendation_analysis",
+        {}
+    )
+
+    print_label(
+        "Risk Severity",
+        recommendation.get("risk_severity"),
+        22
+    )
+
+    print_label(
+        "Behavior Severity",
+        recommendation.get("behavior_severity"),
+        22
+    )
+
+    print_label(
+        "Integrity Status",
+        recommendation.get("integrity_status"),
+        22
+    )
+
+    print()
+
+    print("Generating Recommendation...")
+
+    print()
+
+    print_label(
+        "Priority",
+        recommendation.get("priority"),
+        22
+    )
+
+    print_label(
+        "Category",
+        recommendation.get("category"),
+        22
+    )
+
+    print_label(
+        "Recommendation",
+        recommendation.get("recommendation"),
+        22
+    )
+
+    print()
+
+    print("Recommendation Object Generated Successfully.")
+
+    print("Completion Status")
+    print("------------------")
+
+    print_label(
+        "Recommendation Object",
+        "Generated Successfully",
+        22
+    )
 
 def derive_observation_status(events, baseline):
 
