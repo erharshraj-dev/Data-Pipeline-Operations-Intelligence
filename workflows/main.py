@@ -3,6 +3,9 @@ import json
 import os
 import time
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from adapters.connectors.csv_connector import CSVConnector
 from adapters.parsers.tabular_parser import TabularParser
 from adapters.mapping.mapping_engine import MappingEngine
@@ -14,6 +17,7 @@ from agents.observer.observer_agent import ObserverAgent
 from agents.behavior.behavior_agent import BehaviorAgent
 from agents.risk.risk_agent import RiskPredictionAgent
 from agents.integrity.integrity_agent import IntegrityAgent
+from agents.recommendation.recommendation_agent import RecommendationAgent
 
 # ==========================================================
 # Logging Configuration
@@ -214,6 +218,22 @@ def main():
     integrity_objects = integrity_agent.evaluate_all(observation_objects)
 
     # ======================================================
+    # STEP 12 : RECOMMENDATION AGENT
+    # ======================================================
+
+    recommendation_agent = RecommendationAgent(
+        "config/recommendation_rules.yaml"
+    )
+
+    recommendation_agent.health_check()
+
+    recommendation_objects = recommendation_agent.generate_all(
+        operational_entities,
+        behavior_objects,
+        risk_objects,
+        integrity_objects
+    )
+    # ======================================================
     # SUMMARIES
     #
     # Built from each agent's own counters rather than from
@@ -260,13 +280,26 @@ def main():
         "observation_objects": integrity_agent.total_observations,
         "integrity_objects": integrity_agent.total_integrities
     }
+    recommendation_agent.summary()
 
+    recommendation_summary = {
+
+        "behavior_objects": recommendation_agent.total_behaviors,
+
+        "recommendation_objects": recommendation_agent.total_recommendations,
+
+        "generated_via_gemini": recommendation_agent.total_generated_by_gemini,
+
+        "generated_via_fallback": recommendation_agent.total_generated_by_fallback
+
+    }
     representative_flow = build_representative_flow(
         operational_entities,
         observation_objects,
         behavior_objects,
         risk_objects,
-        integrity_objects
+        integrity_objects,
+        recommendation_objects
     )
 
     # ======================================================
@@ -286,7 +319,8 @@ def main():
         "observer_output": observation_objects,
         "behavior_output": behavior_objects,
         "risk_output": risk_objects,
-        "integrity_output": integrity_objects
+        "integrity_output": integrity_objects,
+        "recommendation_output": recommendation_objects
     }
 
     output_dir = "output"
@@ -306,6 +340,7 @@ def main():
         behavior_summary,
         risk_summary,
         integrity_summary,
+        recommendation_summary,
         representative_flow,
         execution_time,
         output_path
@@ -321,9 +356,10 @@ def main():
         "behavior_summary": behavior_summary,
         "risk_summary": risk_summary,
         "integrity_summary": integrity_summary,
+        "recommendation_summary": recommendation_summary
     }
 
-def build_representative_flow(operational_entities, observation_objects, behavior_objects, risk_objects, integrity_objects):
+def build_representative_flow(operational_entities, observation_objects, behavior_objects, risk_objects, integrity_objects,recommendation_objects):
 
     dataset_name = "kafka" if "kafka" in operational_entities else next(iter(operational_entities))
 
@@ -352,6 +388,11 @@ def build_representative_flow(operational_entities, observation_objects, behavio
         integrity
         for integrity in integrity_objects[dataset_name]
         if integrity.get("entity_id") == representative_entity_id
+    )
+    representative_recommendation = next(
+        recommendation
+        for recommendation in recommendation_objects[dataset_name]
+        if recommendation.get("entity_id") == representative_entity_id
     )
 
     observation_state = representative_observation.get("observations", {}).get("state", {})
@@ -389,6 +430,8 @@ def build_representative_flow(operational_entities, observation_objects, behavio
         "behavior_analysis": behavior_analysis,
         "risk_analysis": risk_analysis,
         "integrity_analysis": integrity_analysis,
+        "recommendation": representative_recommendation,
+        "recommendation_analysis": representative_recommendation,
     }
 
 
@@ -398,6 +441,7 @@ def print_execution_summary(
     behavior_summary,
     risk_summary,
     integrity_summary,
+    recommendation_summary,
     representative_flow,
     execution_time,
     output_path
@@ -408,12 +452,14 @@ def print_execution_summary(
     print_behavior_summary(behavior_summary, representative_flow)
     print_risk_summary(risk_summary, representative_flow)
     print_integrity_summary(integrity_summary, representative_flow)
+    print_recommendation_summary(recommendation_summary,representative_flow)
     print_footer_summary(
         adapter_summary,
         observer_summary,
         behavior_summary,
         risk_summary,
         integrity_summary,
+        recommendation_summary,
         execution_time,
         output_path
     )
@@ -443,6 +489,10 @@ def print_workflow_banner():
     print("Integrity Agent")
     print("        ↓")
     print("Integrity Object")
+    print("        ↓")
+    print("Recommendation Agent")
+    print("        ↓")
+    print("Recommendation Object")
     print("=" * 80)
 
 
@@ -513,6 +563,7 @@ def print_footer_summary(
     behavior_summary,
     risk_summary,
     integrity_summary,
+    recommendation_summary,
     execution_time,
     output_path
 ):
@@ -536,6 +587,9 @@ def print_footer_summary(
     print()
     print("Integrity Agent")
     print_label("Integrity Objects Created", integrity_summary["integrity_objects"], 30)
+    print()
+    print("Recommendation Agent")
+    print_label("Recommendation Objects Created", recommendation_summary["recommendation_objects"], 30)
     print()
     print_label("Execution Status", "SUCCESS", 30)
     print_label("Execution Time", f"{execution_time:.2f} seconds", 30)
@@ -815,21 +869,36 @@ def print_recommendation_summary(recommendation_summary,representative_flow):
         {}
     )
 
+    risk = representative_flow.get(
+        "risk_analysis",
+        {}
+    )
+
+    behavior = representative_flow.get(
+        "behavior_analysis",
+        {}
+    )
+
+    integrity = representative_flow.get(
+        "integrity_analysis",
+        {}
+    )
+
     print_label(
         "Risk Severity",
-        recommendation.get("risk_severity"),
+        risk.get("risk_severity"),
         22
     )
 
     print_label(
         "Behavior Severity",
-        recommendation.get("behavior_severity"),
+        behavior.get("severity"),
         22
     )
 
     print_label(
         "Integrity Status",
-        recommendation.get("integrity_status"),
+        integrity.get("integrity_status"),
         22
     )
 
@@ -839,23 +908,54 @@ def print_recommendation_summary(recommendation_summary,representative_flow):
 
     print()
 
-    print_label(
-        "Priority",
-        recommendation.get("priority"),
-        22
-    )
+    if recommendation.get("priority") is not None:
+        print_label(
+            "Priority",
+            recommendation.get("priority"),
+            22
+        )
 
-    print_label(
-        "Category",
-        recommendation.get("category"),
-        22
-    )
+    if recommendation.get("expected_impact") is not None:
+        print_label(
+            "Expected Impact",
+            recommendation.get("expected_impact"),
+            22
+        )
 
-    print_label(
-        "Recommendation",
-        recommendation.get("recommendation"),
-        22
-    )
+    if recommendation.get("estimated_recovery_time") is not None:
+        print_label(
+            "Estimated Recovery Time",
+            recommendation.get("estimated_recovery_time"),
+            22
+        )
+
+    if recommendation.get("automation_possible") is not None:
+        print_label(
+            "Automation Possible",
+            recommendation.get("automation_possible"),
+            22
+        )
+
+    if recommendation.get("human_approval_required") is not None:
+        print_label(
+            "Human Approval Required",
+            recommendation.get("human_approval_required"),
+            22
+        )
+
+    if recommendation.get("confidence") is not None:
+        print_label(
+            "Confidence",
+            recommendation.get("confidence"),
+            22
+        )
+
+    if recommendation.get("recommendation") is not None:
+        print_label(
+            "Recommendation",
+            recommendation.get("recommendation"),
+            22
+        )
 
     print()
 

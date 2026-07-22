@@ -1,0 +1,222 @@
+# ==========================================================
+# Adaptive Intelligence Fabric (AIF)
+# Recommendation Agent
+# Rule Configuration
+# ==========================================================
+
+# ----------------------------------------------------------
+# Agent Metadata
+# ----------------------------------------------------------
+
+agent:
+
+  version: "1.0"
+
+
+# ----------------------------------------------------------
+# Priority Rules
+#
+# Same generic rule-evaluation pattern as Risk Prediction
+# Agent's category_rules: each rule is a set of
+# "<signal>_<operator>": expected_value conditions evaluated
+# against a flat signal dictionary built from the Behavior,
+# Risk, Integrity Objects and the Operational Entity. Rules
+# are tried highest "priority" number first; the first rule
+# whose conditions match wins. No priority name and no
+# threshold is ever hardcoded in the Priority Calculator —
+# only the generic operators (min / max / equals / contains)
+# are.
+#
+# "match: any"  -> any one condition matching is enough
+# "match: all"  -> every condition must match
+# ----------------------------------------------------------
+
+priority_rules:
+
+  rules:
+
+    - priority_label: "CRITICAL"
+      priority: 100
+      match: any
+      conditions:
+        integrity_status_equals: "FAILED"
+        risk_severity_equals: "CRITICAL"
+        behavior_severity_equals: "CRITICAL"
+
+    - priority_label: "HIGH"
+      priority: 90
+      match: any
+      conditions:
+        risk_severity_equals: "HIGH"
+        integrity_status_equals: "WARNING"
+        output_trust_level_equals: "LOW"
+
+    - priority_label: "MEDIUM"
+      priority: 80
+      match: any
+      conditions:
+        risk_severity_equals: "MEDIUM"
+        behavior_severity_equals: "WARNING"
+        drift_status_equals: "DETECTED"
+
+  default_priority: "LOW"
+
+
+# ----------------------------------------------------------
+# Expected Impact
+#
+# One human-readable line per priority. Deliberately generic
+# — the LLM path is expected to produce a more specific
+# impact statement; this is what the deterministic Priority
+# Calculator / Impact Estimator and the fallback path use.
+# ----------------------------------------------------------
+
+impact_mapping:
+
+  CRITICAL: "Severe — active or imminent failure likely to impact downstream consumers."
+  HIGH: "Significant — degraded reliability or data freshness likely without action."
+  MEDIUM: "Moderate — localized impact; warrants monitoring and a scheduled review."
+  LOW: "Minimal — informational; no immediate operational impact expected."
+
+
+# ----------------------------------------------------------
+# Estimated Recovery Time
+# ----------------------------------------------------------
+
+recovery_time_mapping:
+
+  CRITICAL: "Immediate (0-30 minutes)"
+  HIGH: "Short-term (30 minutes - 4 hours)"
+  MEDIUM: "Same business day (4-24 hours)"
+  LOW: "Best effort (no fixed SLA)"
+
+
+# ----------------------------------------------------------
+# Automation Rules
+#
+# automation_possible is true only when BOTH the priority is
+# in automatable_priorities AND the risk_category (if known)
+# is in automatable_categories. Either list can be left empty
+# to disable that half of the check.
+# ----------------------------------------------------------
+
+automation_rules:
+
+  automatable_priorities:
+    - "LOW"
+    - "MEDIUM"
+
+  automatable_categories:
+    - "Resource Exhaustion"
+    - "Configuration Risk"
+
+  default_automation_possible: false
+
+
+# ----------------------------------------------------------
+# Human Approval Rules
+#
+# human_approval_required is true if the priority OR the
+# risk_category matches either list below.
+# ----------------------------------------------------------
+
+human_approval_rules:
+
+  requires_approval_priorities:
+    - "CRITICAL"
+    - "HIGH"
+
+  requires_approval_categories:
+    - "Pipeline Failure"
+    - "SLA Breach"
+
+  default_human_approval_required: true
+
+
+# ----------------------------------------------------------
+# Knowledge Retrieval
+#
+# Lightweight local-JSON RAG. knowledge_dir is relative to
+# the Recommendation Agent package so this module has no
+# dependency on the caller's working directory. Designed so
+# the same retrieve() interface could later be backed by a
+# vector database without any change to the Recommendation
+# Agent or Prompt Builder.
+# ----------------------------------------------------------
+
+knowledge_retrieval:
+
+  knowledge_dir: "agents/recommendation/knowledge"
+
+  sources:
+    incident_playbook: "incident_playbook.json"
+    platform_best_practices: "platform_best_practices.json"
+    sop_library: "sop_library.json"
+
+  max_results_per_source: 1
+
+
+# ----------------------------------------------------------
+# Gemini Client
+#
+# API key is read only from the GEMINI_API_KEY environment
+# variable — never stored here.
+# ----------------------------------------------------------
+
+gemini:
+
+  model: "gemini-2.5-flash"
+  temperature: 0.2
+  max_output_tokens: 512
+  timeout_seconds: 20
+  max_retries: 1
+
+
+# ----------------------------------------------------------
+# Recommendation Validation
+# ----------------------------------------------------------
+
+validation:
+
+  required_fields:
+    - "priority"
+    - "recommendation"
+    - "reason"
+    - "expected_impact"
+    - "estimated_recovery_time"
+    - "confidence"
+    - "automation_possible"
+
+  valid_priorities:
+    - "CRITICAL"
+    - "HIGH"
+    - "MEDIUM"
+    - "LOW"
+
+  min_confidence: 0.0
+  max_confidence: 1.0
+
+  max_retries: 1
+
+
+# ----------------------------------------------------------
+# Fallback Recommendation
+#
+# Used whenever GEMINI_API_KEY is unset, the Gemini API call
+# fails, or the response fails validation after one retry.
+# Guarantees a Recommendation Object is always produced —
+# low-priority entities are never skipped.
+# ----------------------------------------------------------
+
+fallback:
+
+  recommendation_by_priority:
+
+    CRITICAL: "Escalate immediately to the on-call owner and review recent changes for this entity."
+    HIGH: "Investigate this entity's recent deviation and incident history before the next scheduled run."
+    MEDIUM: "Schedule a review of this entity's behavior trend within the current work cycle."
+    LOW: "No immediate action required; continue routine monitoring."
+
+  reason: "Generated by the deterministic fallback path because an LLM-backed recommendation was not available for this entity."
+
+  confidence: 0.3
