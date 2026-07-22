@@ -1,0 +1,37 @@
+[
+  {
+    "id": "PB-001",
+    "title": "Repeated Pipeline Execution Failure",
+    "applies_to_categories": ["Pipeline Failure"],
+    "applies_to_priorities": ["CRITICAL", "HIGH"],
+    "playbook": "Check the most recent execution logs for the failing entity, confirm upstream dependencies completed successfully, and verify no configuration change was deployed in the last release window before retrying the run."
+  },
+  {
+    "id": "PB-002",
+    "title": "SLA Breach on Scheduled Job",
+    "applies_to_categories": ["SLA Breach"],
+    "applies_to_priorities": ["CRITICAL", "HIGH", "MEDIUM"],
+    "playbook": "Compare current runtime against the historical baseline for this entity, check for resource contention on the executing cluster/queue, and consider temporarily increasing allocated compute if the SLA margin is consistently negative."
+  },
+  {
+    "id": "PB-003",
+    "title": "Sustained Resource Exhaustion",
+    "applies_to_categories": ["Resource Exhaustion"],
+    "applies_to_priorities": ["CRITICAL", "HIGH", "MEDIUM"],
+    "playbook": "Review CPU and memory utilization trend over the last several runs; if consistently above 85%, scale the underlying compute allocation or investigate a possible memory leak in the job."
+  },
+  {
+    "id": "PB-004",
+    "title": "Elevated Retry / Dependency Failure Pattern",
+    "applies_to_categories": ["Dependency Failure"],
+    "applies_to_priorities": ["HIGH", "MEDIUM"],
+    "playbook": "Trace the dependency chain for this entity and confirm upstream systems are healthy; if retries are consistently exhausted, consider increasing the retry backoff interval and alerting the owning team of the upstream dependency."
+  },
+  {
+    "id": "PB-005",
+    "title": "Recurring Data Quality Failures",
+    "applies_to_categories": ["Data Quality Risk"],
+    "applies_to_priorities": ["HIGH", "MEDIUM", "LOW"],
+    "playbook": "Inspect the specific validation errors for this entity, confirm the upstream schema has not changed unexpectedly, and quarantine affected records rather than allowing them downstream until root cause is confirmed."
+  }
+]

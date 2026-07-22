@@ -1,0 +1,26 @@
+[
+  {
+    "id": "SOP-001",
+    "title": "Critical Priority Escalation",
+    "applies_to_priorities": ["CRITICAL"],
+    "sop": "Page the on-call owner immediately via the incident management system, open an incident ticket referencing the entity_id, and do not close the incident until integrity_status returns to PASS on a subsequent run."
+  },
+  {
+    "id": "SOP-002",
+    "title": "High Priority Review",
+    "applies_to_priorities": ["HIGH"],
+    "sop": "Assign to the owning team's queue for review within the current business day; no page required unless priority escalates to CRITICAL on a subsequent evaluation."
+  },
+  {
+    "id": "SOP-003",
+    "title": "Medium Priority Monitoring",
+    "applies_to_priorities": ["MEDIUM"],
+    "sop": "Add to the team's routine review backlog; re-evaluate at the next scheduled operational review rather than acting immediately."
+  },
+  {
+    "id": "SOP-004",
+    "title": "Low Priority Logging",
+    "applies_to_priorities": ["LOW"],
+    "sop": "Log for trend analysis only; no individual action required unless the same entity recurs across multiple consecutive evaluation cycles."
+  }
+]

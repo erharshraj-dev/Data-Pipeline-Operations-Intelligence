@@ -1,0 +1,37 @@
+[
+  {
+    "id": "BP-AIRFLOW-001",
+    "platform": "Airflow",
+    "practice": "Set explicit task-level retries and exponential backoff for tasks with external dependencies, and alert on DAGs exceeding their historical p95 runtime rather than a single fixed timeout."
+  },
+  {
+    "id": "BP-KAFKA-001",
+    "platform": "Kafka",
+    "practice": "Monitor consumer lag trend, not just its instantaneous value; a slowly growing lag over several intervals indicates a consumer that cannot keep pace with partition throughput and needs additional consumer instances."
+  },
+  {
+    "id": "BP-KUBERNETES-001",
+    "platform": "Kubernetes",
+    "practice": "Investigate pod restart counts alongside resource requests/limits; frequent restarts with memory near the configured limit usually indicate the limit is undersized rather than an application defect."
+  },
+  {
+    "id": "BP-AZUREDATAFACTORY-001",
+    "platform": "Azure Data Factory",
+    "practice": "Validate pipeline parameter and trigger configuration after any deployment, since malformed trigger definitions commonly manifest as missing or malformed run timestamps downstream."
+  },
+  {
+    "id": "BP-SAP-001",
+    "platform": "SAP",
+    "practice": "Cross-check batch job scheduling windows against known peak-load periods; jobs queued behind higher-priority batch work will show elevated runtime without any underlying defect."
+  },
+  {
+    "id": "BP-MANUFACTURING-001",
+    "platform": "Manufacturing",
+    "practice": "Correlate equipment event codes with maintenance history before escalating; a repeated event code shortly after scheduled maintenance often indicates an incomplete repair rather than a new fault."
+  },
+  {
+    "id": "BP-IOT-001",
+    "platform": "IoT",
+    "practice": "Treat isolated sensor anomalies (temperature, battery, signal) as noise unless they persist across multiple consecutive readings from the same device."
+  }
+]

@@ -1,0 +1,68 @@
+You are an operational reliability advisor for enterprise data pipelines.
+
+Analyze the following operational intelligence for a single pipeline entity and produce
+ONE remediation recommendation.
+
+======================================================
+ENTITY
+======================================================
+Entity ID           : {entity_id}
+Pipeline Name        : {pipeline_name}
+Platform             : {platform}
+Execution Status      : {execution_status}
+Business Criticality   : {business_criticality}
+Timestamp            : {timestamp}
+
+======================================================
+BEHAVIOR SUMMARY
+======================================================
+Behavior Score        : {behavior_score}
+Behavior Severity      : {behavior_severity}
+Behavior Confidence    : {behavior_confidence}
+Deviation Score        : {deviation_score}
+Drift Status          : {drift_status}
+Detected Pattern(s)    : {detected_pattern}
+
+======================================================
+RISK SUMMARY
+======================================================
+Risk Score           : {risk_score}
+Risk Severity         : {risk_severity}
+Risk Probability       : {risk_probability}
+Risk Category         : {risk_category}
+Prediction Confidence   : {prediction_confidence}
+
+======================================================
+INTEGRITY SUMMARY
+======================================================
+Integrity Score        : {integrity_score}
+Integrity Status       : {integrity_status}
+Output Trust Level     : {output_trust_level}
+Primary Failure Reason  : {primary_failure_reason}
+
+======================================================
+RETRIEVED OPERATIONAL KNOWLEDGE
+======================================================
+Relevant SOP          : {relevant_sop}
+Similar Past Incident   : {similar_incident}
+Platform Best Practice  : {platform_best_practice}
+
+======================================================
+INSTRUCTIONS
+======================================================
+Using only the information above, return a single remediation recommendation.
+
+Respond with ONLY a single valid JSON object. Do not include any explanation, markdown
+formatting, or code fences before or after it. The JSON object must have exactly these
+fields:
+
+{{
+  "priority": "CRITICAL | HIGH | MEDIUM | LOW",
+  "recommendation": "a specific, actionable remediation step",
+  "reason": "a short explanation grounded in the data above",
+  "expected_impact": "the operational impact if this is not addressed",
+  "estimated_recovery_time": "an estimated time to resolve",
+  "confidence": 0.0,
+  "automation_possible": true,
+  "human_approval_required": true
+}}

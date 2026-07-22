@@ -8,3 +8,4 @@ loguru
 python-dotenv
 openpyxl
 pytest
+google-generativeai
