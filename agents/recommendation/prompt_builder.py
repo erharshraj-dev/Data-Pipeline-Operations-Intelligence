@@ -72,11 +72,15 @@ class PromptBuilder:
     # BUILD
     # =====================================================
 
-    def build(self, context, retrieved_knowledge):
+    def build(self, context, retrieved_knowledge, base_candidate=None):
 
         fields = dict(context)
 
         fields.update(retrieved_knowledge)
+
+        if base_candidate:
+
+            fields.update(base_candidate)
 
         formatted_fields = {
 

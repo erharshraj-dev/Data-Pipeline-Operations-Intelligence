@@ -48,6 +48,9 @@ class RecommendationRuleEngine:
         self.human_approval_rules = {}
         self.knowledge_retrieval_config = {}
         self.gemini_config = {}
+        self.grok_config = {}
+        self.ollama_config = {}
+        self.llm_selection_config = {}
         self.validation_config = {}
         self.fallback_config = {}
 
@@ -86,6 +89,12 @@ class RecommendationRuleEngine:
         )
 
         self.gemini_config = config.get("gemini", {})
+
+        self.grok_config = config.get("grok", {})
+
+        self.ollama_config = config.get("ollama", {})
+
+        self.llm_selection_config = config.get("llm_selection", {})
 
         self.validation_config = config.get("validation", {})
 
@@ -144,6 +153,18 @@ class RecommendationRuleEngine:
     def get_gemini_config(self):
 
         return self.gemini_config
+
+    def get_grok_config(self):
+
+        return self.grok_config
+
+    def get_ollama_config(self):
+
+        return self.ollama_config
+
+    def get_llm_selection_config(self):
+
+        return self.llm_selection_config
 
     def get_validation_config(self):
 

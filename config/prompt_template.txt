@@ -1,7 +1,22 @@
 You are an operational reliability advisor for enterprise data pipelines.
 
-Analyze the following operational intelligence for a single pipeline entity and produce
-ONE remediation recommendation.
+The recommendation for this entity has already been determined by a deterministic
+rules engine. Do not change the priority, the expected impact, the estimated recovery
+time, or the underlying recommendation. Only enhance it: improve the wording, explain
+why it was selected, generate more detailed remediation steps, and suggest preventive
+actions.
+
+======================================================
+ALREADY-DETERMINED RECOMMENDATION (DO NOT CHANGE)
+======================================================
+Priority             : {priority}
+Base Recommendation    : {base_recommendation}
+Base Reason           : {base_reason}
+Base Confidence        : {base_confidence}
+Expected Impact        : {expected_impact}
+Estimated Recovery Time : {estimated_recovery_time}
+Automation Possible     : {automation_possible}
+Human Approval Required : {human_approval_required}
 
 ======================================================
 ENTITY
@@ -50,18 +65,22 @@ Platform Best Practice  : {platform_best_practice}
 ======================================================
 INSTRUCTIONS
 ======================================================
-Using only the information above, return a single remediation recommendation.
+The recommendation has already been determined. Do not change it. Only enhance it:
+sharpen the wording, add a clear explanation grounded in the data above, and provide
+more detailed, actionable remediation steps.
 
 Respond with ONLY a single valid JSON object. Do not include any explanation, markdown
 formatting, or code fences before or after it. The JSON object must have exactly these
-fields:
+fields. "priority", "expected_impact", "estimated_recovery_time",
+"automation_possible", and "human_approval_required" MUST be copied back exactly as
+given above:
 
 {{
   "priority": "CRITICAL | HIGH | MEDIUM | LOW",
-  "recommendation": "a specific, actionable remediation step",
-  "reason": "a short explanation grounded in the data above",
-  "expected_impact": "the operational impact if this is not addressed",
-  "estimated_recovery_time": "an estimated time to resolve",
+  "recommendation": "the base recommendation, enhanced with clearer, more specific remediation steps",
+  "reason": "a detailed explanation grounded in the data above, including preventive actions",
+  "expected_impact": "copied exactly from the ALREADY-DETERMINED section above",
+  "estimated_recovery_time": "copied exactly from the ALREADY-DETERMINED section above",
   "confidence": 0.0,
   "automation_possible": true,
   "human_approval_required": true

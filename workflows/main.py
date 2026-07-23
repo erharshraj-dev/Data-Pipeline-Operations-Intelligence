@@ -288,9 +288,10 @@ def main():
 
         "recommendation_objects": recommendation_agent.total_recommendations,
 
-        "generated_via_gemini": recommendation_agent.total_generated_by_gemini,
+        "generated_via_llm": recommendation_agent.total_generated_by_llm,
 
-        "generated_via_fallback": recommendation_agent.total_generated_by_fallback
+        "generated_via_deterministic":
+            recommendation_agent.total_generated_by_deterministic
 
     }
     representative_flow = build_representative_flow(
@@ -947,6 +948,20 @@ def print_recommendation_summary(recommendation_summary,representative_flow):
         print_label(
             "Confidence",
             recommendation.get("confidence"),
+            22
+        )
+
+    if recommendation.get("recommendation_source") is not None:
+        print_label(
+            "Recommendation Source",
+            recommendation.get("recommendation_source"),
+            22
+        )
+
+    if recommendation.get("selected_model") is not None:
+        print_label(
+            "Selected Model",
+            recommendation.get("selected_model"),
             22
         )
 
