@@ -1,20 +1,19 @@
 import json
 import logging
-import os
 import time
 
 logger = logging.getLogger(__name__)
 
 
-class GeminiUnavailableError(Exception):
+class GeminiProviderError(Exception):
     """
     Raised whenever a usable Gemini response could not be
     obtained — missing SDK, missing API key, a request
     failure/timeout after exhausting retries, or a response
     that is not parseable JSON after exhausting retries. The
-    Recommendation Agent catches this and falls back to the
-    deterministic fallback recommendation; it never propagates
-    as an unhandled crash.
+    Multi-LLM Selection Agent catches this and moves on to the
+    next provider in the selection order; it never propagates
+    to the Recommendation Agent.
     """
     pass
 
@@ -22,29 +21,33 @@ class GeminiUnavailableError(Exception):
 class GeminiClient:
     """
     ==========================================================
-    Gemini Client
+    Gemini Client (Multi-LLM Selection Agent)
 
     Responsibility:
         Call the Gemini API (via the official Google
-        Generative AI SDK) with a prepared prompt and return
-        the parsed JSON recommendation. Handles missing SDK,
-        missing API key, request failures, timeouts, and
-        invalid JSON responses, with one configurable retry.
+        Generative AI SDK) with a prepared enhancement prompt
+        and return the parsed JSON response. Handles missing
+        SDK, missing API key, request failures, timeouts, and
+        invalid JSON responses, retrying according to
+        LLMConfig.
 
     Input:
         Prompt String
 
     Output:
-        Parsed JSON Dictionary (raises GeminiUnavailableError
-        if no usable response could be obtained)
+        Parsed JSON Dictionary (raises GeminiProviderError if
+        no usable response could be obtained)
 
     DOES NOT
     --------
     - Build the prompt
-    - Validate the recommendation's business fields (that is
-      the Recommendation Validator's job — this only confirms
-      the response is parseable JSON)
-    - Ever read the API key from anywhere but the environment
+    - Decide whether Gemini should be tried at all (that is
+      the Multi-LLM Selection Agent's responsibility)
+    - Validate the response's business fields (that is the
+      LLM Response Parser's job — this only confirms the
+      response is parseable JSON)
+    - Ever read the API key from anywhere but LLMConfig /
+      the environment
     ==========================================================
     """
 
@@ -52,11 +55,13 @@ class GeminiClient:
     # INITIALIZATION
     # =====================================================
 
-    def __init__(self, rule_engine):
+    def __init__(self, llm_config):
 
-        self.rule_engine = rule_engine
+        self.llm_config = llm_config
 
-        gemini_config = self.rule_engine.get_gemini_config()
+        gemini_config = self.llm_config.get_gemini_config()
+
+        self.api_key = gemini_config.get("api_key")
 
         self.model_name = gemini_config.get("model", "gemini-2.5-flash")
 
@@ -68,35 +73,21 @@ class GeminiClient:
 
         self.timeout_seconds = gemini_config.get("timeout_seconds", 20)
 
-        self.max_retries = gemini_config.get("max_retries", 1)
-
-        self.api_key = os.getenv("GEMINI_API_KEY")
-
-        if self.api_key:
-            self.api_key = self.api_key.strip()
-            if self.api_key in ("", "<API_KEY>", '"<API_KEY>"'):
-                self.api_key = None
+        self.max_retries = gemini_config.get("max_retries", 2)
 
         self._model = None
         self.quota_exceeded = False
 
-        if not self.api_key:
-
-            logger.warning(
-                "GEMINI_API_KEY is not set — Gemini Client will be "
-                "unavailable and every recommendation will use the "
-                "deterministic fallback path."
-            )
-
-        logger.info("Gemini Client Ready.")
+        logger.info("Multi-LLM Gemini Client Ready.")
 
     # =====================================================
     # LAZY MODEL INITIALIZATION
     #
     # google-generativeai is imported here, not at module
-    # level, so the rest of the Recommendation Agent still
-    # works (via the fallback path) in environments where the
-    # SDK is not installed.
+    # level, so the rest of the Multi-LLM Selection Agent
+    # still works (falling through to Grok / Ollama /
+    # deterministic) in environments where the SDK is not
+    # installed.
     # =====================================================
 
     def _get_model(self):
@@ -107,7 +98,7 @@ class GeminiClient:
 
         if not self.api_key:
 
-            raise GeminiUnavailableError("GEMINI_API_KEY is not set.")
+            raise GeminiProviderError("GEMINI_API_KEY is not set.")
 
         try:
 
@@ -115,7 +106,7 @@ class GeminiClient:
 
         except ImportError as error:
 
-            raise GeminiUnavailableError(
+            raise GeminiProviderError(
                 f"google-generativeai SDK is not installed: {error}"
             )
 
@@ -155,8 +146,12 @@ class GeminiClient:
 
     def generate(self, prompt):
 
-        if getattr(self, "quota_exceeded", False):
-            raise GeminiUnavailableError("Gemini API quota exceeded in a previous call. Failing fast.")
+        if self.quota_exceeded:
+
+            raise GeminiProviderError(
+                "Gemini API quota exceeded in a previous call. "
+                "Failing fast."
+            )
 
         last_error = None
 
@@ -186,9 +181,13 @@ class GeminiClient:
 
                 )
 
-                return self._parse_response(response.text)
+                parsed = self._parse_response(response.text)
 
-            except GeminiUnavailableError:
+                parsed["generated_by"] = "gemini"
+
+                return parsed
+
+            except GeminiProviderError:
 
                 # SDK missing / API key missing — retrying will
                 # not help, fail fast.
@@ -208,9 +207,15 @@ class GeminiClient:
                 last_error = error
 
                 err_msg = str(error).lower()
-                if "quota" in err_msg or "429" in err_msg or "limit" in err_msg:
+
+                if "quota" in err_msg or "429" in err_msg or \
+                        "limit" in err_msg:
+
                     self.quota_exceeded = True
-                    raise GeminiUnavailableError(f"Gemini API quota exceeded: {error}")
+
+                    raise GeminiProviderError(
+                        f"Gemini API quota exceeded: {error}"
+                    )
 
                 logger.warning(
                     f"Gemini API call failed on attempt "
@@ -221,7 +226,7 @@ class GeminiClient:
 
                 time.sleep(0.5)
 
-        raise GeminiUnavailableError(
+        raise GeminiProviderError(
             f"Gemini did not return a usable response after "
             f"{attempts} attempt(s): {last_error}"
         )

@@ -173,19 +173,75 @@ gemini:
 
 
 # ----------------------------------------------------------
+# Grok Client
+#
+# API key is read only from the GROK_API_KEY environment
+# variable — never stored here.
+# ----------------------------------------------------------
+
+grok:
+
+  model: "grok-2-latest"
+  base_url: "https://api.x.ai/v1"
+  temperature: 0.2
+  max_output_tokens: 512
+  timeout_seconds: 20
+  max_retries: 1
+
+
+# ----------------------------------------------------------
+# Ollama Client
+#
+# Local model server — no API key required. Last LLM tier in
+# the selection cascade, before the deterministic
+# recommendation.
+# ----------------------------------------------------------
+
+ollama:
+
+  model: "llama3.1"
+  host: "http://localhost:11434"
+  timeout_seconds: 30
+  max_retries: 1
+
+
+# ----------------------------------------------------------
+# Multi-LLM Selection Agent
+#
+# Model priority order for enhancing the already-determined
+# deterministic recommendation. If Gemini's quota is exhausted,
+# the Multi-LLM Selection Agent automatically moves on to Grok.
+# If Grok fails, it moves on to Ollama. If every model fails,
+# the Recommendation Agent uses the deterministic recommendation
+# it already built via the Remediation Selector.
+# ----------------------------------------------------------
+
+llm_selection:
+
+  order:
+    - "gemini"
+    - "grok"
+    - "ollama"
+
+  max_validation_retries_per_model: 1
+
+
+# ----------------------------------------------------------
 # Recommendation Validation
+#
+# Applies to every LLM enhancement candidate (Gemini, Grok, or
+# Ollama). The LLM is only ever asked to enhance wording,
+# explain the reasoning, and elaborate remediation steps — never
+# to (re)calculate priority, category, impact, or recovery time —
+# so those fields are intentionally not required here.
 # ----------------------------------------------------------
 
 validation:
 
   required_fields:
-    - "priority"
-    - "recommendation"
+    - "enhanced_recommendation"
     - "reason"
-    - "expected_impact"
-    - "estimated_recovery_time"
     - "confidence"
-    - "automation_possible"
 
   valid_priorities:
     - "CRITICAL"

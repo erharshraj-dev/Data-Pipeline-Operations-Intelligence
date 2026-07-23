@@ -149,6 +149,18 @@ class RecommendationContextBuilder:
             "risk_severity": risk_object.get("risk_severity"),
             "risk_probability": risk_object.get("risk_probability"),
             "risk_category": risk_object.get("risk_category"),
+
+            # Recommendation Category — the Risk Prediction
+            # Agent's CategoryClassifier already deterministically
+            # classifies every entity (Pipeline Failure, SLA
+            # Breach, Resource Exhaustion, Dependency Failure,
+            # Data Quality Risk, Infrastructure Risk,
+            # Configuration Risk, Operational Risk). The
+            # Recommendation Agent reuses that classification as
+            # its own Recommendation Category instead of running a
+            # second, duplicate, LLM-free classifier.
+            "category": risk_object.get("risk_category"),
+
             "prediction_confidence": risk_object.get(
                 "prediction_confidence"
             ),

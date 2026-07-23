@@ -19,7 +19,9 @@ class RecommendationObjectBuilder:
         Validated Recommendation Dictionary (priority,
         recommendation, reason, expected_impact,
         estimated_recovery_time, confidence,
-        automation_possible, human_approval_required)
+        automation_possible, human_approval_required,
+        recommendation_source, selected_model — the last two
+        set by the Multi-LLM Selection Agent)
 
     Output:
         Recommendation Object
@@ -67,6 +69,12 @@ class RecommendationObjectBuilder:
             "human_approval_required": recommendation.get(
                 "human_approval_required"
             ),
+
+            "recommendation_source": recommendation.get(
+                "recommendation_source", "deterministic"
+            ),
+
+            "selected_model": recommendation.get("selected_model"),
 
             "generated_timestamp": datetime.now().isoformat()
 

@@ -77,7 +77,11 @@ class RecommendationValidator:
 
         priority = candidate.get("priority")
 
-        if self.valid_priorities and priority not in self.valid_priorities:
+        if (
+            priority is not None
+            and self.valid_priorities
+            and priority not in self.valid_priorities
+        ):
 
             reasons.append(
                 f"Invalid priority: {priority!r} "

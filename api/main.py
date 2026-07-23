@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from api.routes.health import router as health_router
 from api.routes.pipeline import router as pipeline_router
+from api.routes.dataops import router as dataops_router
 
 app = FastAPI(
     title="Adaptive Intelligence Fabric API",
@@ -11,3 +12,4 @@ app = FastAPI(
 
 app.include_router(health_router)
 app.include_router(pipeline_router)
+app.include_router(dataops_router)

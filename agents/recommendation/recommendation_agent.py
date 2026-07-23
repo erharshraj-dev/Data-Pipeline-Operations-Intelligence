@@ -8,15 +8,14 @@ from agents.recommendation.recommendation_engine import (
 )
 from agents.recommendation.knowledge_retriever import KnowledgeRetriever
 from agents.recommendation.prompt_builder import PromptBuilder
-from agents.recommendation.gemini_client import (
-    GeminiClient,
-    GeminiUnavailableError
-)
 from agents.recommendation.recommendation_validator import (
     RecommendationValidator
 )
 from agents.recommendation.recommendation_object_builder import (
     RecommendationObjectBuilder
+)
+from agents.multi_llm_selection.multi_llm_selection_agent import (
+    MultiLLMSelectionAgent
 )
 
 logger = logging.getLogger(__name__)
@@ -31,14 +30,18 @@ class RecommendationAgent:
         Generate one remediation recommendation per entity by
         reasoning over the Behavior Object, Risk Object,
         Integrity Object, and Operational Entity — using the
-        deterministic Recommendation Engine, retrieved
-        operational knowledge, and Gemini. This agent does NOT
-        calculate behavior or risk; those are already produced
-        by earlier agents. Every entity receives a
-        recommendation, including LOW priority ones — nothing
-        is ever skipped, and a Gemini outage never prevents a
-        recommendation from being produced (see the fallback
-        path).
+        deterministic Recommendation Engine and retrieved
+        operational knowledge to always produce a rule-based
+        recommendation first, then handing off to the
+        Multi-LLM Selection Agent to decide whether — and with
+        which model — that recommendation should be enhanced.
+        This agent does NOT calculate behavior, risk, priority,
+        or category; those are already produced by earlier
+        agents / the Recommendation Engine. Every entity
+        receives a recommendation, including LOW priority ones
+        — nothing is ever skipped, and no LLM outage of any
+        kind ever prevents a recommendation from being produced
+        (see the deterministic fallback path).
 
     Input:
         Behavior Object, Risk Object, Integrity Object,
@@ -51,8 +54,10 @@ class RecommendationAgent:
     --------
     - Detect anomalies
     - Calculate Behavior Score or Risk Score
+    - Select or call an LLM directly (that is the Multi-LLM
+      Selection Agent's responsibility)
     - Validate output correctness (that is the Integrity
-      Agent's responsibility)
+      Agent's / Recommendation Validator's responsibility)
     ==========================================================
     """
 
@@ -75,7 +80,7 @@ class RecommendationAgent:
 
         self.prompt_builder = PromptBuilder(prompt_template_file)
 
-        self.gemini_client = GeminiClient(self.rule_engine)
+        self.multi_llm_selection_agent = MultiLLMSelectionAgent()
 
         self.recommendation_validator = RecommendationValidator(
             self.rule_engine
@@ -83,16 +88,10 @@ class RecommendationAgent:
 
         self.recommendation_object_builder = RecommendationObjectBuilder()
 
-        validation_config = self.rule_engine.get_validation_config()
-
-        self.max_validation_retries = validation_config.get(
-            "max_retries", 1
-        )
-
         self.total_behaviors = 0
         self.total_recommendations = 0
-        self.total_generated_by_gemini = 0
-        self.total_generated_by_fallback = 0
+        self.total_generated_by_llm = 0
+        self.total_generated_by_deterministic = 0
 
         logger.info("Recommendation Agent Ready.")
 
@@ -109,21 +108,24 @@ class RecommendationAgent:
         logger.info("Recommendation Engine Ready.")
         logger.info("Knowledge Retriever Ready.")
         logger.info("Prompt Builder Ready.")
-        logger.info("Gemini Client Ready.")
+
+        self.multi_llm_selection_agent.health_check()
+
         logger.info("Recommendation Validator Ready.")
         logger.info("Recommendation Object Builder Ready.")
 
         logger.info("Recommendation Agent Health Check PASSED.")
 
     # =====================================================
-    # BUILD FALLBACK CANDIDATE
+    # BUILD RULE-BASED (DETERMINISTIC) RECOMMENDATION
     #
     # Always valid by construction — guarantees a
     # Recommendation Object is produced even with no LLM
-    # connectivity at all.
+    # connectivity at all. This is now built FIRST, before any
+    # LLM is ever considered, for every priority.
     # =====================================================
 
-    def _build_fallback_candidate(self, context):
+    def _build_rule_recommendation(self, context):
 
         fallback_config = self.rule_engine.get_fallback_config()
 
@@ -135,7 +137,7 @@ class RecommendationAgent:
 
         recommendation_text = recommendation_by_priority.get(
             priority,
-            "Review this entity; no specific fallback recommendation "
+            "Review this entity; no specific rule-based recommendation "
             "configured for this priority."
         )
 
@@ -147,7 +149,7 @@ class RecommendationAgent:
 
             "reason": fallback_config.get(
                 "reason",
-                "Generated by the deterministic fallback path."
+                "Generated by the deterministic Recommendation Engine."
             ),
 
             "expected_impact": context.get("expected_impact"),
@@ -167,43 +169,18 @@ class RecommendationAgent:
         }
 
     # =====================================================
-    # GENERATE VIA GEMINI, WITH ONE VALIDATION RETRY
-    # =====================================================
-
-    def _generate_via_gemini(self, context, retrieved_knowledge):
-
-        prompt = self.prompt_builder.build(context, retrieved_knowledge)
-
-        attempts = self.max_validation_retries + 1
-
-        last_reasons = []
-
-        for attempt in range(1, attempts + 1):
-
-            candidate = self.gemini_client.generate(prompt)
-
-            is_valid, reasons = self.recommendation_validator.validate(
-                candidate
-            )
-
-            if is_valid:
-
-                return candidate
-
-            last_reasons = reasons
-
-            logger.warning(
-                f"Gemini recommendation failed validation on attempt "
-                f"{attempt}/{attempts}: {reasons}"
-            )
-
-        raise GeminiUnavailableError(
-            f"Gemini recommendation failed validation after "
-            f"{attempts} attempt(s): {last_reasons}"
-        )
-
-    # =====================================================
     # GENERATE SINGLE RECOMMENDATION
+    #
+    # Flow:
+    #   Recommendation Engine (deterministic context + priority
+    #   + impact)
+    #     -> Knowledge Retriever
+    #     -> Rule-Based Recommendation (always built)
+    #     -> Multi-LLM Selection Agent (LOW/MEDIUM returns the
+    #        rule recommendation immediately; HIGH/CRITICAL
+    #        tries Gemini -> Grok -> Ollama -> deterministic)
+    #     -> Recommendation Validator (final safety net)
+    #     -> Recommendation Object Builder
     # =====================================================
 
     def generate_recommendation(
@@ -228,24 +205,64 @@ class RecommendationAgent:
 
         retrieved_knowledge = self.knowledge_retriever.retrieve(context)
 
-        try:
+        rule_recommendation = self._build_rule_recommendation(context)
 
-            candidate = self._generate_via_gemini(
-                context, retrieved_knowledge
+        # The Prompt Builder's signature and template file are
+        # unchanged; the already-decided rule recommendation is
+        # passed through as extra "knowledge" fields so the
+        # prompt template can tell the LLM what has already
+        # been determined and must not be changed.
+        prompt_fields = dict(retrieved_knowledge)
+
+        prompt_fields["base_recommendation"] = rule_recommendation.get(
+            "recommendation"
+        )
+
+        prompt_fields["base_reason"] = rule_recommendation.get("reason")
+
+        prompt_fields["base_confidence"] = rule_recommendation.get(
+            "confidence"
+        )
+
+        prompt = self.prompt_builder.build(context, prompt_fields)
+
+        candidate = self.multi_llm_selection_agent.select(
+
+            prompt,
+
+            rule_recommendation,
+
+            context.get("priority"),
+
+            entity_id=context.get("entity_id")
+
+        )
+
+        is_valid, reasons = self.recommendation_validator.validate(
+            candidate
+        )
+
+        if not is_valid:
+
+            logger.warning(
+                f"Recommendation for entity {context.get('entity_id')} "
+                f"failed final validation ({reasons}). Reverting to the "
+                "rule-based recommendation."
             )
 
-            self.total_generated_by_gemini += 1
+            candidate = dict(rule_recommendation)
 
-        except GeminiUnavailableError as error:
+            candidate["recommendation_source"] = "deterministic"
 
-            logger.info(
-                f"Using fallback recommendation for entity "
-                f"{context.get('entity_id')}: {error}"
-            )
+            candidate["selected_model"] = None
 
-            candidate = self._build_fallback_candidate(context)
+        if candidate.get("recommendation_source") == "llm":
 
-            self.total_generated_by_fallback += 1
+            self.total_generated_by_llm += 1
+
+        else:
+
+            self.total_generated_by_deterministic += 1
 
         recommendation_object = self.recommendation_object_builder.build(
 
@@ -297,7 +314,15 @@ class RecommendationAgent:
 
         recommendation_objects = []
 
+        seen_entity_ids = set()
+        deduplicated_behavior_objects = []
         for behavior_object in behavior_objects:
+            entity_id = behavior_object.get("entity_id")
+            if entity_id not in seen_entity_ids:
+                seen_entity_ids.add(entity_id)
+                deduplicated_behavior_objects.append(behavior_object)
+
+        for behavior_object in deduplicated_behavior_objects:
 
             entity_id = behavior_object.get("entity_id")
 
@@ -337,8 +362,8 @@ class RecommendationAgent:
 
         self.total_behaviors = 0
         self.total_recommendations = 0
-        self.total_generated_by_gemini = 0
-        self.total_generated_by_fallback = 0
+        self.total_generated_by_llm = 0
+        self.total_generated_by_deterministic = 0
 
         for dataset_name, behaviors in behavior_objects_by_dataset.items():
 
@@ -388,7 +413,9 @@ class RecommendationAgent:
 
         print(f"Behavior Objects            : {self.total_behaviors}")
         print(f"Recommendation Objects       : {self.total_recommendations}")
-        print(f"Generated via Gemini         : {self.total_generated_by_gemini}")
-        print(f"Generated via Fallback       : {self.total_generated_by_fallback}")
+        print(f"Generated via LLM            : {self.total_generated_by_llm}")
+        print(f"Generated via Deterministic  : {self.total_generated_by_deterministic}")
 
         print("=" * 70)
+
+        self.multi_llm_selection_agent.summary()
